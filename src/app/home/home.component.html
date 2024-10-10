@@ -1,0 +1,136 @@
+<div class="thecontainer " >
+
+
+
+  <div class="main_main " id="Home">
+
+    <div class="main_text zoom">
+      <h1>Make <span>Car Service</span><br>in a Easy Way</h1>
+       <p><i>  Vi går op i at præsentere opskrifterne på en letforståelig måde, så selv nybegyndere kan følge med. Hver opskrift er nøje gennemprøvet og inkluderer detaljerede trin-for-trin instruktioner samt nyttige tips og tricks, der sikrer succes .
+
+        Udover opskrifter tilbyder vi også artikler om  biler, serrvice, processen og meget mere. Vores mål er at være en pålidelig kilde til succes og fornuft.</i></p>
+
+        <br><br> <br> <br>
+        <a href="#Menu" class="main_btn">Order Now  <i  class="fa-sharp fa-solid fa-angle-right"    ></i></a>
+        <br>
+        <ul class=" wrapper">
+
+
+
+
+
+          <li class="icon facebook">
+            <span class="tooltip">Facebook</span>
+            <span><i class="fab fa-facebook-f"></i></span>
+          </li>
+      
+          <li class="icon twitter">
+            <span class="tooltip">Twitter</span>
+            <span><i class="fab fa-twitter"></i></span>
+          </li>
+      
+          <li class="icon instagram ">
+            <span class="tooltip">Instagram</span>
+            <span><i class="fab fa-instagram"></i></span>
+          </li>
+      
+          <li class="icon github">
+            <span class="tooltip">Github</span>
+            <span><i class="fab fa-github"></i></span>
+          </li>
+      
+          <li class="icon youtube" routerLink="https://github.com/Visar122" >
+            <span class="tooltip">Youtube</span>
+            <span><i class="fab fa-youtube"></i></span>
+          </li>
+        </ul>
+      
+      </div>
+      <div class="main_image ">
+        <img src="./assets/Mercdess.jpg" >
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <div class="finance-container fade-in">
+    <div class="trust-section">
+      <div class="trust-header">
+        <img src="./assets/car-icon.jpg" alt="Car Icon" class="car-icon" style="width: 80%;">
+        <h1>More trust<br>More drive</h1>
+        <p>Trust the experts to service or repair your car or van.</p>
+      </div>
+      <div class="finance-section">
+        <div class="finance-text">
+          <h2>FIX NOW</h2>
+          <p>Can't afford to service your car? You can apply for finance with us!</p>
+    
+          <div class="first ">
+            <a class="btn" routerLink="/Repair"><i class="fa-solid fa-screwdriver-wrench"></i><br>Car Repair</a>
+            <a class="btn" routerLink="/Shop"><i class="fa-solid fa-car"></i><br>Car Shop</a>
+            <a class="btn" routerLink="/Spraying"><i class="fa-solid fa-brush"></i><br>Car spraying</a>
+            <a class="btn" routerLink="/Polish"><i class="fa-solid fa-paint-roller"></i><br>Car Polish</a>
+          </div>
+  
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="results"> 
+      <div class="results-text"> 
+        <h1> You will always have  amazing <span>Results  </span> from us</h1>
+        <p><i>  Vi forsøger hele tiden at give den bedste resultat for vores kunder og, deres  ønsker  der sikrer succes.
+
+          Udover opskrifter tilbyder vi også artikler om  biler, serrvice, processen og meget mere. Vores mål er at være en pålidelig kilde til succes og fornuft.</i></p>
+  
+          <br><br> <br> <br>
+      </div>
+      <div class="result-carousel">
+        <ngb-carousel *ngIf="carouselImages && carouselImages.length" [interval]="2200">
+          <ng-template ngbSlide *ngFor="let image of carouselImages">
+            <div class="picsum-img-wrapper">
+              <img [src]="image.src" [alt]="image.alt" style="width: 50%; border-radius: 10px;">
+            </div>
+       
+          </ng-template>
+        </ngb-carousel>
+        
+      </div>
+      
+
+    </div>
+    <div class="header"  id="About">
+      <img src="./assets/logo2.png" alt="Car Service City Logo" class="logo">
+      <div class="branch-info">
+          <h2>BRANCH TRADING HOURS</h2>
+          <p>Monday – Friday: 07:00 – 17:30<br>Saturdays: 08:00 – 13:00<br>Sundays: Closed</p>
+      </div>
+      <div class="connect">
+          <h2>CONNECT WITH US</h2>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+  </div>
+  <div class="footer">
+      <a href="#">CUSTOMER REVIEWS</a>
+      <a href="#">FIND A BRANCH</a>
+      <a href="#">TERMS & CONDITIONS</a>
+      <a href="#">COMPETITIONS & PROMOTIONS</a>
+      <a href="#">PRIVACY POLICY</a>
+      <a href="#">CONTACT US</a>
+  </div>
+

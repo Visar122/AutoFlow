@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 44%;
+    max-width: 100%;
+    min-height: 59%;
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+h1 {
+    font-weight: bold;
+    margin: 0;
+}
+h2 {
+    text-align: center;
+}
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+span {
+    font-size: 12px;
+}
+a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+button,.button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+button:active {
+    transform: scale(0.95);
+}
+button:focus {
+    outline: none;
+}
+button.ghost {
+    background: transparent;
+    border-color: #FFFFFF;
+}
+form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    
+    transition: all 0.6s ease-in-out;
+}
+.right-panel-active .sign-up-container {
+    transform: translateX(0);    /* Moves the sign-up form into view (from being off-screen).*/
+    opacity: 1;                  /*Makes the sign-up form fully visible.*/
+    z-index: 5;                  /* Ensures the sign-up form is on top of other elements.*/
+    animation: show 0.6s;        /*Makes annimation when is visible*/
+    margin-left:50% ;
+}
+
+.right-panel-active .log-in-container {
+    transform: translateX(100%);    /*Moves the log-in form out of view (off-screen)*/
+    opacity: 0;                     /*Fades out the log-in form.*/
+    z-index: 1;                      /*Sends the log-in form to the background, behind the sign-up form..*/
+}
+
+.sign-up-container,
+.log-in-container {
+  position: absolute;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+.right-panel-active .overlay-container {
+    transform: translateX(-100%); /*Moves the overlay container to the left, covering the log-in form and revealing a different part of the overlay for the sign-up form shows the signup input*/
+}
+.overlay {
+    background: linear-gradient(to right, #FF4B2B, #f84222);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: absolute;
+    left: -100%;
+    top: 0;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+.right-panel-active .overlay {
+    transform: translateX(50%); /*Slides the overlay background 50% to the right, revealing the part intended for sign-up encouragement. and show the login input*/
+}
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+.overlay-left {
+    transform: translateX(-20%);
+}
+.right-panel-active .overlay-left {
+    transform: translateX(0);   /*The left part of the overlay (which was previously shifted left) moves into the view to encourage log in in.*/
+}
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+.social-container {
+    margin: 20px 0;
+}
+
+.social-container a {
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1px;
+    height: 40px;
+    width: 40px;
+}
+.message{
+    color:#ff0000;
+    font-weight: bold;
+   
+  }
+  .message2{
+    color:#53cf19;
+    font-weight: bold;
+   
+  }

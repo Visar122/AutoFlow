@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div class="container" id="container">
+   <div class="form-container sign-up-container" *ngIf="!showlogin">
+      <form  #userSignup="ngForm"(ngSubmit)="signUp(userSignup.value)">
+          <h1> Create Account</h1>
+          <div class="social-container">
+            <a class="social"> <i class="fa-brands fa-facebook"></i></a>
+            <a class="social"> <i class="fa-brands fa-google"></i></a>
+            <a class="social"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+           <span>Or use Email for regestration 
+            <p class="message">{{SignupError}}</p>
+            <p class="message">{{SignUpEmptyError}}</p>
+            <p class="message">{{signUpcharacterError}}</p>
+            <p class="message2">{{UserCreated}}</p>
+           </span>
+          
+           <input type="text"  placeholder="Name" name="name" ngModel>
+           <input type="text" placeholder="Email" name="email"   ngModel>
+           <input type="password"   placeholder="Password" name="password" ngModel>
+           <input type="submit" value="Signup" class="button" >
+     </form>
+ </div>
+
+     <div class="form-container log-in-container" *ngIf="showlogin" >
+        <form action="#" #userlogin="ngForm"(ngSubmit)="Login(userlogin.value)">
+          <h1>Sign In</h1>
+          <div class="social-container">
+            <a class="social"> <i class="fa-brands fa-facebook"></i></a>
+            <a class="social"> <i class="fa-brands fa-google"></i></a>
+            <a class="social"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+           <span>Or use account</span>
+             <p class="message">{{LoginError}} {{LoginEmptyError}} {{logincharacterError}}</p>
+             
+           <input type="text" placeholder="Email" name="email" ngModel>
+           <input type="password" placeholder="Password" name="password"  ngModel>
+           <input type="submit" value="Login" class="button" >
+        </form>
+    </div>
+
+    <div class="overlay-container"> 
+        <div class="overlay">
+            <div class="overlay-panel overlay-left" *ngIf="!showlogin"> 
+              <h1> Welcome Back</h1>
+              <p>
+                To keep connected with us please login with your personal info 
+              </p>
+              <button class="ghost" id="login"  (click)="openlogin()" > Log in </button>
+            </div>
+            <div class="overlay-panel overlay-right" *ngIf="showlogin"> 
+                <h1> Hello,Friend</h1>
+                <p>
+                  Enter your personal details and  sign up
+                </p>
+                <button class="ghost" id="signUp" (click)="closelogin()" > SignUp </button>
+              </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
