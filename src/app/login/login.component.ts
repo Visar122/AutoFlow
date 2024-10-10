@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { login, signup } from '../interfaces';
 import { LoginService } from '../services/login.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   logincharacterError = '';
   UserCreated = '';
 
-  constructor(private Userlogin: LoginService) {}
+  constructor(private Userlogin: LoginService,private route:Router) {}
 
   ngOnInit(): void {
     this.eventlistener();
@@ -85,7 +86,7 @@ export class LoginComponent implements OnInit {
         status: 'user'  // Explicitly set the status to "user"
     };
 
-    this.Userlogin.UserSignUp(signUpData);
+    this.Userlogin.UserSignUp(signUpData); //storing and calling  singupData to UserSignup method in login service
     this.Userlogin.UserAdded.subscribe((usercreated)=>{
       if(usercreated){ 
       this.UserCreated="Account Sucsessfully created "
@@ -138,6 +139,11 @@ export class LoginComponent implements OnInit {
         }, 1000);
       
         return;
+      }else{
+       setTimeout(()=>{
+        window.location.reload();
+       },200)
+     
       }
     });
   }

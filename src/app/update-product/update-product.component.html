@@ -1,0 +1,63 @@
+<div class="flex-container">
+    
+
+    <div class="form-container">
+<form #updateProduct="ngForm" class="common-form" (ngSubmit)="submit(updateProduct.value)">
+
+    <div class="prodct">
+        <h1>Update Product</h1>
+        <br>
+        <span class="subtitle">Enter CarName:</span>
+        <br>
+        <input type="text" name="cartype" placeholder="Car Name" ngModel="{{CarData?.cartype}}" >
+        <br>
+      
+
+        <span class="subtitle">Car Model:</span>
+        <br>
+        <input type="text" name="carModel" placeholder="Car Mode" ngModel="{{CarData?.carModel}}" >
+        <br>
+ 
+        <span class="subtitle"> Year Model:</span>
+        <br>
+        <input type="number" name="modelYear" placeholder="Year Model" ngModel="{{CarData?.modelYear}}"  appFourDigits> <!-- Input type changed to number with 4-digit restriction -->
+    
+        <br>
+
+
+              <span class="subtitle"> Description:</span>
+              <br>
+              <textarea class="description-input"  placeholder="Enter Description" name="carDescription" ngModel="{{CarData?.carDescription}}" ></textarea>
+              <br>
+           
+        <span class="subtitle"> Image 1:</span>
+        <br>
+        <input type="text" name="image1" placeholder="Enter Image URL" ngModel="{{CarData?.image1}}">
+        <br>
+        <br>
+
+           
+        <span class="subtitle"> Image 2:</span>
+        <br>
+        <input type="text" name="image2" placeholder="Enter Image URL" ngModel="{{CarData?.image2}}" >
+        <br>
+        <br>
+
+           
+        <span class="subtitle"> Image 3:</span>
+        <br>
+        <input type="text" name="image3" placeholder="Enter Image URL" ngModel="{{CarData?.image3}}" >
+        <br>
+        <br>
+        
+        <span class="subtitle">Enter Price:</span>
+        <br>
+        <input type="number" name="price" placeholder="Price" ngModel="{{CarData?.price}}">
+      
+         <br>
+         <input type="submit" value="Update Product" class="submit-btn"  >
+         <br>
+    </div>
+</form>
+    </div>
+</div>

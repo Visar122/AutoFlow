@@ -14,8 +14,9 @@ export class AppComponent  implements OnInit{
   isSticky:boolean=false;
   userOnline="";
   UserName="";
+  TheUserStatus="";
   isWindowOpen:boolean=false;
-
+  isDropDownOpen:boolean=false;
 
 
 constructor(private route:Router,private UserLogin:LoginService){}
@@ -28,7 +29,7 @@ const logoElement = this.getLogoElement() ;// Get the logo element after view in
       this.setUnderlinePosition(logoElement); // Set the underline under the logo initially
     }
     this.checkUserStatus();
- 
+       this.userStatus();
   }
   @HostListener('window:scroll',[])
   onWindowScroll(){
@@ -38,10 +39,19 @@ const logoElement = this.getLogoElement() ;// Get the logo element after view in
   windowtoggle() {
     this.isWindowOpen = !this.isWindowOpen;
   }
+  @HostListener('document:click',['$event'])
+  CloseWindow(event:MouseEvent){
+    const menuicon=document.querySelector('.menu-icon');
+
+    if(!menuicon?.contains(event.target as Node)){
+      this.isWindowOpen=false;
+    }
+
+  }
 
 
-  private getLogoElement(): HTMLElement | null {
-    return document.querySelector('.navbar-logo img');  // Return the logo element or null if not found
+  private getLogoElement(): HTMLElement | null { 
+    return document.querySelector('.navbar-logo img');  // Return the logo  // basically returns the underline to logo if it is not pointing in the list 
   }
 
   moveUnderline(event: MouseEvent)  {
@@ -61,6 +71,7 @@ const logoElement = this.getLogoElement() ;// Get the logo element after view in
 
       this.underline.nativeElement.style.left = `${leftOffset}px`; // Set the left position of the underline
       this.underline.nativeElement.style.width = `${underlineWidth}px`; // Set the fixed width of the underline
+      
     }
   }
 
@@ -76,16 +87,7 @@ const logoElement = this.getLogoElement() ;// Get the logo element after view in
       }
     }
   }
-toggleMenu(){
-  const navbarmenu=document.querySelector('.navbar-menu');
-  const search=document.querySelector('.search');
-   if(navbarmenu){
-     navbarmenu.classList.toggle('active');
-   }
-   if(search){
-     search.classList.toggle('active');
-   }
-}
+
 private checkUserStatus() {
    //User Login
 
@@ -96,7 +98,7 @@ private checkUserStatus() {
         const storeUser=localStorage.getItem("user");
         if(storeUser){
           const UserData=JSON.parse(storeUser);
-          this.UserName=UserData.name
+          this.UserName=UserData.name; //this is to get the name 
         }
       }
     });
@@ -112,6 +114,30 @@ private checkUserStatus() {
 logout(){
   localStorage.removeItem('user');
   this.UserLogin.userisLoggedIn.next(false);
+  
+}
+toggleDropDown(){
+  this.isDropDownOpen=!this.isDropDownOpen;
+
+}
+/*@HostListener('document:click',['$event'])
+CloseToggleDropDown(event:MouseEvent)
+{
+  const dropdown = document.querySelector('.dropdown-menu');
+  if (dropdown && !dropdown.contains(event.target as Node)) {
+    this.isDropDownOpen=false;
+  }
+}*/
+
+//User Status 
+userStatus(){
+   const getUser=localStorage.getItem('user');
+   if(getUser){
+    const userData=JSON.parse(getUser);
+    this.TheUserStatus=userData.status;
+   
+ 
+   }
   
 }
 }

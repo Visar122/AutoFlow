@@ -1,0 +1,276 @@
+.thecontainer{
+    margin-top: 5%;
+}
+.btn1{
+
+    position: relative;
+      font-weight: bold;
+      
+      background: #ffffff;
+      padding: 0% 0%;
+     
+      color: #000000;
+      width: 4.5%;
+     border: none;
+      text-decoration: none;
+      position: relative;
+    
+      margin-left:1% ;
+      border-radius: 12px;
+      box-shadow: 2px 2px 2px 2px rgb(185, 179, 179);
+      
+      transition: 1s;
+     
+  
+    }
+    .btn1 span{
+      font-size: 13px;
+    }
+    .btn1 i{
+      font-size: 13px;
+    }
+  .btn1:hover{
+ 
+    width: 5%;
+  }
+
+  /* Sidebar styles */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #f4f4f4;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  transform: translateX(-100%); /*-100% dissaperds from left and makes it apper to the left where 100% to the right */
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.show {
+  transform: translateX(0);  /*this makes the sidebar apper*/
+}
+.scrollable-list{
+  max-height: 150px;
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+.close-btn {
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  left: 81%;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding: 20px;
+}
+
+li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+  
+}
+
+li:hover {
+  background-color: #ddd;
+}
+
+.cars-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+}
+.cars{
+    width: 18.7%;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 10px 14px 18px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 2%;
+     overflow: hidden;
+     transition: box-shadow 0.3s ease;
+}
+.cars:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.cars-info{
+    padding: 20px;
+}
+
+
+h3 {
+    font-size: 20px;
+    color: #000000;
+    margin-top: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #000000;
+    margin-top: 5px;
+  }
+  .product-img{
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: transparent;
+    transition: transform 0.3s ease;
+}
+.product-img img:hover {
+    transform: scale(1.1);
+  }
+/*Price */
+.price-filter{
+  align-items: center;
+  text-align: center;
+  margin-top: 20%;
+}
+.price-filter button{
+  border-radius: 10px;
+  margin: 0px 2%;
+  background: #252523;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  border: none;
+  box-shadow: 2px 2px 2px 2px rgb(211, 208, 208);
+  transition:  0.5s ease;
+
+}
+.price-filter button:hover{
+  padding: 1% 5%;
+  background: rgb(255, 255, 255);
+  color: #252523;
+  box-shadow: 2px 2px 2px 2px rgb(211, 208, 208);
+}
+.price-filter .btn2{
+
+  background: rgb(255, 255, 255);
+  color: #252523;
+  font-weight: 500;
+  border: none;
+  box-shadow: 2px 2px 2px 2px rgb(211, 208, 208);
+  margin-top: 15%;
+  width: 32%;
+  transition:  0.5s ease;
+
+}
+.price-filter .btn2 :hover{
+  padding: 11% 9%;
+  background: rgb(255, 255, 255);
+  color: #252523;
+  box-shadow: 2px 2px 2px 2px rgb(211, 208, 208);
+}
+.no-cars-message{
+
+  background: red;
+  
+
+  color: #ffffff; /* Darker text color for contrast */
+  text-align: left; /* Align text to the left for consistency */
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+
+   margin: -2% 77%;
+  width: 21%;
+  border: 2px solid rgb(255, 255, 255); /* Border similar to the design */
+  border-radius: 11px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 2000;
+}
+.no-cars-message i {
+  font-size: 22px; /* Adjust icon size */
+  margin-right: 15px; /* Spacing between icon and text */
+  padding: 10px;
+  margin-left:2% ;
+  background: white; /* Slight background similar to design */
+  border: 1px solid rgb(255, 255, 255); /* Lighter border */
+  border-radius: 50%; /* Fully rounded icon */
+ /* White background for icon */
+  color: red; /* Red icon color */
+  box-shadow: 0 4px 6px rgb(219, 214, 216); /* Subtle shadow for depth */
+}
+
+
+
+
+  @media(max-width:786px){
+    .cars-container{
+        display: block;
+        align-items: center;
+         height: 120%;
+        margin-top: 10%;
+      
+    }
+    .cars{
+        width: 100%;
+        align-items: center;
+        margin-left: 1%;
+        background-color: #fff;
+        border-radius: 12px;
+        height: 340px;
+        box-shadow: 10px 14px 18px 10px rgba(0, 0, 0, 0.1);
+         margin-bottom: 20px;
+         overflow: hidden;
+         transition: box-shadow 0.3s ease;
+         height: 120%;
+    }
+  
+
+    
+    h3 {
+        font-size: 16px;
+        color: #000000;
+        margin-top: 1px;
+      }
+      
+      p {
+        font-size: 12px;
+        color: #000000;
+        margin-top: 5px;
+      }
+      .product-img{
+        max-width: 100%;
+        height: 100%;
+         margin-top: 3%;
+    }
+   
+      .pris{
+        text-transform: uppercase;
+        font-weight: 630;
+        margin-left:60%;
+        margin-top: -20%;
+        font-size: 15px;
+        color: rgb(0, 0, 0);
+      }
+
+      .btn1{
+        width: 19%;
+        padding: -51%;
+        margin-top: 10%;
+        
+      }
+      .btn1 i{
+       font-size: 20px;
+      }
+
+      .no-cars-message{
+        width: 90%;
+        margin-left: 7%;
+        position: fixed;
+      }
+  
+  }

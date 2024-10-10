@@ -12,10 +12,11 @@ export interface login {
 }
 
 export interface CarShop{
-    carType:string,
-    carmodel:string,
-    modelyear:number,
-    cardescription:string,
+    carId:number,
+    cartype:string,
+    carModel:string,
+    modelYear:number,
+    carDescription:string,
     image1:string,
     image2:string,
     image3:string,
@@ -24,10 +25,14 @@ export interface CarShop{
 
 }
 export interface bookings{
-    name:string,
-    bookingdate:Date,
-    bookingtime:string,
-    service:string,
-    confirmation:boolean
+    BookingDate:Date,
+    BookingTime:string,
+    UserName:string,
+    Servicetype:string,
+    Mail:string,
+    Tlf:number|null;
+
+
+    
 
 }

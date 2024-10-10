@@ -80,3 +80,38 @@
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+@media(max-width:768px){
+ 
+  .main_main {
+    display: block;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .main_text {
+    width: 100%;
+    margin-right: 20%;
+    margin-top: 10%;
+  }
+  
+  
+  .main_btn {
+ 
+    padding: 2% 5%;
+  
+  }
+  
+  .main_btn:hover {
+    padding: 2.3% 8.5%;
+  }
+  
+  .main_image {
+    width: 111%;
+    position: relative;
+  
+    margin-top: -30.5%;
+    left: -5.3%;
+   
+  }
+  
+  
+}

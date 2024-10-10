@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row main" *ngIf="CarData">
+      <div class="col-smg-6 image-container">
+        <!-- Left Side (Image) -->
+        <img class="product-img" [src]="selectedImage">
+                
+        <div class="thumbnail-container"> 
+            <img  class="thumbnail-img"  [src]="CarData.image1" (click)="ChangeImage(CarData.image1)">
+            <img class="thumbnail-img" [src]="CarData.image2" (click)="ChangeImage(CarData.image2)">
+            <img class="thumbnail-img"[src]="CarData.image3" (click)="ChangeImage(CarData.image3)">
+
+        </div>
+       
+      </div>
+      <div class="col-smg-6 details-container">
+        <!-- Right Side (Text and Buttons) -->
+        <div class="details">
+          <h1>{{CarData.cartype}}</h1>
+          <h3>{{CarData.price | currency:' Kr ':'symbol':'1.0-0' }}</h3>     <!--:'symbol':'1.0-0' so it appers 6000000 and not 6000000.00 -->
+          <h6>{{CarData.carModel}}</h6>
+          <h6>{{CarData.carDescription}}</h6>
+          <h6>ModelÅr :{{CarData.modelYear}}</h6>
+          <br>
+          <br>
+          <button class="btn">Kontakt Os</button>
+          <button class="btn"> Skriv til Sælger </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,1 +1,50 @@
-<p>car-shop works!</p>
+<div class="thecontainer"> 
+
+      <button class="btn1" (click)="toggleSidebar()"> <span> Sort By</span><br><i class="fa-solid fa-sort"></i></button>
+      
+      <div *ngIf="NoCars" class="no-cars-message"   > <!-- This means if No Cars is not empty it shows the div-->
+        <i class="fa-solid fa-triangle-exclamation" style="color: red;font-size: 28px;">  </i> 
+  
+       <p style="color: white;">  <b> No cars at this price.</b> <br> Please check other prices.</p>
+      </div>
+  <!-- Sidebar -->
+  <div class="sidebar"  [ngClass]="{'show': isSidebarVisable}">
+   <button class="close-btn" (click)="toggleSidebar()"><i class="fa-solid fa-grip-lines"></i></button>
+   <ul class="scrollable-list">
+       <h5 style="margin-top: 15%;">Car-Type</h5>
+     <li *ngFor="let type of carTypes" (click)="filterByCarType(type)">
+       {{ type }}
+     </li>
+   </ul>
+
+        <!-- Price Filter Section -->
+        <div class="price-filter">
+         <h5> Pris</h5>
+         <input type="range" min="10000" max="1000000"[(ngModel)]="selectedPrice">
+         <p>Selected Price : {{selectedPrice|number:'1.0-0'}} Dkk</p>
+          <button   (click)="GetCarsClosestPrice()">Højest Først</button>
+            <button (click)="getCarsBelowPrice()">Lavest Først</button>
+
+            <button class="btn2" (click)="resetSidebar()">Reset</button>
+
+        </div>
+        
+ </div>
+
+
+   <div class="cars-container" > 
+     <div class="cars" *ngFor="let item of carshop" routerLink="/Details/{{item.carId}}">
+          <div class="cars-info">
+             <h3>{{item.cartype}}</h3>
+             <p >Model: {{item.carModel}}</p>
+             <p>ModelÅr :{{item.modelYear}}</p>
+             <p class="pris">{{item.price | number:'1.0-0'}} Dkk </p> <!--  | number:'1.0-0'  is a decimal pipe allows the number to apper as 500,000-->
+          </div>
+          <div class="car-image"> 
+             <img class="product-img" src="{{item.image1}}">
+       
+           </div>
+      
+        </div>
+  </div>
+</div>

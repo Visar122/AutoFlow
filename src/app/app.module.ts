@@ -19,6 +19,18 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ItemListComponent } from './item-list/item-list.component';
+import { AddCarsComponent } from './add-cars/add-cars.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
+import { ZoomDirective } from './directives/zoom.directive';
+import { UpdateProductComponent } from './update-product/update-product.component';
+import { FourDigitsDirective } from './directives/four-digits.directive';
+import { BookingComponent } from './booking/booking.component';
+import { UserBookingComponent } from './user-booking/user-booking.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +39,15 @@ import { FormsModule } from '@angular/forms';
     CarShopComponent,
     LoginComponent,
     CarSprayingComponent,
-    CarPolishComponent
+    CarPolishComponent,
+    ItemListComponent,
+    AddCarsComponent,
+    CarDetailsComponent,
+    ZoomDirective,
+    UpdateProductComponent,
+    FourDigitsDirective,
+    BookingComponent,
+    UserBookingComponent
 
   ],
   imports: [
@@ -43,7 +63,14 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatListModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    BrowserAnimationsModule, // Toastr required animations module
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      progressBar: true,
+      closeButton: true,
+
+    })
   ],
   providers: [
     provideClientHydration()

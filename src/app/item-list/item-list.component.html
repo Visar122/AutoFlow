@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="Car-list">
+        <h1>  Bil - Liste </h1>
+        <p class="message"> </p>
+
+        <table> 
+                <thead> 
+                 <tr> 
+                    <th></th>
+                     <th>Navn</th>
+                     <th>Pris</th>
+                     <th>BilType </th>
+                     <th>ModelÅr </th>
+                     <th>Slet Produkt </th>
+                     <th>Opdater </th>
+                   </tr>
+                </thead>
+
+         <tbody> 
+             <tr *ngFor="let item of carlist"> 
+                 <td><img src="{{item.image1}}"></td>
+                 <td>{{item.cartype}} </td>
+                 <td>{{item.price| number:'1.0-0'}} Dkk </td>
+                 <td>{{item.carModel}} </td>
+                 <td>{{item.modelYear}} </td>
+                 <td (click)="DeleteProduct(item.carId)"> <button   class="btn btn-danger"> <i class="fa-solid fa-trash" style="font-size: 18px;color: black;"></i></button> </td>    <!--Delete-->
+                    <td> <button class="btnn" routerLink="/update-product/{{item.carId}}" style="color: #272727; font-weight: 600;font-size: 15px;">Update</button></td>
+         
+                </tr>
+           </tbody>
+       </table>
+    </div>
+</body>
+</html>

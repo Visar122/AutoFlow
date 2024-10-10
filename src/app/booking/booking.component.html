@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="booking-container">
+    <h3>Select a Date</h3>
+    <input type="date" [value]="selectedDate | date:'yyyy-MM-dd'" (change)="OnDateChange($event)" />
+    <br><br>
+
+    <h3>Available Time Slots</h3>
+    <div class="time-slots">
+      <button *ngFor="let time of filteredTimes" (click)="Onselectedtime(time)" [class.selected]="time === selectedTime">
+        {{ time }}
+      </button>
+    </div>
+
+
+    <div class="booking-details">
+      <label>Service Type:</label>
+      <select [(ngModel)]="booking.Servicetype" placeholder="Enter service type" ><!--When the user selects a different service type,  [(ngModel)]=booking.Servicetype updates automatically.-->
+       <option *ngFor="let service of ServiceType" [value]="service">{{service}}</option> <!-- [value]="service" means that the value of the <option> element will be the current service from the ServiceType array-->
+      </select>
+      <span class="bar"></span>
+         <br>  <br>
+
+
+         
+      <label>Tlf:</label>
+      <input type="text" name="tlf" [(ngModel)]="booking.Tlf" maxlength="8" (keydown)="noLetters($event)" />
+      <span class="bar"></span>
+    </div>
+
+    <button (click)="BookService()">Confirm Booking</button>
+  </div>
+</div>

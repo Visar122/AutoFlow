@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { CarShop } from '../interfaces';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,7 @@ import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angu
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit,AfterViewInit{
+
 carouselImages=[
   { src: './assets/image1.jpg', alt: 'Image 1' },
     { src: './assets/image2.jpg', alt: 'Image 2' },
@@ -13,25 +15,14 @@ carouselImages=[
 ]
 
   ngOnInit() {
-    this.onWindowScroll(); // Initialize on component load
+  
   }
 
   ngAfterViewInit(): void {
     this.addScrollFadeInEffect();
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event?: Event) {
-    const zoomElements = document.querySelectorAll('.zoom');
-    zoomElements.forEach(element => {
-      if (window.scrollY > 100) {
-        element.classList.add('zoomed-in');
-      } else {
-        element.classList.remove('zoomed-in');
-      }
-    });
-  }
-
+  
   private addScrollFadeInEffect() {
     const financeContainer = document.querySelector('.finance-container')!;
 

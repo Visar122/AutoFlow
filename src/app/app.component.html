@@ -5,10 +5,10 @@
   <div class="navbar-container">
  
     <ul class="navbar-menu">
-      <li><a href="#Home">Home</a></li>
-      <li><a href="#About">About</a></li>
-      <li><a href="#Shop">Shop</a></li>
-      <li><a routerLink="/Repair">Repair</a></li>
+      <li (mouseover)="moveUnderline($event)" ><a href="#Home">Home</a></li>
+      <li (mouseover)="moveUnderline($event)"><a href="#About">About</a></li>
+      <li (mouseover)="moveUnderline($event)"><a routerLink="/shop">Shop</a></li>
+      <li (mouseover)="moveUnderline($event)"><a routerLink="/Repair">Repair</a></li>
     
     
       
@@ -16,7 +16,7 @@
     <a href="#Home" class="navbar-logo">
       <img src="../assets/logo.png" alt="Logo">
     </a>
-   
+    <i class="fa-solid fa-bars menu-icon" (click)="windowtoggle()"></i>
 
     
     <ul class="search" [ngSwitch]="userOnline">
@@ -24,15 +24,39 @@
   
       <li *ngIf="userOnline === 'offline'"><a routerLink="/login" (mouseover)="moveUnderline($event)">Login <i class="fa-solid fa-right-to-bracket" style="font-size: 13px;"></i></a></li>
      
-      <li  style="cursor: pointer;" *ngIf="userOnline === 'online'"><a  (mouseover)="moveUnderline($event)" > {{ UserName }} <i class="fa-solid fa-user"></i></a>
+      <li  class="user-icon" *ngIf="userOnline === 'online'" (click)="toggleDropDown()" >
+        <a  (mouseover)="moveUnderline($event)" > <i class="fa-solid fa-user" ></i>    <i class="fa-solid fa-angle-down"></i></a>
+ 
+
+        
+        <!-- Dropdown Menu-->
+        <ul class="dropdown-menu" [ngClass]="{'show':isDropDownOpen}">
+          <div class="arrow-up"></div> <!-- Add the arrow here -->
+         
+          <!-- Admin Menu -->
+          <li><a > <i class="fa-solid fa-user"></i> {{UserName}}</a> <hr></li>
+         <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/item-list"> <i class="fa-solid fa-list"> </i> Item List</a></li>
+         <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/Add-Cars"> <i class="fa-solid fa-plus"></i>   Add-Cars</a></li>
+         
+         <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="">Booking List</a></li>
+  
+        <!-- User Menu -->
+       <li *ngIf="TheUserStatus === 'user'"><a routerLink="/My-Bookings">My Bookings</a></li>
+       <li *ngIf="TheUserStatus === 'user'"><a routerLink="">My Account </a></li>
+   
+
+
+        </ul>
+        
      </li>
+     
      <li  *ngIf="userOnline === 'online' "style="cursor: pointer;">
        <a (click)="logout()" (mouseover)="moveUnderline($event)" >
          Logout
        </a>
      </li>
      </ul>
-     <i class="fa-solid fa-bars menu-icon" (click)="windowtoggle()"></i>
+
       <div class="underline" #underline></div>
      </div>
    </nav>
@@ -41,13 +65,15 @@
 <!-- Overlay for mobile menu -->
 <div class="menu-overlay" [class.active]="isWindowOpen" (click)="windowtoggle()">
   <ul class="mobile-menu">
-    <li><a href="#Home">Home</a></li>
-    <li><a href="#About">About</a></li>
-    <li><a href="#Shop">Shop</a></li>
-    <li><a routerLink="/Repair">Repair</a></li>
-    <li *ngIf="userOnline === 'offline'"><a routerLink="/login">Login</a></li>
-    <li *ngIf="userOnline === 'online'"><a>{{ UserName }}</a></li>
-    <li *ngIf="userOnline === 'online'"><a (click)="logout()">Logout</a></li>
+    <li > <i class="fa-solid fa-house"> </i> <a href="#Home"> Home</a> </li>
+    <li><i class="fa-solid fa-info"></i> <a href="#About">About</a></li>
+    <li><i class="fa-solid fa-shop"></i><a routerLink="/shop">Shop</a></li>
+    <li><i class="fa-solid fa-screwdriver-wrench"></i><a routerLink="/Repair">Repair</a></li>
+    <li style="margin-left: 15px; margin: 1px 0;"> <i class="fa-solid fa-brush"> </i> <a routerLink="/Spraying" > Car-spraying</a></li>
+    <li style="margin-left: -19px; margin: 1px 0; margin-top: 30%;" > <i class="fa-solid fa-paint-roller"></i><a routerLink="/Polish">Car-Polish</a></li>
+    <li *ngIf="userOnline === 'offline'"><i class="fa-solid fa-right-to-bracket"></i><a routerLink="/login">Login</a></li>
+    <li *ngIf="userOnline === 'online'"><i class="fa-regular fa-user"></i> <a>{{ UserName }}</a></li>
+    <li *ngIf="userOnline === 'online'"> <i class="fa-solid fa-arrow-right-from-bracket"></i><a (click)="logout()">Logout</a></li>
   </ul>
 </div>
 

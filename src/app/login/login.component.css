@@ -111,6 +111,10 @@ input {
   width: 50%;
   transition: transform 0.6s ease-in-out;
 }
+.log-in-container .message{
+ 
+   margin: 3%;
+  }
 .overlay-container {
     position: absolute;
     top: 0;
@@ -192,3 +196,64 @@ input {
     font-weight: bold;
    
   }
+  @media(max-width:768px){
+    .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        max-width: 90%;
+        min-height: 50%;
+        display: flex;
+        transition: transform 0.6s ease-in-out;
+    }
+    form {
+        background-color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 5px;
+        height:100%;
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+    input {
+        background-color: #eee;
+        border: none;
+        padding: 4px 4px;
+        margin: 8px 0;
+        width: 70%;
+      
+        margin-left: -1%;
+    }
+    .form-container {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        
+        transition: all 0.6s ease-in-out;
+    }
+    h1 {
+        font-weight: bold;
+        margin: 0;
+        font-size: 20px;
+    }
+    h2 {
+        text-align: center;
+    }
+    
+  }button,.button {
+    border-radius: 20px;
+    
+    color: #FFFFFF;
+    font-size: 12px;
+
+    padding: 7px 15px;
+  
+    transition: transform 80ms ease-in;
+}

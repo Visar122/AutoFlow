@@ -1,15 +1,19 @@
 .navbar {
 
-
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 10px 20px rgba(0, 0, 0, 0.05);
+  background-color: white;
   color: rgb(0, 0, 0);
-  width: 100%;
-  
+  width: 75%;
+  margin-left: 11%;
 left: 0;
   position: fixed; /* Make the navbar fixed at the top */
   top: 0;
-   height: 6.3%;
+   height: 6.5%;
+   margin-top: 1%;
   z-index: 1000;
+  
 }
+
 .sticky {
   box-shadow: 2px 2px 2px 2px rgb(211, 208, 208);
   background-color: white;
@@ -20,13 +24,13 @@ left: 0;
   transition: 1.0s;
 }
 .navbar-container {
-  position: fixed;
+ 
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   width: 100%;
-  padding: 6px 12px;
+  padding: 1px 12px;
   box-sizing: border-box;
 }
 
@@ -37,6 +41,15 @@ left: 0;
   gap: 10px;
   margin: 0;
   padding: 0;
+}
+/*the user icon */
+.user-icon{
+  cursor: pointer;
+  font-size: 160%;
+  position: relative;
+  margin-top: -2%;
+
+  
 }
 
 .navbar-menu {
@@ -65,6 +78,11 @@ left: 0;
   
 }
 
+.navbar-menu a:hover, .search a:hover{
+  color:#ff0000;
+
+}
+
 .navbar-logo {
   display: flex;
   justify-content: center;
@@ -80,16 +98,77 @@ left: 0;
 
 .underline {
   position: absolute;
-  bottom: -25%;
-  height: 4.2px;
+  margin-top: 3.2%;
+  height: 3px;
   background: #ff0000;
+  transition: left 0.2s ease, width 0.2s ease; /* Smooth transitions */
 
 }
 
+
+/* Style the dropdown menu */
+.dropdown-menu {
+  position: absolute;
+   margin-top: 13%;
+   margin-left: 277%;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  padding: 10px;
+  list-style: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+
+  transform: translateX(-100%);
+
+}
+
+.dropdown-menu .show{
+  transform: translateX(0%);
+}
+.dropdown-menu ul{
+  text-decoration: none;
+  list-style: none;
+  
+  margin: 0;
+  padding: 0;
+}
+
+.arrow-up{
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #d8d4d4; /* Dropdown background color */
+  position: absolute;
+  top: -4.3%;
+margin-left: 36%;
+ 
+}
+.dropdown-menu li {
+  padding: 10px;
+  width: 100%;
+  text-decoration: none;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  text-decoration: underline;
+}
+.fa-angle-down{
+ font-size: 12px;
+}
 .menu-icon {
   display: none;
   font-size: 24px;
+  color: black;
   cursor: pointer;
+
 }
 
 .menu-overlay {
@@ -98,32 +177,68 @@ left: 0;
   right: 0;
   width: 0;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  overflow-x: hidden;
+  background-color: rgb(255, 255, 255);
+  color: black;
   transition: 0.5s;
+  
+  z-index: 1500; /* Ensure it sits above other elements */
 }
 
 .menu-overlay.active {
   width: 250px;
+  color: black;
 }
 
 .mobile-menu {
   list-style: none;
-  padding: 60px 20px;
+  padding: 50px 10px;
   margin: 0;
+  color: black;
+  display: block;
+  left: 0;
+
 }
 
 .mobile-menu li {
-  margin: 20px 0;
+  margin: 25% 0px;
+  color: black;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-around;
+  margin-right: 20%;
+  transition: background-color 0.3s ease;
+  padding: 10px; /* Add padding for a better hover area */
+  border-radius: 5px; /* Optional: add rounded corners */
+}
+
+
+.mobile-menu i {
+ margin-left: 0%;
+ font-size: 17px;
+ font-weight: 900;
+ display: flex; /* Use flexbox to align items  display and align items so the stay together not one more to the right etc.*/
+ align-items: center; /* Align items vertically in the center */
 }
 
 .mobile-menu a {
-  color: white;
+  color: black;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 14px;
+  display: flex; /* Use flexbox to align items  display and align items so the stay together not one more to the right etc.*/
+  align-items: center; /* Align items vertically in the center */
+}
+.mobile-menu li:hover {
+  background-color: rgba(0, 0, 0, 0.205); /* Darker background on hover */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
 }
 
 @media (max-width: 768px) {
+
+  .navbar{
+    width: 100%;
+    margin-left:0% ;
+    margin-top: 0%;
+  }
   .navbar-menu, .search {
     display: none;
   }
@@ -131,6 +246,18 @@ left: 0;
   .menu-icon {
     display: block;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: 4%;
   }
+   .navbar-logo{
+    display: none;
+   }
+   .sticky{
+    margin-top: -4%;
+   }
+   .underline{
+    display: none;
+   }
+   .menu-overlay.active{
+    width: 45%;
+   }
 }

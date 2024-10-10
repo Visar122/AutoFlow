@@ -1,1 +1,19 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css"; /* Preferred for newer setups */
+
+
+
+
+.zoom {
+  transition: transform 0.7s ease;
+  
+}
+
+/* Zoomed-in state */
+.zoomed-in {
+  transform: scale(1.1); /* Adjust the scaling as needed */
+}
+
+/* Zoomed-out state */
+.zoomed-out {
+  transform: scale(1); /* Reset to original size */
+}

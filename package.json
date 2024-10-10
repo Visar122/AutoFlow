@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^18.1.0",
+    "@angular/animations": "^18.2.3",
     "@angular/cdk": "^18.2.1",
     "@angular/cli": "^18.2.1",
     "@angular/common": "^18.1.0",
@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.2",
     "esbuild": "^0.23.1",
     "ngx-slick-carousel": "^17.0.0",
+    "ngx-toastr": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

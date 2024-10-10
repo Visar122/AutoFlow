@@ -1,0 +1,62 @@
+<div class="flex-container">
+    
+
+   <div class="form-container">
+    <form #addproduct="ngForm" class="common-form" (ngSubmit)="AddCars(addproduct.value)">
+        <h1> Add<span> Cars</span></h1>
+    
+       
+        <span class="subtitle">Enter CarName:</span>
+        <br>
+        <input type="text" name="cartype" placeholder="Car Name" ngModel >
+        <br>
+      
+
+        <span class="subtitle">Car Model:</span>
+        <br>
+        <input type="text" name="carModel" placeholder="Car Mode" ngModel >
+        <br>
+ 
+        <span class="subtitle"> Year Model:</span>
+        <br>
+        <input type="number" name="modelYear" placeholder="Year Model" ngModel  appFourDigits> <!-- Input type changed to number with 4-digit restriction -->
+    
+        <br>
+
+
+              <span class="subtitle"> Description:</span>
+              <br>
+              <textarea class="description-input"  placeholder="Enter Description" name="carDescription" ngModel ></textarea>
+              <br>
+           
+        <span class="subtitle"> Image 1:</span>
+        <br>
+        <input type="text" name="image1" placeholder="Enter Image URL" ngModel>
+        <br>
+        <br>
+
+           
+        <span class="subtitle"> Image 2:</span>
+        <br>
+        <input type="text" name="image2" placeholder="Enter Image URL" ngModel >
+        <br>
+        <br>
+
+           
+        <span class="subtitle"> Image 3:</span>
+        <br>
+        <input type="text" name="image3" placeholder="Enter Image URL" ngModel >
+        <br>
+        <br>
+        
+        <span class="subtitle">Enter Price:</span>
+        <br>
+        <input type="number" name="price" placeholder="Price" ngModel>
+         <br>
+         <br>
+         <input type="submit" value="Add Product" class="submit-btn"  >
+         <br>
+
+    </form>
+   </div>
+</div>

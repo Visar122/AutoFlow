@@ -23,21 +23,21 @@ export class LoginService {
      UserSignUp(data:signup){
 
         return this.http.post('https://localhost:7204/api/Logins/SignUp',data,{observe:'response'}).subscribe((result)=>{
-             if(result){
-              this.UserAdded.emit(true);
-             }  else{
-              this.http.get(`https://localhost:7204/api/Logins/UserExists?email=${data.email}`,{observe:'response'}).subscribe((result)=>{
+            
                 
-              if(result){
-                 this.signupError.emit(true);
-              }
-              });
-              }
-       });
-      
-  
-
+             // Handle error cases
+        if (result.status === 200) {
+          // Conflict error (e.g., email already exists)
+          this.UserAdded.emit(true);
+        } 
+      },
+      (error)=> {
+         if(error.status===409){
+          this.signupError.emit(true);
+         }
       }
+      );
+      };
       reloadUser(){
         if(localStorage.getItem('user')){
           this.userisLoggedIn.next(true);
@@ -50,13 +50,15 @@ export class LoginService {
 
       UserLogin(data:login){
         this.http.get(`https://localhost:7204/api/Logins/Logins?email=${data.email}&password=${data.password}`,{observe:'response'}).subscribe((result:any)=>{
-          if(result&&result.body &&result.body){
+          if(result&&result.body &&result.body ){
            this.loginError.emit(false);
             localStorage.setItem('user',JSON.stringify(result.body));
             this.route.navigate(['Home']);
             this.userisLoggedIn.next(true);
             
-          }    else{
+          }  
+          },(error)=>{
+            if(error.status===404){
             this.loginError.emit(true);
           
           }

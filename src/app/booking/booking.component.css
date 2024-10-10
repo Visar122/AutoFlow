@@ -1,0 +1,99 @@
+.container{
+    box-shadow:  20px 20px 60px #d9d9d9,
+    -20px -20px 60px #ffffff;
+    width: 400px;
+    margin-top: 10%;
+    border-radius: 40px;
+    padding: 20px;
+}
+.booking-container{
+
+    height: 500px;
+   
+    align-items: center;
+    margin-left:10% ;
+ 
+}
+.time-slots{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+button{
+    padding: 11px;
+     border: none;
+    background-color: #ebe1e1;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+button.selected{
+    background-color: #4caf50;
+    color: white;
+}
+.booking-details {
+    margin-top: 20px;
+    margin: 30px 0px;
+}
+.booking-details label{
+display: block;
+margin: 5px 0;
+color: #999;
+font-weight: normal;
+    transition: 0.2s ease all;
+}
+input{
+    padding: 2px;
+    width: 100%;
+}
+.booking-details input{
+    width: 100%;
+    padding: 5px 5px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    font-size: 16px;
+    transition: border-bottom-color 0.2s ease;
+
+}
+.booking-details input:focus{
+   outline: none;   /* removes the outline when u click the input*/
+}
+.booking-details input:hover {
+    outline: none;
+    border-bottom-color: #5264AE;
+}
+
+.bar :hover{
+    position: relative;
+    display: block;
+    height: 2px;
+    background: #5264AE;
+    transition: width 0.2s ease;
+}
+select{
+    width: 100%;
+    max-width: 310px;
+    padding: 2px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+select:hover {
+    border-color: #007bff;
+  }
+  select:focus {
+  
+ 
+    border: 1px solid  #007bff;
+  
+  }
+  
+  
+input:focus ~ .bar {
+    width: 100%;
+}
