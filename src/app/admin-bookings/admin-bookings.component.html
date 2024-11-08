@@ -1,0 +1,25 @@
+<div class="container"> 
+    <div class="booking-list">
+      <h3>All Bookings :</h3>
+  
+      <div *ngIf="allBookings && allBookings.length > 0; else noBookings" class="bookings">
+        <div *ngFor="let booking of allBookings" class="booking-card">
+          <h4>Booking Dato: {{ booking.bookingDate | date: 'EEEE d MMMM yyyy' }}  </h4>
+         
+            <p><strong>Dato var Booket på:</strong> <span>{{ booking.createdDate | date: 'EEEE d MMMM yyyy, HH:mm' }}</span></p>
+            <p><strong>Booking Id:</strong> <span>{{ booking.id }}</span></p>
+            <p><strong>Booking Tid:</strong> <span>{{ booking.bookingTime }}</span></p>
+            <p><strong>Service Type:</strong> <span>{{ booking.servicetype }}</span></p>
+            <p><strong>Telefon:</strong> <span>{{ booking.tlf }}</span></p>
+            <p><strong>User:</strong> <span>{{ booking.userName }}</span></p>
+            <p><strong>User-Mail:</strong> <span>{{ booking.mail }}</span></p>
+      
+        </div>
+      </div>
+  
+      <ng-template #noBookings>
+        <p class="no-bookings">Du har ingen bookings endnu</p>
+      </ng-template>
+    </div>
+  </div>
+  

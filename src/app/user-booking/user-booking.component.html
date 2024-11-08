@@ -1,1 +1,19 @@
-<p>user-booking works!</p>
+<div class="container"> 
+<div class="Booking-list">
+  <h3>Welcome {{ name }}, here are your bookings:</h3>
+
+  <div *ngIf="myBookings && myBookings.length > 0; else noBookings" class="bookings">
+      <div *ngFor="let booking of myBookings" class="booking-card">
+        <h4>Booking dato:  {{ booking.bookingDate | date: 'EEEE d MMMM yyyy,' }}</h4>
+          <p><strong>Booking var lavet :</strong><span> {{ booking.createdDate | date: 'EEEE dd-MM-yyyy -HH:mm' }}</span> </p>
+          <p><strong> Booking Tid:</strong> <span>{{ booking.bookingTime }} </span> </p>
+          <p><strong>Service Type:</strong> <span> {{ booking.servicetype }}</span></p>
+          <p><strong> Telefon : </strong> <span>{{ booking.tlf }} </span>  </p>
+      </div>
+  </div>
+
+  <ng-template #noBookings>
+      <p class="no-bookings">Du har ingen  bookings endnu </p>
+  </ng-template>
+</div>
+</div>

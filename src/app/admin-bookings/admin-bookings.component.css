@@ -1,0 +1,81 @@
+.container {
+    margin-top: 5%;
+  }
+  
+  .booking-list {
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .Booking-list h3 {
+    font-size: 2em; /* Increased font size for better visibility */
+    margin-bottom: 30px; /* More space below the heading */
+    color: #0066cc;
+    text-align: center;
+  }
+  
+  .bookings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increased gap for better spacing */
+  }
+  
+  .booking-card {
+    background-color: #e7e2e2; /* Lighter background */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px; /* More padding for a spacious look */
+    box-shadow: 0 0px 1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s; /* Transition effect */
+  }
+  
+  .booking-card:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+  }
+  
+ button{
+    margin-left: 60%;
+    padding: 6px;
+    width: -50%;
+    cursor: pointer;
+    box-shadow: 10px 10px 0px rgba(49, 48, 48, 0.1);
+    background-color: rgb(255, 255, 255);
+    border-radius:50px ;
+    border: 1px solid rgb(255, 255, 255);
+ }
+  
+  .no-bookings {
+    text-align: center;
+    color: #666;
+    font-size: 1.5em; /* Increased font size for visibility */
+    padding: 20px;
+  }
+  .booking-card p strong {
+    color: #817979;
+  }
+  .booking-card span {
+    display: block;
+    font-weight: bold;
+    color: #333; /* Darker text for better contrast */
+  }
+  
+  @media (max-width: 600px) {
+    .booking-list {
+      padding: 10px;
+    }
+  
+    .booking-card {
+      padding: 15px; /* Slightly reduced padding */
+    }
+  
+    .booking-card p {
+      font-size: 0.9em; /* Slightly smaller text for mobile */
+    }
+    .booking-card button{
+        margin-left: 70%;
+        margin-top: 4%;
+    }
+  }
+  

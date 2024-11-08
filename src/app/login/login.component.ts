@@ -10,12 +10,16 @@ import { Route, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   showlogin = true;
+
   SignupError = '';
   LoginError = '';
+
   SignUpEmptyError = '';
   LoginEmptyError = '';
+
   signUpcharacterError = '';
   logincharacterError = '';
+
   UserCreated = '';
 
   constructor(private Userlogin: LoginService,private route:Router) {}
@@ -81,12 +85,12 @@ export class LoginComponent implements OnInit {
     }
     
       // Ensure the status is set to "user" by default
-      const signUpData: signup = {
+      const SigningUp: signup = {
         ...data,  // Spread the existing data
         status: 'user'  // Explicitly set the status to "user"
     };
 
-    this.Userlogin.UserSignUp(signUpData); //storing and calling  singupData to UserSignup method in login service
+    this.Userlogin.UserSignUp(SigningUp); //storing and calling  SigningUp to UserSignup method in login service
     this.Userlogin.UserAdded.subscribe((usercreated)=>{
       if(usercreated){ 
       this.UserCreated="Account Sucsessfully created "
@@ -99,6 +103,7 @@ export class LoginComponent implements OnInit {
       this.openlogin();
     }, 1000);
     })
+    
     this.Userlogin.signupError.subscribe((error) => {
       if (error) {
         this.SignupError = 'User you entered already exists';

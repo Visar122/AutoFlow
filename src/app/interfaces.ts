@@ -25,13 +25,14 @@ export interface CarShop{
 
 }
 export interface bookings{
-    BookingDate:Date,
-    BookingTime:string,
-    UserName:string,
-    Servicetype:string,
-    Mail:string,
-    Tlf:number|null;
-
+    id?: number;
+    bookingDate:Date,
+    bookingTime:string,
+    userName:string,
+    servicetype:string,
+    mail:string,
+    tlf:number|null;
+     createdDate:Date;
 
     
 

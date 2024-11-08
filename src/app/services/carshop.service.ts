@@ -40,14 +40,27 @@ export class CarShopServiceService {
     return this.http.post<CarShop[]>(`https://localhost:7204/api/CarShops/${data.carId}`,data);
 
    }
+   SearchCars(query:string):Observable<CarShop[]>{
+    return this.http.get<CarShop[]>(`https://localhost:7204/api/CarShops/SearchCar?query=${query}`)
+   }
    Booking(booking: bookings): Observable<any> {
    
     return this.http.post('https://localhost:7204/api/Bookings', booking);
   }
+
   CheckAailability(date:string,time:string):Observable<boolean>{
     return this.http.get<boolean>(`https://localhost:7204/api/Bookings/CheckAvailability?date=${date}&time=${time}`)
   }
   GetAvailableTimes(date:string):Observable<string[]>{
   return this.http.get<string[]>(`https://localhost:7204/api/Bookings/GetAvailableTimes?date=${date}`)
+ }
+ GetBookingByEmail(email:string): Observable<bookings[]>{
+  return this.http.get<bookings[]>(`https://localhost:7204/api/Bookings/GetBookingByMail/${email}`)
+
+ }
+
+ GetAllBookings():Observable<bookings[]>{
+  return this.http.get<bookings[]>(`https://localhost:7204/api/Bookings`);
+
  }
 }

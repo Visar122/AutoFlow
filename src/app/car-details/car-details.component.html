@@ -16,7 +16,7 @@
         <!-- Right Side (Text and Buttons) -->
         <div class="details">
           <h1>{{CarData.cartype}}</h1>
-          <h3>{{CarData.price | currency:' Kr ':'symbol':'1.0-0' }}</h3>     <!--:'symbol':'1.0-0' so it appers 6000000 and not 6000000.00 -->
+          <h3>{{CarData.price | currency:' Kr ':'symbol':'' }}</h3>     <!--:'symbol':'1.0-0' so it appers  6000000.00 -->
           <h6>{{CarData.carModel}}</h6>
           <h6>{{CarData.carDescription}}</h6>
           <h6>ModelÅr :{{CarData.modelYear}}</h6>

@@ -9,42 +9,37 @@ import { CarShopServiceService } from '../services/carshop.service';
   styleUrl: './booking.component.css'
 })
 export class BookingComponent implements OnInit{
-CheckAailability(arg0: Date,_t11: string) {
-throw new Error('Method not implemented.');
-}
-  constructor(private toastr:ToastrService,private carshopService:CarShopServiceService){}
 
-  today :Date=new Date();
-  selectedDate:Date=new Date(this.today.setDate(this.today.getDate()+7)); //new Date() is Default to today's date
 
+
+  selectedDate: Date = new Date();
+  mindate = this.selectedDate.toISOString().split('T')[0];
   AvaliableTimes:string[]= ['11:00', '12:30', '14:00', '15:00', '16:00']; // Time slots
-  filteredTimes: string[] = this.AvaliableTimes.slice(); // This will hold available times after filtering.Initialize to all available times
+  filteredTimes: string[] = this.AvaliableTimes.slice(); // This will hold available times after filtering.Initialize to all available times,so it takes the times and filters them so fx it can take only 15:00 and 16:00
   selectedTime:string|null=null; //Stores the time
 
   ServiceType:string[]= ['Repair','Bil-Sprøjtning','Bil-Polering'];
 
+  constructor(private toastr:ToastrService,private carshopService:CarShopServiceService){
 
-  UserName='';
-  UserMail='';
+  }
+
   booking:bookings={
-    BookingDate: new Date(),
-    BookingTime: '',
-    UserName: '',
-    Servicetype: '',
-    Mail: '',
-    Tlf: null
+    bookingDate: this.selectedDate,
+    bookingTime: '',
+    userName: '',
+    servicetype: '',
+    mail: '',
+    tlf: null,
+    createdDate: new Date() // Initialize createdDate
   }
   
   ngOnInit(): void {
-      const storeuser=localStorage.getItem('user');
-      if(storeuser){
-       const userData=JSON.parse(storeuser);
-       this.UserName=userData.name;
-       this.UserMail=userData.email;
-      
-        // This makes it possible so name and email are added in the database, i dont mean apper in the input but before it didnt show in the database even thoug it was on the input 
-       this.booking.UserName = this.UserName;
-       this.booking.Mail = this.UserMail;
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        const userData = JSON.parse(storedUser);
+        this.booking.userName = userData.name;
+        this.booking.mail = userData.email;
       }
          
          // Call the method to check availability based on the default selected date
@@ -54,49 +49,73 @@ throw new Error('Method not implemented.');
     return date.toISOString().split('T')[0]; //  Removes time 
   }*/
 
-  OnDateChange(event:any){
-    this.selectedDate=new Date(event.target.value);
-    this.booking.BookingDate = this.selectedDate 
-    console.log('time:',this.booking.BookingDate)
+  isWeekend(date:Date){ /* In JavaScript, the getDay() method on a Date object returns a numeric value representing the day of the week:
+                         0 for Sunday
+                         1 for Monday
+                         2 for Tuesday
+                         3 for Wednesday
+                         4 for Thursday
+                         5 for Friday
+                         6 for Saturday*/
+                         
+    const day=date.getDay();
+    return day===0 || day=== 6;
 
-    this.checkAvaliableTimes();
   }
 
-  Onselectedtime(time:string){
-    this.selectedTime=time;
-    this.booking.BookingTime=this.ConvertStringToTime(time);   // Convert to TimeSpan format
-    console.log('time:',this.booking.BookingTime)
+  OnDateChange(event:any){
+    const newDate=new Date(event.target.value);
+    if(this.isWeekend(newDate)){
+      this.toastr.error('Kan ikke Book tid i Weekend ')
+      event.target.value = this.selectedDate.toISOString().split('T')[0]; // Reset to the previous valid date
+      return;
+    }
+
+
+
+    this.selectedDate = newDate; // Update selected date
+    this.checkAvaliableTimes();
+    
+    // When you pick a date and update this.selectedDate  = newDate;, it tells the component to look for available times just for that date.
+// So, when we call checkAvailableTimes(), it uses this.selectedDate to get times specifically for that day.
+// If the user picks a time, like 12:00 on the chosen date, the component checks if that time is available for just that date.
+  }
+
+  selectTime(time:string){
+    this.selectedTime = time;
+    this.booking.bookingTime = `${time}:00`; // Ensure ASP.NET-compatible format
    
   }
-  private ConvertStringToTime(time:string){ //this converts the string makes it to time that works with asp.net
-    const [hours,minutes]=time.split(':').map(Number)
 
 
-    const formattedMinutes=minutes.toString().padStart(2,'0') //makes it because before 13:00:00 would apper as 13:0:000
-    return `${hours}:${formattedMinutes}:00`; //Format as HH:mm:00
-  }
  private checkAvaliableTimes(){
   const formattedDate = this.selectedDate.toISOString().split('T')[0];
     
-    this.carshopService.GetAvailableTimes(formattedDate).subscribe((availableTimes:string[])=>{
-      console.log('Available times:', availableTimes);
-      this.filteredTimes = availableTimes; // Update filteredTimes with available times
+    this.carshopService.GetAvailableTimes(formattedDate).subscribe((times)=>(this.filteredTimes=times),
 
-    })
+    (error: any)=>{
+      console.error('Error fetching available times:', error);
+      this.toastr.error('Could not retrieve available times');
+    }
+    );
  }
   BookService(){ 
-   
+    if (!this.selectedTime) {
+      this.toastr.error('Please select a time for your booking.');
+      return;
+    }
     console.log('Booking data:', this.booking);
 
     // Format the date as YYYY-MM-DD
     const formattedDate = this.selectedDate.toISOString().split('T')[0];
+    this.booking.bookingDate = new Date(formattedDate);  // Ensures correct date
 
     if (this.selectedTime) {
       this.carshopService.CheckAailability(formattedDate, this.selectedTime).subscribe((isAvailable) => {
           if (isAvailable) {
             this.carshopService.Booking(this.booking).subscribe((result) => {
               if (result) {
-                this.toastr.success(`Thanks for your Booking ${this.booking.UserName}, your booking is confirmed`);
+                this.toastr.success(`Thanks for your Booking ${this.booking.userName}, your booking is confirmed`);
               } else {
                 this.toastr.error('Booking not confirmed. Please try again.');
               }
@@ -110,9 +129,7 @@ throw new Error('Method not implemented.');
           console.error('Error checking availability:', error);
         }
       );
-    } else {
-      this.toastr.error('Please select a time for your booking.');
-    }
+      }
 }
 noLetters(event: KeyboardEvent) {
   // Allow only numeric keys

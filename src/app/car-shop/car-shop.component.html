@@ -1,4 +1,17 @@
 <div class="thecontainer"> 
+<div class="input-box"[ngClass]="{'open':isSearchopen}">
+
+  <span  class="search"  *ngIf="!isSearchopen"  (click)="openSearch()">
+    <button > <i class="fa-solid fa-magnifying-glass"></i></button>
+    
+  </span>
+  <span class="closedSearch"  *ngIf="isSearchopen" > 
+
+    <input type="text" placeholder="Søg" [(ngModel)]="searchquery" (input)="Search()">
+  
+  <button  (click)="closeSearch()">  <i class="fa-solid fa-x"  style="color: #ff0000;font-size: 17px;"></i></button>
+</span>
+</div>
 
       <button class="btn1" (click)="toggleSidebar()"> <span> Sort By</span><br><i class="fa-solid fa-sort"></i></button>
       
@@ -7,6 +20,7 @@
   
        <p style="color: white;">  <b> No cars at this price.</b> <br> Please check other prices.</p>
       </div>
+
   <!-- Sidebar -->
   <div class="sidebar"  [ngClass]="{'show': isSidebarVisable}">
    <button class="close-btn" (click)="toggleSidebar()"><i class="fa-solid fa-grip-lines"></i></button>

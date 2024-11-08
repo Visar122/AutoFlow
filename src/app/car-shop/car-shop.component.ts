@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, Host, HostListener, OnInit, ViewChild, viewChild } from '@angular/core';
 import { CarShop } from '../interfaces';
 import { CarShopServiceService } from '../services/carshop.service';
 import { Router } from '@angular/router';
@@ -19,6 +19,10 @@ export class CarShopComponent implements OnInit{
   carshop: CarShop[] = [];
   ShowCarsAfterNoCarsErrorShows: CarShop[] = [];
   NoCars: boolean = false;
+
+//Search
+  isSearchopen:boolean=false;
+  searchquery="";
 
   
  constructor(private carService:CarShopServiceService,private toastr:ToastrService){}
@@ -126,15 +130,42 @@ getCarsBelowPrice() {
 IfNoCarsFound(){
   if(this.carshop.length === 0){
     this.NoCars = true;
-    this.toggleSidebar(); // Show the sidebar
-    this.carshop=this.ShowCarsAfterNoCarsErrorShows;
+
+
 
 
    setTimeout(() => {
     this.NoCars = false; // Hide the "No cars" message
+    this.carshop=this.ShowCarsAfterNoCarsErrorShows;
   }, 2000); // Duration should match the toastr timeout
 } else {
   this.NoCars = false; // Ensure the "No cars" message is hidden if cars are found
 }
 }
+//Search
+openSearch(){
+  this.isSearchopen=true;
+}
+closeSearch(){
+  this.isSearchopen=false;
+  this.carshop = this.ShowCarsAfterNoCarsErrorShows;
+}
+
+  
+    Search() {
+      if (this.searchquery) {
+        this.carService.SearchCars(this.searchquery).subscribe((data: CarShop[]) => {
+          if (data && data.length > 0) {
+            this.carshop = data;
+            this.IfNoCarsFound(); // This might be called if no cars are found based on your function's logic
+          } else {
+            // Handle case when no cars are found
+            this.IfNoCarsFound(); // You can modify this if you need a different behavior
+          }
+        });
+      } else {
+        // If search query is empty, show all cars or handle as needed
+        this.carshop = this.ShowCarsAfterNoCarsErrorShows;
+      }
+    }
   }

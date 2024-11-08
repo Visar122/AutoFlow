@@ -29,6 +29,9 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import { FourDigitsDirective } from './directives/four-digits.directive';
 import { BookingComponent } from './booking/booking.component';
 import { UserBookingComponent } from './user-booking/user-booking.component';
+import { AdminBookingsComponent } from './admin-bookings/admin-bookings.component';
+import { ErrorComponent } from './error/error.component';
+
 
 
 @NgModule({
@@ -47,7 +50,10 @@ import { UserBookingComponent } from './user-booking/user-booking.component';
     UpdateProductComponent,
     FourDigitsDirective,
     BookingComponent,
-    UserBookingComponent
+    UserBookingComponent,
+    AdminBookingsComponent,
+    ErrorComponent,
+
 
   ],
   imports: [

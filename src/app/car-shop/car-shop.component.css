@@ -1,6 +1,52 @@
 .thecontainer{
     margin-top: 5%;
 }
+.input-box{
+  position: relative;
+  padding: 10px;
+
+  margin-left: 36%;
+
+}
+.input-box.open {
+  display: flex;
+  align-items: center;
+  
+}
+.input-box .search i,
+.input-box .closedSearch i {
+    font-size: 20px;
+    cursor: pointer;
+}
+.input-box .closedSearch input[type="text"] {
+
+  padding: 3px;
+  margin-left: 5px;
+  border-radius: 10px;
+   width: 400px;
+  border: 1px solid rgb(212, 208, 208);
+  background: transparent;
+ 
+}
+.input-box button{
+  width: 42px;
+  color: black;
+  border:  2px solid rgb(160, 158, 158) ;
+  cursor: pointer;
+  background: transparent;
+
+border-top:none ;
+  border-left:none ;
+
+  transition: 0.3s;
+  border-radius:12px ;
+}
+.input-box button:hover{
+  background-color: #e2e4e5; 
+  width: 52px;
+}.input-box .search button{
+  margin-left: 17.2%;
+}
 .btn1{
 
     position: relative;
@@ -273,4 +319,6 @@ h3 {
         position: fixed;
       }
   
+      
   }
+  

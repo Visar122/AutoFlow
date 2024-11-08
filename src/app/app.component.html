@@ -37,9 +37,8 @@
           <li><a > <i class="fa-solid fa-user"></i> {{UserName}}</a> <hr></li>
          <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/item-list"> <i class="fa-solid fa-list"> </i> Item List</a></li>
          <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/Add-Cars"> <i class="fa-solid fa-plus"></i>   Add-Cars</a></li>
-         
-         <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="">Booking List</a></li>
-  
+         <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/Bookings"> <i class="fa-regular fa-calendar-days"></i>  Booking List</a></li>
+
         <!-- User Menu -->
        <li *ngIf="TheUserStatus === 'user'"><a routerLink="/My-Bookings">My Bookings</a></li>
        <li *ngIf="TheUserStatus === 'user'"><a routerLink="">My Account </a></li>

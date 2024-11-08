@@ -5,25 +5,91 @@
     padding: 0;
     box-sizing: border-box;
     
+  } 
+  .flex-container{
+    width: 100%;
+    height: 97.7%;
+    margin-top: 4.6%;
+      display: flex;
+      justify-content: center;
+      font-family: 'Nunito',sans-serif;
+      position:absolute;
+      background: url('/src/assets/wallpapersden.com_colorful-space_1920x1277.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+
+   
   }
+  .info{
+  
+    position: absolute;
+    
+    align-items: center;
+  
+  
+    height: 16%;
+  
+    margin-top: 3%;
+    margin-right:52%;
+  
+    border-radius: 19px;
+  
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+   
+   
+  
+  
+ 
+
+  }
+  .main_text{
+    position: relative;
+    right: 80%;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+     /* Adjust background color and opacity as needed */
+    padding: 10px; /* Adjust padding as needed */
+    margin-top: 98%;
+ 
+  
+    
+}
+
+  .main_text h1{
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+    font-weight: 900;
+
+    left: 108%;
+    box-shadow: solid 52px rgb(236, 234, 234);
+    position: relative;
+  }
+  .main_text h1 span{
+    margin-left: 15px;
+    color: #e9ae1a; /* Change the color to your desired value */
+    font-family: 'mv boli'; /* Make sure the font family name is correctly specified */
+    line-height: 52px;
+    font-size: 67px;
+    font-weight: 900;
+    position: relative;
+}
 
   h1{
     color: black;
     font-size: 35px;
     font-weight: 800;
   }
-  .flex-container{
-    width: 100%;
-    height: 97.7%;
-    margin-top: 4.9%;
-      display: flex;
-      justify-content: center;
-      font-family: 'Nunito',sans-serif;
-      position:absolute;
-     
 
-   
-  }
   .form-container{
     width: 24%;
     box-shadow:  20px 20px 60px #d9d9d9,
@@ -31,6 +97,7 @@
     border-radius: 20px;
     text-align: center;
     height: 91%;
+    margin-left: 30%;
   }
   .subtitle {
     font-size: 11px;
