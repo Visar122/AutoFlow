@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<div class="navbar"> 
+    <div class="navbar-container" (mouseleave)="resetUnderline()"> <!-- mouseleave når mussen forlader objekten-->
+        <h1 class="logo">AutoFlow.</h1>
+         <div class="navbar-menu"> 
+            <ul> 
+                <li (mouseover)="moveUnderline($event)"><a href="#Home">Home</a></li>  <!-- mouseover når mussen hover objekten-->
+                     <li (mouseover)="moveUnderline($event)"><a href="#Shop"> Shop</a></li>
+                           <li (mouseover)="moveUnderline($event)"><a href="#Services">Services</a></li>
+                             <li (mouseover)="moveUnderline($event)"><a href="#About">About</a></li>
+                                <li (mouseover)="moveUnderline($event)"><a href="#Contact">Contact</a></li>
+                    
+                                    <ul class="user" >
+                                       <li style="cursor: pointer;" (mouseover)="moveUnderline($event)"><a routerLink="/login" >Login <i class="fa-solid fa-right-to-bracket" ></i></a></li>
+                                    </ul>
+                                
+            </ul>
+               
+            <div class="underline" #underline></div>
+         </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
+    
+</body>
+</html>
