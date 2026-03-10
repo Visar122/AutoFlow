@@ -25,17 +25,17 @@ namespace Autoflow.Controllers
             _context = context;
         }
          
-        private static void CreatePassworrdHash(string password,out byte[] passwordHash, out byte[] passwordSalt)
+        private static void CreatePassworrdHash(string password, out byte[] passwordSalt,out byte[] passwordHash )
         {
            using var hmac = new HMACSHA512(); // laver random key(= salt)
             passwordSalt = hmac.Key;
             passwordHash=hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
         }
-        private static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+        private static bool VerifyPasswordHash(string password, byte[] passwordSalt, byte[] passwordHash)
         {
-            using var hmac = new HMACSHA512(storedSalt); // bruger den gemte salt til at hashe det indtastede password
+            using var hmac = new HMACSHA512(passwordSalt); // bruger den gemte salt til at hashe det indtastede password
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)); // hasher det indtastede password med den gemte salt
-            return computedHash.SequenceEqual(storedHash); // sammenligner det hashede indtastede password med det gemte hash
+            return computedHash.SequenceEqual(passwordHash); // sammenligner det hashede indtastede password med det gemte hash
         }
         // GET: api/Logins
         [HttpPost("Logins")]
@@ -45,14 +45,11 @@ namespace Autoflow.Controllers
             if (user == null)
                 return NotFound(new { Message = "User not found." });
 
-            if (!VerifyPasswordHash(loginDto.Password, user.PasswordHash, user.PasswordSalt)) ;
+            if (!VerifyPasswordHash(loginDto.Password, user.PasswordSalt, user.PasswordHash)) ;
 
-            return Ok(new { Message = "Login successful!", user.Name, user.Email, user.Status });
+            return Ok(new { Message = "Login successful!", user.FirstName, user.Email, user.Status });
 
-           /* - `loginDto.Password` = hvad brugeren indtastet som kode (plain text)
-           - `user.PasswordHash` = den hashed kode   i DB
-           - `user.PasswordSalt` = den99 random salt kode i DB
-           */
+         
         }
 
         [HttpPost("SignUp")]
@@ -71,7 +68,8 @@ namespace Autoflow.Controllers
 
             var NewUser = new Logins
             {
-                Name = signUpDto.Name,
+               FirstName  = signUpDto.FirstName,
+               LastName =signUpDto.LastName,
                 Email = signUpDto.Email,
                 PasswordHash = Passwordhash,
                 PasswordSalt = Passwordsalt,
