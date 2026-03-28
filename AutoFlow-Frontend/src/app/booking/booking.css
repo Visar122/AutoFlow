@@ -1,0 +1,156 @@
+.booking-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 97vh;
+  padding: 20px 80px;
+
+  overflow: hidden;
+  margin-left: -5%;
+    gap: 60px;
+    margin-top: -6%;
+}
+
+.main_image img{
+  margin-left: -25%;
+   height: 100%;
+    width: 100%;
+    margin-top: 1%;
+    overflow: hidden;
+}
+
+.booking-card {
+  background: #1e1b3a;
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  margin-top:6%
+}
+
+.booking-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.subtitle {
+  color: #9ca3af;
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  color: #c084fc;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: #2d2a4a;
+  border: 1px solid #4c1d95;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #a855f7;
+}
+
+.form-group select option {
+  background: #2d2a4a;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-submit:hover {
+  opacity: 0.85;
+}
+
+.msg {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.msg.success {
+  background: #14532d;
+  color: #86efac;
+}
+
+.msg.error {
+  background: #450a0a;
+  color: #fca5a5;
+}
+
+.time-slots {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.slot {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid #4c1d95;
+  background: #2d2a4a;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.slot:hover:not(:disabled) {
+  border-color: #a855f7;
+  background: #3d2a6a;
+}
+
+.slot.selected {
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border-color: #a855f7;
+  font-weight: 700;
+}
+
+.slot.taken {
+  opacity: 0.35;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}

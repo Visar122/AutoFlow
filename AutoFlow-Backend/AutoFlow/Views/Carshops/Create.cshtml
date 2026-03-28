@@ -1,0 +1,73 @@
+﻿@model Autoflow.Models.Carshop.Carshop
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Carshop</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CarName" class="control-label"></label>
+                <input asp-for="CarName" class="form-control" />
+                <span asp-validation-for="CarName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarModel" class="control-label"></label>
+                <input asp-for="CarModel" class="form-control" />
+                <span asp-validation-for="CarModel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarDescription" class="control-label"></label>
+                <input asp-for="CarDescription" class="form-control" />
+                <span asp-validation-for="CarDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl1" class="control-label"></label>
+                <input asp-for="ImageUrl1" class="form-control" />
+                <span asp-validation-for="ImageUrl1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl2" class="control-label"></label>
+                <input asp-for="ImageUrl2" class="form-control" />
+                <span asp-validation-for="ImageUrl2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl3" class="control-label"></label>
+                <input asp-for="ImageUrl3" class="form-control" />
+                <span asp-validation-for="ImageUrl3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

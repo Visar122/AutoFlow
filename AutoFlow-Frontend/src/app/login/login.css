@@ -1,0 +1,222 @@
+
+
+.container {
+  position: relative;
+  overflow: hidden;
+  width: 44%;
+  max-width: 100%;
+  min-height: 520px;
+  margin-left: 25%;
+  margin-top: 7%;
+  display: flex;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.6s ease-in-out;
+}
+
+form {
+  background-color: #1e1b3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+  gap: 6px;
+}
+
+h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+span {
+  color: #9ca3af;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+input {
+  background-color: #2d2a4a;
+  border: 1px solid #3d3a5c;
+  border-radius: 8px;
+  color: #fff;
+  padding: 12px 16px;
+  margin: 5px 0;
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input::placeholder {
+  color: #6b7280;
+}
+
+input:focus {
+  border-color: #a855f7;
+}
+
+.btn {
+  margin-top: 12px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(90deg, #c084fc, #a855f7, #7c3aed);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 80ms ease-in;
+}
+
+.btn:hover { opacity: 0.9; }
+.btn:active { transform: scale(0.95); }
+
+.btn {
+  border-radius: 20px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 80ms ease-in;
+}
+
+.btn:hover { background: rgba(255,255,255,0.1); }
+.btn:active { transform: scale(0.95); }
+
+.message {
+  color: #f87171;
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 16px;
+  margin: 2px 0;
+}
+
+.message.success {
+  color: #4ade80;
+}
+
+/* --- Form containers --- */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-up-container,
+.log-in-container {
+  position: absolute;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.right-panel-active .sign-up-container {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 5;
+  margin-left: 50%;
+}
+
+.right-panel-active .log-in-container {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* --- Social icons --- */
+.social-container {
+  margin: 12px 0;
+}
+
+.social-container a {
+  border: 1px solid #3d3a5c;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4px;
+  height: 40px;
+  width: 40px;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.social-container a:hover {
+  border-color: #a855f7;
+  color: #a855f7;
+}
+
+/* --- Overlay --- */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: linear-gradient(135deg, #3b1f6e, #6d28d9, #4c1d95);
+  color: #fff;
+  position: absolute;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  top: 0;
+
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel p {
+  color: #e2d9f3;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 16px 0 24px;
+   
+}
+
+
+.overlay-left { left: -4%;  }
+.right-panel-active .overlay-left { transform: translateX(0); }
+.overlay-right { right: -4%; }
+.right-panel-active .overlay-right { transform: translateX(0%); }
+

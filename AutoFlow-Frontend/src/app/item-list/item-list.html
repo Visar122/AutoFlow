@@ -1,0 +1,150 @@
+<div class="item-list-page">
+  <h2 class="page-title">Item List</h2>
+
+  <!-- Tab Buttons -->
+  <div class="tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'cars'" (click)="activeTab = 'cars'">
+      <i class="fa-solid fa-car"></i> Biler
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'parts'" (click)="activeTab = 'parts'">
+      <i class="fa-solid fa-gears"></i> Reservedele
+    </button>
+  </div>
+
+
+  @if (activeTab === 'cars') {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Navn</th>
+            <th>Model</th>
+            <th>År</th>
+            <th>Kategori</th>
+            <th>Pris</th>
+            <th>Handlinger</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (car of cars; track car.carId) {
+            <tr>
+              <td>{{ car.carId }}</td>
+                <td>  <img [src]="car.imageUrl1"></td>
+              <td>{{ car.carName }}</td>
+              <td>{{ car.carModel }}</td>
+              <td>{{ car.year }}</td>
+              <td>{{ car.category }}</td>
+              <td>{{ car.price | dkPrice }} DKK</td>
+              <td class="actions">
+                <button class="btn-edit" (click)="editCar(car)"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-delete" (click)="deleteCar(car.carId)"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+
+
+  @if (activeTab === 'parts') {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Navn</th>
+            <th>Kategori</th>
+            <th>Antal</th>
+            <th>Pris</th>
+            <th>Handlinger</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (part of parts; track part.id) {
+            <tr>
+              <td>{{ part.id }}</td>
+                  <td>  <img [src]="part.imageUrl1"></td>
+              <td>{{ part.name }}</td>
+              <td>{{ part.category }}</td>
+              <td>{{ part.stock }}</td>
+              <td>{{ part.price | dkPrice }} DKK</td>
+              <td class="actions">
+                <button class="btn-edit" (click)="editPart(part)"><i class="fa-solid fa-pen"></i></button>
+                <button class="btn-delete" (click)="deletePart(part.id)"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+<!-- EDIT CAR model -->
+@if (editingCar) {
+  <div class="model-overlay" (click)="editingCar = null">
+    <div class="model" (click)="$event.stopPropagation()">
+      <h3>Rediger Bil</h3>
+      <div class="model-scroll">
+        <div class="form-group"><label>Navn</label><input [(ngModel)]="editingCar.carName"></div>
+        <div class="form-group"><label>Model</label><input [(ngModel)]="editingCar.carModel"></div>
+        <div class="form-group"><label>År</label><input type="number" [(ngModel)]="editingCar.year"></div>
+        <div class="form-group"><label>Kategori</label><input [(ngModel)]="editingCar.category"></div>
+        <div class="form-group"><label>Beskrivelse</label><textarea [(ngModel)]="editingCar.carDescription"></textarea></div>
+        <div class="form-group"><label>Pris</label><input type="number" [(ngModel)]="editingCar.price"></div>
+        <div class="form-group">
+          <label>Billede 1</label>
+          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{  'Vælg' }}</span><input #cImg1 type="file" accept="image/*" (change)="onCarImageChange($event, 0)" hidden> </label>
+        </div>
+        <div class="form-group">
+          <label>Billede 2</label>
+          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{ 'Vælg' }}</span><input #cImg2 type="file" accept="image/*" (change)="onCarImageChange($event, 1)" hidden> </label>
+        </div>
+        <div class="form-group">
+          <label>Billede 3</label>
+          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{  'Vælg' }}</span><input #cImg3 type="file" accept="image/*" (change)="onCarImageChange($event, 2)" hidden> </label>
+        </div>
+      </div>
+      <div class="model-actions">
+        <button class="btn-cancel" (click)="editingCar = null">Annuller</button>
+        <button class="btn-save" (click)="saveCar()">Gem</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- EDIT PART model -->
+@if (editingPart) {
+  <div class="model-overlay" (click)="editingPart = null">
+    <div class="model" (click)="$event.stopPropagation()">
+      <h3>Rediger Reservedel</h3>
+      <div class="model-scroll">
+        <div class="form-group"><label>Navn</label><input [(ngModel)]="editingPart.name"></div>
+        <div class="form-group"><label>Kategori</label><input [(ngModel)]="editingPart.category"></div>
+        <div class="form-group"><label>Beskrivelse</label><textarea [(ngModel)]="editingPart.description"></textarea></div>
+        <div class="form-group"><label>Antal</label><input type="number" [(ngModel)]="editingPart.stock"></div>
+        <div class="form-group"><label>Pris</label><input type="number" [(ngModel)]="editingPart.price"></div>
+        <div class="form-group">
+          <label>Billede 1</label>
+          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{  'Vælg' }}</span><input #pImg1 type="file" accept="image/*" (change)="onPartImageChange($event, 0)" hidden></label>
+        </div>
+        <div class="form-group">
+          <label>Billede 2</label>
+          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{ 'Vælg' }}</span><input #pImg2 type="file" accept="image/*" (change)="onPartImageChange($event, 1)" hidden></label>
+        </div>
+        <div class="form-group">
+          <label>Billede 3</label>
+          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{ 'Vælg' }}</span><input #pImg3 type="file" accept="image/*" (change)="onPartImageChange($event, 2)" hidden></label>
+        </div>
+      </div>
+      <div class="model-actions">
+        <button class="btn-cancel" (click)="editingPart = null">Annuller</button>
+        <button class="btn-save" (click)="savePart()">Gem</button>
+      </div>
+    </div>
+  </div>
+}

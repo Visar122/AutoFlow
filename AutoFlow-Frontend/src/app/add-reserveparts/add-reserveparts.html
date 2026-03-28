@@ -1,0 +1,70 @@
+<div class="Carshop-page">
+  <div class="Carshop-card">
+    <h2>Tilføj en reservedel</h2>
+
+    <div class="msg success">{{successMessage}}</div>
+    <div class="msg error">{{errorMessage}}</div>
+
+    <form #partData="ngForm" (ngSubmit)="submit(partData.value)">
+
+      <div class="form-group">
+        <label>Navn</label>
+        <input type="text" name="name" required ngModel>
+      </div>
+
+      <div class="form-group">
+        <label>Kategori</label>
+        <select name="category" required ngModel>
+          <option value="" disabled>Vælg kategori</option>
+          @for (category of PartsCategory; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Beskrivelse</label>
+        <textarea name="description" ngModel></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Lager (antal)</label>
+        <input type="number" name="stock" required ngModel placeholder="0">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Image 1</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img1.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img1 type="file" accept="image/*" (change)="onFileChange($event, 0)" hidden>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Image 2</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img2.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img2 type="file" accept="image/*" (change)="onFileChange($event, 1)" hidden>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Image 3</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img3.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img3 type="file" accept="image/*" (change)="onFileChange($event, 2)" hidden>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Pris</label>
+        <input type="number" name="price"  ngModel placeholder="0" mask="separator.0" thousandSeparator="." [max]="'1000000'">
+      </div>
+
+      <button type="submit" class="btn-submit">Tilføj Del</button>
+    </form>
+  </div>
+</div>

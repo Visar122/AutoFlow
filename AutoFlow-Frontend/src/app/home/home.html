@@ -1,0 +1,151 @@
+<section class="section" id="Home" class="section">
+    <div class="icons"> 
+       <a href="https://www.instagram.com/wiisar1">
+             <i class="fa-brands fa-instagram"></i>
+       </a>
+        <a href="https://www.facebook.com">
+             <i class="fa-brands fa-facebook"></i>
+       </a>
+        <a href="https://www.youtube.com">
+             <i class="fa-brands fa-youtube"></i>
+       </a>
+    </div>
+
+    <div class="text">
+        <h1 [appFadeIn]="'fade-down'">Welcome To AutoFlow</h1>
+          <div class="line"></div>
+         <h2 [appFadeIn]="'fade-right'">Make Car Service in a Easy Way</h2>
+         <p [appFadeIn]="'fade-up'">  Vi går op i at præsentere opskrifterne på en letforståelig måde, så selv nybegyndere kan følge med. Hver opskrift er nøje gennemprøvet og inkluderer detaljerede trin-for-trin instruktioner samt nyttige tips og tricks, der sikrer succes .
+
+         Udover opskrifter tilbyder vi også artikler om  biler, serrvice, processen og meget mere. Vores mål er at være en pålidelig kilde til succes og fornuft.</p>
+
+
+    </div>
+
+    <div class="main_image " >
+      <img src="assets/Mercdess.jpg" >
+    </div>
+
+
+</section>
+    
+<div class="scroll">
+     <span> Scroll down<i class="fa-solid fa-share"></i> </span>
+   </div>
+
+
+<section id="QuickAccess" class="section"  > 
+   
+    <div class="quick-access">
+      <div class="quick-item" routerLink="/booking" >
+        <i class="fa-solid fa-calendar-days" >    <span class="quick-title">Book Tid</span></i>     
+        <span class="quick-sub">Hurtig online booking</span>
+      </div>
+      <div class="quick-item" routerLink="/carshop">
+        <i class="fa-solid fa-car"> <span class="quick-title">Bilmarked</span></i>
+       
+        <span class="quick-sub">Køb &amp; sælg biler</span>
+      </div>
+      <div class="quick-item" routerLink="/reserveParts">
+        <i class="fa-solid fa-gears">  <span class="quick-title">Reservedele</span></i>     
+        <span class="quick-sub">Originale &amp; eftermarket</span>
+      </div>
+      <div class="quick-item">
+        <i class="fa-solid fa-screwdriver-wrench">     <span class="quick-title">Services</span></i>
+        <span class="quick-sub">Se priser &amp; pakker</span>
+      </div>
+   </div>
+</section>
+
+<!-- CAR MARKET PREVIEW -->
+<section id="Shop" class="preview-section" >
+  <div class="sec-head">
+    <h2>Bilmarked</h2>
+    <a routerLink="/carshop">Se alle biler →</a>
+  </div>
+  <div class="preview-grid" [appFadeIn]="'fade-right'">
+    @for (car of featuredCars; track car.carId) {
+      <div class="preview-card">
+        <div class="preview-img">
+          <img [src]="car.imageUrl1" [alt]="car.carName">
+          <span class="preview-badge">{{ car.category }}</span>
+        </div>
+        <div class="preview-body">
+          <h3>{{ car.carName }}</h3>
+          <p class="preview-sub">{{ car.carModel }} · {{ car.year }}</p>
+          <div class="preview-footer">
+            <span class="preview-price">{{ car.price | dkPrice }} DKK</span>
+            <button class="btn" routerLink="/carshop">Se detaljer</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+
+<section id="Services" class="preview-section parts-bg">
+  <div class="sec-head" >
+    <h2>Reservedele</h2>
+    <a routerLink="/reserveParts">Se alle reservedele →</a>
+  </div>
+  <div class="parts-grid"
+  >
+    @for (part of featuredParts; track part.id) {
+      <div class="parts-card">
+        <div class="parts-img">
+          <img [src]="part.imageUrl1" [alt]="part.name">
+        </div>
+        <div class="parts-label">{{ part.category }}</div>
+        <div class="parts-name">{{ part.name }}</div>
+        <div class="parts-stock">Lager: {{ part.stock }}</div>
+        <div class="parts-price">{{ part.price | dkPrice }} DKK</div>
+        <button class="btn" routerLink="/reserveParts">Se del</button>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ABOUT + CONTACT -->
+<section id="About" class="about">
+  <div class="about-col">
+    <h2>Om AutoFlow</h2>
+    <p>Vi er en moderne bilservice og markedsplads. Med over 15 års erfaring tilbyder vi professionel service, et stort udvalg af biler og originale reservedele.</p>
+    <div class="stats-row">
+     
+      <div class="stat"><div class="stat-num">15 år</div><div class="stat-lbl">Erfaring</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Tilfredshed</div></div>
+    </div>
+  </div>
+  <div class="contact-col" id="Contact">
+    <h2>Kontakt Os</h2>
+    <div class="contact-info">
+      <div class="contact-row"><i class="fa-solid fa-location-dot"></i> Bilgade 12, 2100 København Ø</div>
+      <div class="contact-row"><i class="fa-solid fa-phone"></i> +45 70 20 20 20</div>
+      <div class="contact-row"><i class="fa-solid fa-envelope"></i> kontakt&#64;autoflow.dk</div>
+      <div class="contact-row"><i class="fa-solid fa-clock"></i> Man-Fre: 08:00–17:30 · Lør: 09:00–14:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="home-footer">
+  <div class="footer-col">
+    <div class="footer-logo">AutoFlow.</div>
+    <p>Din pålidelige partner til bil service, handel og reservedele.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Navigation</h4>
+    <a href="#Home">Hjem</a>
+    <a routerLink="/carshop">Bilmarked</a>
+    <a routerLink="/reserveParts">Reservedele</a>
+    <a routerLink="/booking">Book Tid</a>
+  </div>
+  <div class="footer-col">
+    <h4>Kontakt</h4>
+    <p>+45 70 20 20 20</p>
+    <p>kontakt&#64;autoflow.dk</p>
+    <p>Bilgade 12, KBH Ø</p>
+  </div>
+</footer>
+<div class="footer-bottom">© 2026 AutoFlow · Alle rettigheder forbeholdes</div>

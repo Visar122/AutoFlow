@@ -1,0 +1,98 @@
+.bookings-list-wrapper{
+    max-width: 860px;
+    margin: auto;
+    padding: 40px 20px;
+     color: #1a1a2e;
+      cursor:pointer
+}
+.page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  color: #fff;
+}
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+.timeline::before {
+   width: 2px;
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+
+  background: rgba(168, 85, 247, 0.3);
+}
+.timeline-item{
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.timeline-icon{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #1a1a2e;
+    border: 2px solid #a855f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     color: #a855f7;
+       z-index: 1;
+}
+.timeline-card{
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 22px;
+    flex: 1;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+}
+.card-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.customer-name{
+    font-size:1.1rem ;
+    font-weight: 700;
+     color: #1a1a2e;
+}
+
+.booking-date {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000000;
+  margin-left: auto;
+  
+}
+.card-sub{
+    display: flex;
+    gap: 20px;
+    font-size: 0.88rem;
+      color: #374151;
+       font-weight: 600;
+  margin-bottom: 12px;
+
+}
+.card-sub i {
+  margin-right: 5px;
+  color: #a855f7;
+}
+.note {
+font-size:1.1rem;
+padding: 0;
+  margin: 0;
+     padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+.note  i{
+    color: red;
+
+}

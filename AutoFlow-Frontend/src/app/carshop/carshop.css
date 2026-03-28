@@ -1,0 +1,100 @@
+.carshop-page {
+  max-width: 75%;
+  margin:  auto;
+  padding: 10px 0px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  
+  margin-bottom: 32px;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.car-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.car-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-header {
+  position: relative;
+  width: 100%;
+}
+
+.car-image img {
+  width: 100%;
+
+  height: 200px;
+  object-fit: cover;
+}
+
+.category-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #7c3aed;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 16px 25px;
+}
+
+.car-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 4px;
+}
+
+.car-model {
+  font-size: 0.88rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.car-description {
+  font-size: 0.85rem;
+  color: #374151;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+

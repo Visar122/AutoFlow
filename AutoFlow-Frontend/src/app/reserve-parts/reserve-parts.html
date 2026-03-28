@@ -1,0 +1,23 @@
+<div class="carshop-page">
+  <h2 class="page-title">Reserve Parts</h2>
+  <div class="cars-grid">
+    @for (part of parts; track part.id) {
+      <div class="car-card">
+        <div class="card-header">
+          <div class="car-image">
+            <img [src]="part.imageUrl1" [alt]="part.name">
+          </div>
+          <span class="category-badge">{{ part.category }}</span>
+        </div>
+        <div class="card-body">
+          <h3 class="car-name">{{ part.name }}</h3>
+          <p class="car-model">Stock: {{ part.stock }}</p>
+          <p class="car-description">{{ part.description }}</p>
+          <div class="card-footer">
+          <span class="price">{{ part.price | dkPrice }} DKK</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

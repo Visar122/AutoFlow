@@ -1,0 +1,23 @@
+<div class="carshop-page">
+    <h2 class="page-title">Vores Biler</h2>
+  <div class="cars-grid">
+     @for (car of Cars; track car.carId) {
+       <div class="car-card">
+          <div class="card-header">
+               <div class="car-image">
+                  <img [src]="car.imageUrl1">
+                </div>
+               <span class="category-badge">{{ car.category }}</span>
+            </div>
+
+           <div class="card-body">
+               <h3 class="car-name">{{ car.carName }}</h3>
+               <p class="car-model">{{ car.carModel }} · {{ car.year }}</p>
+               <div class="card-footer">
+                   <span class="price">{{ car.price | dkPrice }} DKK</span>
+              </div>
+            </div>
+        </div>
+      }
+  </div>
+</div>

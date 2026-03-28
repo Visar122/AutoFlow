@@ -1,0 +1,83 @@
+
+<div class="booking-page">
+
+  <div class="main_image">
+    <img src="assets/workshop2.jpg" />
+  </div>
+
+  <div class="booking-card">
+
+    
+    <h2>Book en tid</h2>
+    <p class="subtitle">Udfyld formularen og vi kontakter dig</p>
+
+
+  
+  <div class="msg success" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="msg error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <form (ngSubmit)="submit()">
+      <div class="form-group">
+        <label>Navn</label>
+        <input type="text" [(ngModel)]="form.customerName" name="customerName" placeholder="Dit fulde navn" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="form.customerEmail" name="customerEmail" placeholder="din@email.dk" />
+      </div>
+
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="tel" [(ngModel)]="form.tlf" name="tlf" placeholder="+45 12 34 56 78" />
+      </div>
+
+      <div class="form-group">
+        <label>Nummerplade</label>
+        <input type="text" [(ngModel)]="form.carPlate" name="carPlate" placeholder="AB 12 345" />
+      </div>
+
+      <div class="form-group">
+        <label>Service type</label>
+        <select [(ngModel)]="form.serviceType" name="serviceType">
+          <option value="" disabled>Vælg en service</option>
+          @for (type of serviceTypes; track type) {
+            <option placeholde="Vælg en service" [value]="type">{{ type }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Dato</label>
+        <input type="date" [(ngModel)]="form.bookingDate" name="bookingDate"
+          [min]="minDate" [max]="maxDate" (change)="onDateChange()" />
+      </div>
+
+      @if (form.bookingDate) {
+        <div class="form-group">
+          <label>Vælg tidspunkt</label>
+          <div class="time-slots">
+            @for (slot of Times; track slot) {
+              <button type="button"
+                class="slot"
+                [class.selected]="form.bookingTime === slot"
+                [class.taken]="isSlotTaken(slot)"
+                [disabled]="isSlotTaken(slot)"
+                (click)="form.bookingTime = slot">
+                {{ slot }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+
+      <div class="form-group">
+        <label>Ekstra Note</label>
+        <textarea [(ngModel)]="form.note" name="note" placeholder="Skriv eventuelle bemærkninger her..."></textarea>
+
+      </div>
+
+      <button type="submit" class="btn-submit">Book tid</button>
+    </form>
+  </div>
+</div>
