@@ -22,10 +22,10 @@ export class BookingsUser implements OnInit {
   constructor(private bookingService: BookingService,private loginService: LoginService) {}
 
   ngOnInit(): void {
-  
+     
      this.Email=this.loginService.getUser()?.email ?? '';
-
-     this.bookingService.getBookingByMailk(this.Email).subscribe((data) => {
+     
+     this.bookingService.getBookingByMail(this.Email).subscribe((data) => {
       this.mybookings = data;
       console.log(this.mybookings);
     });

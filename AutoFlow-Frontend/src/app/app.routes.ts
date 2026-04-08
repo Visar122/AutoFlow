@@ -11,6 +11,8 @@ import { AddCars } from './add-cars/add-cars';
 import { ReservePartsComponent } from './reserve-parts/reserve-parts';
 import { AddReserveparts } from './add-reserveparts/add-reserveparts';
 import { ItemList } from './item-list/item-list';
+import { MyAccount } from './my-account/my-account';
+import { BookingDetails } from './booking-details/booking-details';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -23,6 +25,8 @@ export const routes: Routes = [
   { path:'bookings-user', component: BookingsUser, canActivate: [userGuard]},
   {path:'add-cars',component:AddCars, canActivate: [adminGuard]},
     {path:'add-reserveparts',component:AddReserveparts, canActivate: [adminGuard]},
-    {path:'item-list',component:ItemList, canActivate: [adminGuard]}
+    {path:'item-list',component:ItemList, canActivate: [adminGuard]},
+    { path:'my-account', component: MyAccount},
+    { path:'booking-details/:id', component: BookingDetails, canActivate: [adminGuard]}
 
 ];

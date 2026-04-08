@@ -7,7 +7,7 @@ namespace Autoflow.Models
     {
         public Dbcontext(DbContextOptions options) :base(options){ }
 
-        public DbSet<Logins.Logins> Logins { get; set; }
+        public DbSet<Logins.User> Users { get; set; }
 
         public DbSet<Booking.Booking> Bookings { get; set; }
 

@@ -1,0 +1,57 @@
+@if (booking) {
+<div class="details-wrapper">
+  <button class="btn-back" routerLink="/booking-list">
+    <i class="fa-solid fa-arrow-left"></i> Tilbage
+  </button>
+
+  <h1 class="page-title">Booking #{{ booking.id }}</h1>
+
+  <div class="details-card">
+    <h2 class="section-title">Kunde</h2>
+    <ul class="info-list">
+      <li><i class="fa-solid fa-user"></i> {{ booking.customerName }}</li>
+      <li><i class="fa-solid fa-envelope"></i> {{ booking.customerEmail }}</li>
+      <li><i class="fa-solid fa-phone"></i> {{ booking.tlf }}</li>
+      <li><i class="fa-solid fa-car"></i> {{ booking.carPlate }}</li>
+    </ul>
+  </div>
+
+  <div class="details-card">
+    <h2 class="section-title">Booking</h2>
+    <ul class="info-list">
+      <li><i class="fa-solid fa-wrench"></i> {{ booking.serviceType }}</li>
+      <li><i class="fa-solid fa-calendar"></i> {{ booking.bookingDate | date: 'EEEE, dd-MM-yyyy' }}</li>
+      <li><i class="fa-solid fa-clock"></i> {{ booking.bookingTime | slice:0:5 }}</li>
+      <li><i class="fa-solid fa-circle-info"></i> <select [(ngModel)]="booking.status"  name="status">
+        <option value="Godkendt">Godkendt</option>
+        <option value="Afslået">Afslået</option>
+      </select></li>
+
+      <li><textarea [(ngModel)]="booking.workDescription" name="note" placeholder="Skriv arbejdsbeskrivelse..."></textarea></li>
+    </ul>
+  </div>
+
+  @if (booking.note) {
+  <div class="details-card">
+    <h2 class="section-title">Note</h2>
+    <p class="note-text"><i class="fa-solid fa-note-sticky"></i> {{ booking.note }}</p>
+  </div>
+  }
+
+  <div class="details-card workImg">
+    <h2 class="section-title">Arbejdsbillede</h2>
+    @if (booking.workImg) {
+      <img [src]="booking.workImg" class="work-img">
+    }
+    <label class="upload-label">
+      <i class="fa-solid fa-image"></i> {{ booking.workImg ? 'Skift billede' : 'Tilføj billede' }}
+      <input type="file" accept="image/*" (change)="onImageChange($event)" hidden>
+    </label>
+  </div>
+
+  @if (successMessage) { <p class="success-msg">{{ successMessage }}</p> }
+  @if (errorMessage) { <p class="error-msg">{{ errorMessage }}</p> }
+
+  <button class="btn-save" (click)="save()">Gem ændringer</button>
+</div>
+}

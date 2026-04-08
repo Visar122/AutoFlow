@@ -26,14 +26,14 @@ export class LoginService {
  
 
   UserSignUp(data: signup) {
-    this.http.post('https://localhost:7069/api/Logins/SignUp', data, { observe: 'response' }).subscribe({
+    this.http.post('https://localhost:7069/api/Users/SignUp', data, { observe: 'response' }).subscribe({
       next: () => this.UserAdded.next(true),
       error: () => this.signupError.next(true),
     });
   }
 
   UserLogin(data: login) {
-    this.http.post<any>('https://localhost:7069/api/Logins/Logins', data, { observe: 'response' }).subscribe({
+    this.http.post<any>('https://localhost:7069/api/Users/Logins', data, { observe: 'response' }).subscribe({
       next: (res) => {
         localStorage.setItem('user', JSON.stringify(res.body));
         this.loginError.next(false);
@@ -41,4 +41,13 @@ export class LoginService {
       error: () => this.loginError.next(true),
     });
   }
+  
+  GetMyInfo(email:string){
+    return this.http.get(`https://localhost:7069/api/Users/GetMyInfo?mail=${email}`);
+  }
+
+  UpdateInfo(data: any) {
+    return this.http.put(`https://localhost:7069/api/Users/UpdateInfo`, data);
+  }
+
 }

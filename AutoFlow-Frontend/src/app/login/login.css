@@ -26,18 +26,31 @@ form {
   gap: 6px;
 }
 
+.logo{
+
+  font-weight: 800;
+   margin: 6%;
+   margin-top: -12%;
+  background: linear-gradient(90deg, #c084fc, #a855f7, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.sign-up-container .logo{
+  margin: 18% 0px;
+  margin-top: -1%;
+
+}
 h1 {
   color: #fff;
   font-weight: 700;
   font-size: 1.6rem;
-  margin-bottom: 8px;
+  margin-bottom: 3px;
 }
+.sign-up-container h1{
+    margin: -13%;
+ }
 
-span {
-  color: #9ca3af;
-  font-size: 12px;
-  margin: 4px 0;
-}
+
 
 input {
   background-color: #2d2a4a;
@@ -50,6 +63,9 @@ input {
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s;
+}
+.sign-up-container input{
+   margin: 8px 0;
 }
 
 input::placeholder {
@@ -122,7 +138,13 @@ input:focus {
   transition: transform 0.6s ease-in-out;
 }
 
-.right-panel-active .sign-up-container {
+
+.right-panel-active .sign-up-container { 
+
+
+
+
+
   transform: translateX(0);
   opacity: 1;
   z-index: 5;
@@ -133,30 +155,6 @@ input:focus {
   transform: translateX(100%);
   opacity: 0;
   z-index: 1;
-}
-
-/* --- Social icons --- */
-.social-container {
-  margin: 12px 0;
-}
-
-.social-container a {
-  border: 1px solid #3d3a5c;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 4px;
-  height: 40px;
-  width: 40px;
-  color: #9ca3af;
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.social-container a:hover {
-  border-color: #a855f7;
-  color: #a855f7;
 }
 
 /* --- Overlay --- */

@@ -1,12 +1,12 @@
 html, body {
-  height: 100%;
+
   width: 100%;
-    margin: 0;
+  margin: 0;
   padding: 0;
   scroll-snap-type: mandatory;
-scroll-behavior: smooth;
- background: linear-gradient(135deg, #000000, #302b63 );
- 
+  scroll-behavior: smooth;
+  background: linear-gradient(135deg, #000000, #302b63);
+  background-attachment: fixed;/* den gør at  gradient er fixed  så viewport  altid  dæker full screen  uanset  content height.  den gør at backround er hele tiden fuld*/
 }
 
 /* Headings use Poppins like in the screenshot */

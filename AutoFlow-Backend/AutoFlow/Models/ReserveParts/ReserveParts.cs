@@ -11,6 +11,10 @@ namespace Autoflow.Models.ReserveParts
 
         public string Category { get; set; }
 
+        public string CarName { get; set; }
+
+        public string CarModel { get; set; }  
+
         public decimal Price { get; set; }
         public string Description { get; set; }
 

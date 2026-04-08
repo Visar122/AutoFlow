@@ -26,6 +26,10 @@ namespace Autoflow.Models.Booking
 
         public string Status { get; set; } = "";
 
+        public string WorkDescription { get; set; } = "";
+
+        public string WorkImg { get; set; }
+
 
     }
 }

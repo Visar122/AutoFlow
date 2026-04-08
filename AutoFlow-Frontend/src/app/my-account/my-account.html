@@ -1,0 +1,66 @@
+@if (myInfo) {
+<div class="account-wrapper">
+  <h1 class="page-title">Min Konto</h1>
+
+  <div class="account-card">
+    <div class="account-avatar">
+      <i class="fa-solid fa-circle-user"></i>
+    </div>
+    <div class="account-name">{{ myInfo.firstName }} {{ myInfo.lastName }}</div>
+    <div class="account-email">{{ myInfo.email }}</div>
+  </div>
+
+  @if (successMessage) {
+    <p class="success-msg">{{ successMessage }}</p>
+  }
+  @if (errorMessage) {
+    <p class="error-msg">{{ errorMessage }}</p>
+  }
+
+  <div class="info-card">
+    <div class="section-header">
+      <h2 class="section-title">Personlige oplysninger</h2>
+      <button class="btn-edit" (click)="editMode = !editMode">
+        <i class="fa-solid fa-pen"></i> {{ editMode ? 'Annuller' : 'Rediger' }}
+      </button>
+    </div>
+
+    @if (!editMode) {
+      <ul class="info-list">
+        <li>Navn: <i class="fa-solid fa-user"></i> <span>{{ myInfo.firstName }} {{ myInfo.lastName }}</span></li>
+        <li>Email: <i class="fa-solid fa-envelope"></i> <span>{{ myInfo.email }}</span></li>
+        <li>Nummerplade 1: <i class="fa-solid fa-car"></i> <span>{{ myInfo.carPlate }}</span></li>
+        @if (myInfo.carPlate2) {
+          <li>Nummerplade 2: <i class="fa-solid fa-car"></i> <span>{{ myInfo.carPlate2 }}</span></li>
+        }
+      </ul>
+    }
+
+    @if (editMode) {
+      <form (ngSubmit)="saveChanges()">
+        <div class="form-row">
+          <label>Fornavn</label>
+          <input type="text" [(ngModel)]="form.firstName" name="firstName">
+        </div>
+        <div class="form-row">
+          <label>Efternavn</label>
+          <input type="text" [(ngModel)]="form.lastName" name="lastName">
+        </div>
+        <div class="form-row">
+          <label>Nummerplade 1</label>
+          <input type="text" [(ngModel)]="form.carPlate" name="carPlate" mask="SS 00000" [showMaskTyped]="true">
+        </div>
+        <div class="form-row">
+          <label>Nummerplade 2 (valgfri)</label>
+          <input type="text" [(ngModel)]="form.carPlate2" name="carPlate2" mask="SS 00000" [showMaskTyped]="true">
+        </div>
+        <div class="form-row">
+          <label>Ny adgangskode (valgfri)</label>
+          <input type="password" [(ngModel)]="form.password" name="password" placeholder="Lad være tom for at beholde den nuværende">
+        </div>
+        <button type="submit" class="btn-save">Gem ændringer</button>
+      </form>
+    }
+  </div>
+</div>
+}

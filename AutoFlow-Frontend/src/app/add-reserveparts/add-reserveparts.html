@@ -23,6 +23,22 @@
       </div>
 
       <div class="form-group">
+        <label >Bil-Navn</label>
+        <select name="carName" required ngModel>
+          @for(carname of CarName;track carname){
+            <option [value]="carname">{{ carname }}</option>
+          }
+
+        </select>
+      </div>
+
+
+      <div class="form-group"> 
+        <label >Bil-Model</label>
+        <textarea name="carModel" ngModel></textarea>
+      </div>
+
+      <div class="form-group">
         <label>Beskrivelse</label>
         <textarea name="description" ngModel></textarea>
       </div>

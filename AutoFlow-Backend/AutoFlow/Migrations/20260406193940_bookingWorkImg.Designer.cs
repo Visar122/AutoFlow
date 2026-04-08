@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Autoflow.Migrations
 {
     [DbContext(typeof(Dbcontext))]
-    [Migration("20260322011124_order")]
-    partial class order
+    [Migration("20260406193940_bookingWorkImg")]
+    partial class bookingWorkImg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,10 @@ namespace Autoflow.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tlf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkImg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -119,13 +123,20 @@ namespace Autoflow.Migrations
                     b.ToTable("Carshop");
                 });
 
-            modelBuilder.Entity("Autoflow.Models.Logins.Logins", b =>
+            modelBuilder.Entity("Autoflow.Models.Logins.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CarPlate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarPlate2")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -153,7 +164,7 @@ namespace Autoflow.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logins");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Autoflow.Models.Order.Order", b =>
@@ -221,6 +232,14 @@ namespace Autoflow.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CarModel")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Category")
                         .IsRequired()

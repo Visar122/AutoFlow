@@ -40,7 +40,7 @@ export class Login implements OnInit {
   }
 
   signUp(data: signup) {
-    if (!data.firstName ||!data.lastName || !data.email || !data.password) {
+    if (!data.firstName || !data.lastName || !data.email || !data.password || !data.carPlate) {
       this.SignUpEmptyError = 'Please fill in all required fields';
       setTimeout(() => this.SignUpEmptyError = '', 1000);
       return;

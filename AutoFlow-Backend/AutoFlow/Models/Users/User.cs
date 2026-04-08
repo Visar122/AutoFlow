@@ -2,7 +2,7 @@
 
 namespace Autoflow.Models.Logins
 {
-    public class Logins
+    public class User
     {
         [Key]
         public int  Id {  get; set; }
@@ -18,9 +18,13 @@ namespace Autoflow.Models.Logins
                                                        //  User B:  "hello123" + random salt B  →  completely different hash
         public byte[] PasswordHash { get; set; } = []; // password lavet  til unreadable bytes 
 
-      
 
+     
         public string Status { get; set; }
+
+        public string CarPlate { get; set; }
+
+        public string? CarPlate2 { get; set; }
 
 
 

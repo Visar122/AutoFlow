@@ -22,10 +22,64 @@ namespace Autoflow.Controllers
         }
 
         // GET: api/Bookings
-        [HttpGet]
+        [HttpGet("ThisWeek")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
-            return await _context.Bookings.ToListAsync();
+            var today = DateTime.Today;
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            var endOfWeek = startOfWeek.AddDays(7);
+
+            return await _context.Bookings
+                .Where(b => b.BookingDate >= startOfWeek && b.BookingDate < endOfWeek)
+                .ToListAsync();
+        }
+        [HttpGet("NextWeek")]
+        public async Task<ActionResult<IEnumerable<Booking>>> NextWeekBooking()
+        {
+            var today = DateTime.Today;
+            var startOfThisWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            var startOfNextWeek = startOfThisWeek.AddDays(7);
+            var endOfNextWeek = startOfNextWeek.AddDays(7);
+
+            return await _context.Bookings
+                .Where(b => b.BookingDate >= startOfNextWeek && b.BookingDate < endOfNextWeek)
+                .ToListAsync();
+        }
+
+        [HttpGet("LastWeek")]
+        public async Task<ActionResult<IEnumerable<Booking>>> LastWeekBooking()
+        {
+            var today = DateTime.Today;
+            var startOfThisWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+            var startOfLastWeek = startOfThisWeek.AddDays(-7);
+
+            return await _context.Bookings
+                .Where(b => b.BookingDate >= startOfLastWeek && b.BookingDate < startOfThisWeek)
+                .ToListAsync();
+        }
+        [HttpGet("ThisMonth")]
+        public async Task<ActionResult<IEnumerable<Booking>>> ThisMonthBooking()
+        {
+            var today = DateTime.Today;
+            var startOfThisMonth = new DateTime(today.Year, today.Month, 1);
+               var startOfNextMonth = startOfThisMonth.AddMonths(1);  //AddMonths(1) tilføjer en måned så
+                                                                      //Så hvis startOfThisMonth is 2026 - 03 - 01,AddMonths(1) giver 2026-04-01.
+
+            return await _context.Bookings
+                .Where(b => b.BookingDate >= startOfThisMonth && b.BookingDate < startOfNextMonth)
+                .ToListAsync();
+        }
+
+        [HttpGet("LastMonth")]
+        public async Task<ActionResult<IEnumerable<Booking>>> LastMonthBooking()
+        {
+            var today = DateTime.Today;
+            var startOfLastMonth = new DateTime(today.Year, today.Month, 1).AddMonths(-1);
+            var startOfThisMonth = new DateTime(today.Year, today.Month, 1);
+
+            return await _context.Bookings
+                .Where(b => b.BookingDate >= startOfLastMonth && b.BookingDate < startOfThisMonth)
+                .ToListAsync();
         }
 
         [HttpGet ("GetByEmail")]

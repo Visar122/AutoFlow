@@ -6,7 +6,9 @@ export interface signup {
     lastName: string,
     email:string,
     password:string,
-    status: string
+    status: string,
+    carPlate: string,
+    carPlate2?: string
 }
 export interface login {
     email:string,
@@ -24,6 +26,7 @@ export interface bookings{
     status: string;
     carPlate: string;
     note?: string;
+    workImg?: string;
 }
 
 export interface CarShop{
@@ -43,6 +46,8 @@ export interface ReserveParts{
     id:number,
     name:string,
     category:string,
+    carName: string,
+    carModel: string,
     price:number,
     description:string,
     imageUrl1: string,

@@ -61,7 +61,7 @@ export class Booking implements OnInit {
     this.form.bookingTime = '';
     if (!this.form.bookingDate) return;
 
-    this.bookingService.getBookings().subscribe({
+    this.bookingService.getBookingsThisWeek().subscribe({
       next: (bookings) => {
         this.takenSlots = bookings
           .filter(b => b.bookingDate?.startsWith(this.form.bookingDate))
@@ -90,6 +90,16 @@ export class Booking implements OnInit {
       ...this.form,
       bookingTime: this.form.bookingTime + ':00',
     };
+
+    const user = this.Login.getUser();
+    if (!user) {
+      this.errorMessage = 'You must be logged in to make a booking';
+      setTimeout(() => {
+        this.errorMessage = '';
+      }, 3000);
+      return;
+    }
+  
 
     this.bookingService.createBooking(payload).subscribe({
       next: () => {

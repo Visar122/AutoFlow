@@ -16,10 +16,15 @@ export class AddReserveparts {
 
   uploadedUrl: string[] = ['', '', ''];
 
+   
+
   PartsCategory = [
     'Motor', 'Bremser','Affjedring','Udstødning','Transmission','Elektrisk','Karosseri',
-    'Køling','Styring','Dæk','Andet',
+    'Køling','Styring','SommerDæk','VinterDæk','HelÅrsDæk','Andet',
   ];
+
+  CarName=[ 'BMW', 'Mercedes', 'Porsche','Audi', 'Volkswagen', 'Hyundai','Toyota', 'Honda', 'Kia', 'Mazda', 'Volvo', 'Land Rover',
+    'Renault','Peugeot','Citroën','Fiat','Alfa Romeo','Skoda','Seat','Opel','Mini','Smart','Suzuki'];
 
   constructor(private reservePartsService: ReservepartsService) {}
 

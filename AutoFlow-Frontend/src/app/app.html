@@ -31,7 +31,7 @@
                                          <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/add-reserveparts"><i class="fa-solid fa-plus"></i> Add Car-parts</a></li>
                                          <li *ngIf="TheUserStatus === 'Admin'"><a routerLink="/booking-list"><i class="fa-regular fa-calendar-days"></i> Booking List</a></li>
                                          <li *ngIf="TheUserStatus === 'user'"><a routerLink="/bookings-user"><i class="fa-regular fa-calendar-days"></i> My Bookings</a></li>
-                                         <li *ngIf="TheUserStatus === 'user'"><a routerLink="">My Account</a></li>
+                                         <li ><a routerLink="/my-account"> My Account</a></li>
                                        </ul>
                                      </li>
                                      <li (mouseover)="moveUnderline($event)" *ngIf="isLoggedIn" ><a style="cursor: pointer;" (click)="logout()">Logout</a></li>

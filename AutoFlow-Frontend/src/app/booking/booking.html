@@ -29,12 +29,12 @@
 
       <div class="form-group">
         <label>Telefon</label>
-        <input type="tel" [(ngModel)]="form.tlf" name="tlf" placeholder="+45 12 34 56 78" />
+        <input type="tel" [(ngModel)]="form.tlf" name="tlf"  mask=" 00 00 00 00" placeholder="+45 12 34 56 78" />
       </div>
 
       <div class="form-group">
         <label>Nummerplade</label>
-        <input type="text" [(ngModel)]="form.carPlate" name="carPlate" placeholder="AB 12 345" />
+        <input type="text" [(ngModel)]="form.carPlate" name="carPlate" mask="SS 00000" placeholder="AB 12 345" />
       </div>
 
       <div class="form-group">

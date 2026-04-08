@@ -11,14 +11,46 @@ import { BookingService } from '../Services/booking.service';
 })
 export class BookingList {
 
-  constructor(private BookingList:BookingService) {}
+  constructor(private bookingService:BookingService) {}
 
-  bookings  : bookings[] = [];
+  bookings: bookings[] = [];
+  view: 'thisWeek' | 'nextWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth' = 'thisWeek';
 
   ngOnInit() {
-    this.BookingList.getBookings().subscribe((data) => {
+    this.loadThisWeek();
+    
+  }
+
+  loadThisWeek() {
+    this.view = 'thisWeek';
+    this.bookingService.getBookingsThisWeek().subscribe((data) => {
       this.bookings = data;
-      console.log(this.bookings)
+    });
+  }
+  loadNextWeek(){
+    this.view = 'nextWeek';
+    this.bookingService.getNextWeekBookings().subscribe((data)=>{
+      this.bookings=data;
+    });
+  }
+
+  loadLastWeek() {
+    this.view = 'lastWeek';
+    this.bookingService.getLastWeekBookings().subscribe((data) => {
+      this.bookings = data;
+    });
+  }
+  loadThisMonth(){
+    this.view = 'thisMonth';
+    this.bookingService.getThisMonthBookings().subscribe((data)=>{
+      this.bookings=data;
+  });
+  }
+
+  loadLastMonth() {
+    this.view = 'lastMonth';
+    this.bookingService.getLastMonthBookings().subscribe((data) => {
+      this.bookings = data;
     });
   }
 }

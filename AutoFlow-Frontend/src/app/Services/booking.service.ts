@@ -12,10 +12,32 @@ export class BookingService {
     return this.http.post(this.url, data);
   }
 
-  getBookings() {
-    return this.http.get<any[]>(this.url);
+  getBookingsThisWeek() {
+    return this.http.get<any[]>(`${this.url}/ThisWeek`);
   }
-  getBookingByMailk(email:string){
+    getNextWeekBookings() {
+    return this.http.get<any[]>(`${this.url}/NextWeek`);
+  }
+
+  getLastWeekBookings() {
+    return this.http.get<any[]>(`${this.url}/LastWeek`);
+  }
+  
+   getThisMonthBookings() {
+    return this.http.get<any[]>(`${this.url}/ThisMonth`);
+   }
+  getLastMonthBookings() {
+    return this.http.get<any[]>(`${this.url}/LastMonth`);
+  }
+  getBookingByMail(email:string){
     return this.http.get<any[]>(`${this.url}/GetByEmail`, { params: { Mail: email } });
+  }
+
+  getBookingById(id: number) {
+    return this.http.get<any>(`${this.url}/${id}`);
+  }
+
+  updateBooking(id: number, data: any) {
+    return this.http.put(`${this.url}/${id}`, data);
   }
 }

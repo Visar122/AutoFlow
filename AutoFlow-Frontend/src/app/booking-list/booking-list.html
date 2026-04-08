@@ -1,27 +1,38 @@
 <div class="booking-list-wrapper">
-  <h1 class="page-title">Booking List</h1>
-  <div class="timeline"> 
+  <h1 class="page-title">
+    {{ view === 'thisWeek' ? 'Bookings denne uge' : view === 'lastWeek' ? 'Bookings sidste uge' : view === 'nextWeek' ? 'Bookings næste uge' :  view === 'thisMonth' ? 'Bookings denne måned' :'Bookings sidste måned' }}
+  </h1>
+
+  <div class="week-toggle">
+    <button [class.active]="view === 'thisWeek'" (click)="loadThisWeek()">Denne uge</button>
+    <button [class.active]="view === 'nextWeek'" (click)="loadNextWeek()">Næste uge</button>
+    <button [class.active]="view === 'lastWeek'" (click)="loadLastWeek()">Sidste uge</button>
+    <button [class.active]="view === 'thisMonth'" (click)="loadThisMonth()">Denne måned</button>
+    <button [class.active]="view === 'lastMonth'" (click)="loadLastMonth()">Sidste måned</button>
+  </div>
+
+  <div class="timeline">
     @for (booking of bookings; track booking) {
-    <div class="timeline-item">
+    <div class="timeline-item" [routerLink]="['/booking-details', booking.id]" style="cursor:pointer">
            <div class="timeline-icon">
               <i class="fa-regular fa-calendar-days"></i>
            </div>
 
            <div class="timeline-card">
-             <div class="card-header">       
+             <div class="card-header">
                    <span class="customer-name">{{ booking.customerName }}</span>
-                   <span class="booking-date">  {{ booking.bookingTime | slice:0:5 }} | {{ booking.bookingDate | date: 'dd-MM-yyyy' }} </span>         
+                   <span class="booking-date">  {{ booking.bookingTime | slice:0:5 }} | {{ booking.bookingDate | date: 'EEEE, dd-MM-yyyy' }} </span>
                </div>
-       
+
                  <div class="card-sub">
                   <span><i class="fa-solid fa-wrench"></i> {{ booking.serviceType }}</span>
                   <span><i class="fa-solid fa-car"></i> {{ booking.carPlate }}</span>
                 </div>
-                
+
                 <ul class="card-details">
                  <li><i class="fa-solid fa-envelope"></i> {{ booking.customerEmail }}</li>
                  <li><i class="fa-solid fa-phone"></i> {{ booking.tlf }}</li>
-                 <div class="note"> 
+                 <div class="note">
                       @if (booking.note) {
                      <li><i class="fa-solid fa-note-sticky"></i> {{ booking.note }}</li>
                      }
