@@ -24,6 +24,10 @@ export class CarshopService {
     return this.http.get<CarShop[]>(this.url);
   }
 
+  getCarById(id: number) {
+    return this.http.get<CarShop>(`${this.url}/${id}`);
+  }
+
   deleteCar(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }

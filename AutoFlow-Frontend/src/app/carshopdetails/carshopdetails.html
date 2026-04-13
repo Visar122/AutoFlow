@@ -1,0 +1,63 @@
+@if (car) {
+<div class="details-wrapper">
+  <button class="btn-back" routerLink="/carshop">
+    <i class="fa-solid fa-arrow-left"></i> Tilbage
+  </button>
+
+  <div class="car-hero">
+    <img [src]="activeImage"  class="hero-img">
+    <span class="category-badge">{{ car.category }}</span>
+  </div>
+
+  <div class="thumbnails">
+    <img [src]="car.imageUrl1" class="thumb" [class.active]="activeImage === car.imageUrl1" (click)="activeImage = car.imageUrl1">
+    @if (car.imageUrl2) {
+      <img [src]="car.imageUrl2" class="thumb" [class.active]="activeImage === car.imageUrl2" (click)="activeImage = car.imageUrl2">
+    }
+    @if (car.imageUrl3) {
+      <img [src]="car.imageUrl3" class="thumb" [class.active]="activeImage === car.imageUrl3" (click)="activeImage = car.imageUrl3">
+    }
+  </div>
+
+  <div class="car-header">
+    <h1 class="car-title">{{ car.carName }}</h1>
+    <h2 class="car-model">Model : {{ car.carModel }}</h2>
+    <span class="car-price">{{ car.price | dkPrice }} DKK</span>
+  </div>
+
+  <div class="info-card">
+    <div class="info-row">
+      <div class="info-item">
+        <i class="fa-solid fa-calendar"></i>
+        <div>
+          <span class="label">Årgang</span>
+          <span class="value">{{ car.year }}</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-tag"></i>
+        <div>
+          <span class="label">Kategori</span>
+          <span class="value">{{ car.category }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="desc-card">
+    <h2 class="section-title">Beskrivelse</h2>
+    <p class="desc-text">{{ car.carDescription }}</p>
+  </div>
+
+  <div class="contact">
+
+    <h2 class="section-title">Kontakt <i class="fa-solid fa-phone"></i></h2>
+
+    <a href="tel:42348204" class="phone-link">
+      <i class="fa-solid fa-phone"></i> 42 34 82 04
+    </a>
+     
+  </div>
+
+</div>
+}

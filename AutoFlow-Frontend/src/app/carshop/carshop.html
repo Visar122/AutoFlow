@@ -2,7 +2,7 @@
     <h2 class="page-title">Vores Biler</h2>
   <div class="cars-grid">
      @for (car of Cars; track car.carId) {
-       <div class="car-card">
+       <div class="car-card" [routerLink]="['/carshopdetails',car.carId]" style="cursor:pointer">
           <div class="card-header">
                <div class="car-image">
                   <img [src]="car.imageUrl1">

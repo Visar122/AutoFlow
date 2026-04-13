@@ -1,0 +1,210 @@
+.details-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.btn-back {
+  background: transparent;
+  border: 2px solid #a855f7;
+  color: #a855f7;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-back:hover {
+  background: #a855f7;
+  color: #fff;
+}
+
+/* Hero image */
+.car-hero {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: #1a1a2e;
+}
+
+.hero-img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.category-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #a855f7;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Thumbnails */
+.thumbnails {
+  display: flex;
+  gap: 10px;
+
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.thumb {
+  width: 80px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.thumb:hover {
+  opacity: 0.9;
+}
+
+.thumb.active {
+  border-color: #a855f7;
+  opacity: 1;
+}
+
+/* Car header */
+.car-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.car-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #f1f1f1;
+  margin: 0;
+}
+
+.car-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #a855f7;
+  white-space: nowrap;
+}
+
+/* Info card */
+.info-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.info-item i {
+  font-size: 1.3rem;
+  color: #a855f7;
+  width: 22px;
+  text-align: center;
+}
+
+.info-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e2e2e2;
+}
+
+/* Description card */
+.desc-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 12px;
+  padding: 20px 22px;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #a855f7;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.desc-text {
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-line;
+}
+
+
+.contact {
+  background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius:12px ;
+    margin: 20px 0px;
+    padding: 20px 22px;
+  
+
+}
+.phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #e2e2e2;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  transition: background 0.2s, color 0.2s;
+}
+
+.phone-link:hover {
+  background: #a855f7;
+  color: #fff;
+}
