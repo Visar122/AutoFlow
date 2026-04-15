@@ -28,7 +28,7 @@ export class Booking implements OnInit {
     bookingDate: '',
     bookingTime: '',
     carPlate: '',
-    status: '',
+    status: 'Pending',
     note: '',
   };
 

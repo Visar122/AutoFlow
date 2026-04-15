@@ -14,6 +14,7 @@ import { ItemList } from './item-list/item-list';
 import { MyAccount } from './my-account/my-account';
 import { BookingDetails } from './booking-details/booking-details';
 import { Carshopdetails } from './carshopdetails/carshopdetails';
+import { Reservepartsdetails } from './reservepartsdetails/reservepartsdetails';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -30,5 +31,6 @@ export const routes: Routes = [
     { path:'my-account', component: MyAccount},
     { path:'booking-details/:id', component: BookingDetails, canActivate: [adminGuard]},
     { path:'carshopdetails/:id', component: Carshopdetails},
+        { path:'reservepartsdetails/:id', component: Reservepartsdetails},
 
 ];

@@ -23,6 +23,9 @@ export class ReservepartsService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
+   getpartsbyId(id: number) {
+    return this.http.get<ReserveParts>(`${this.url}/${id}`);
+  }
   updatePart(id: number, data: ReserveParts) {
     return this.http.put(`${this.url}/${id}`, data);
   }

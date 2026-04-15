@@ -14,7 +14,20 @@ export class BookingList {
   constructor(private bookingService:BookingService) {}
 
   bookings: bookings[] = [];
+  searchEmail = '';
   view: 'thisWeek' | 'nextWeek' | 'lastWeek' | 'thisMonth' | 'lastMonth' = 'thisWeek';
+
+  searchByEmail() {
+    if (!this.searchEmail.trim()) return;
+    this.bookingService.getBookingByMail(this.searchEmail).subscribe((data) => {
+      this.bookings = data;
+    });
+  }
+
+  clearSearch() {
+    this.searchEmail = '';
+    this.loadThisWeek();
+  }
 
   ngOnInit() {
     this.loadThisWeek();

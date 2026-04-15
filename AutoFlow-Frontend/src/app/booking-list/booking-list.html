@@ -11,6 +11,15 @@
     <button [class.active]="view === 'lastMonth'" (click)="loadLastMonth()">Sidste måned</button>
   </div>
 
+  <div class="search-bar">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" [(ngModel)]="searchEmail" placeholder="Søg på email..." (keyup.enter)="searchByEmail()">
+    @if (searchEmail) {
+      <i class="fa-solid fa-xmark clear-icon" (click)="clearSearch()"></i>
+    }
+    <button class="search-btn" (click)="searchByEmail()">Søg</button>
+  </div>
+
   <div class="timeline">
     @for (booking of bookings; track booking) {
     <div class="timeline-item" [routerLink]="['/booking-details', booking.id]" style="cursor:pointer">
@@ -22,6 +31,7 @@
              <div class="card-header">
                    <span class="customer-name">{{ booking.customerName }}</span>
                    <span class="booking-date">  {{ booking.bookingTime | slice:0:5 }} | {{ booking.bookingDate | date: 'EEEE, dd-MM-yyyy' }} </span>
+                     <span class="booking-status">  {{ booking.status}} </span>
                </div>
 
                  <div class="card-sub">

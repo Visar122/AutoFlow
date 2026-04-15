@@ -1,8 +1,9 @@
+
 <div class="carshop-page">
   <h2 class="page-title">Reserve Parts</h2>
   <div class="cars-grid">
     @for (part of parts; track part.id) {
-      <div class="car-card">
+      <div class="car-card"[routerLink]="['/reservepartsdetails', part.id]" style="cursor:pointer">
         <div class="card-header">
           <div class="car-image">
             <img [src]="part.imageUrl1" [alt]="part.name">

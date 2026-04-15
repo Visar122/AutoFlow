@@ -1,0 +1,72 @@
+@if(parts){
+    <div class="details-wrapper">
+        <button class="btn-back" routerLink="/reserveParts">
+              <i class="fa-solid fa-arrow-left"></i> Tilbage
+        </button>
+
+
+        <div class="parts-hero">
+            <img [src]="activeImage" class="hero-img">
+            <span class="category-badge">{{ parts.category }}</span>
+        </div>
+         
+         <div class="thumbnails">
+            <img [src]="parts.imageUrl1" class="thumb" [class.active]="activeImage === parts.imageUrl1" (click)="activeImage = parts.imageUrl1">
+            @if (parts.imageUrl2) {
+              <img [src]="parts.imageUrl2" class="thumb" [class.active]="activeImage === parts.imageUrl2" (click)="activeImage = parts.imageUrl2">
+            }
+            @if (parts.imageUrl3) {
+              <img [src]="parts.imageUrl3" class="thumb" [class.active]="activeImage === parts.imageUrl3" (click)="activeImage = parts.imageUrl3">
+            }
+         </div>
+
+         <div class="parts-header">
+            <h1 class="parts-title">{{parts.name}}</h1>
+            @if(parts.carName ) {<h1 class="parts-title">{{parts.carName}} Model{{parts.carModel}} :</h1>}
+            <span class="parts-price">{{ parts.price | dkPrice }} DKK</span>
+           
+         </div>
+                <button class="button">  
+                 Tilføj til kurv <i class="fa-solid fa-bag-shopping"></i>
+               </button>
+         <div class="info-card">
+            <div class="info-row">
+                <div class="info-item">
+                      <i class="fa-solid fa-tag"></i>
+               
+                <div>
+                        <span class="label">Kategori</span>
+                        <span class="value">{{ parts.category }}</span>
+                </div>
+                  </div>
+                @if(parts.carname){
+                      <div class="info-item">
+                        <i class="fa-solid fa-car"></i>
+                    <div>
+                        <span class="label">Bilnavn</span>
+                        <span class="value">{{ parts.carname }}</span>
+                    </div>
+                    </div>
+                }
+                   @if(parts.carModel){
+                      <div class="info-item">
+                        <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <span class="label">Bilmodel</span>
+                        <span class="value">{{ parts.carModel }}</span>
+                    </div>
+                    </div>
+                }
+               
+               
+            </div>
+         </div>
+
+         <div class="desc-card">
+            <h2 class="section-title">Beskrivelse</h2>
+            <p class="desc-text">{{ parts.description }}</p>
+         </div>
+
+      
+    </div>
+}
