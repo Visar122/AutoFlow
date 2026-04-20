@@ -35,10 +35,16 @@ export interface CarShop{
     carModel:string,
     year:number,
     category:string,
-    carDescription:string,
     imageUrl1: string,
     imageUrl2: string,
     imageUrl3: string,
+    km:number,
+    fuel:string,
+    horsepower:string,
+    topSpeed:string,
+    afgift:string,
+    geartype:string,
+    color:string,
     price:number,
 
 }

@@ -1,6 +1,6 @@
 @if (car) {
 <div class="details-wrapper">
-  <button class="btn-back" routerLink="/carshop">
+  <button class="btn-back" (click)="goBack()">
     <i class="fa-solid fa-arrow-left"></i> Tilbage
   </button>
 
@@ -41,14 +41,59 @@
           <span class="value">{{ car.category }}</span>
         </div>
       </div>
+      <div class="info-item">
+        <i class="fa-solid fa-road"></i>
+        <div>
+          <span class="label">Kilometerstand</span>
+          <span class="value">{{ car.km | number }} km</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-gas-pump"></i>
+        <div>
+          <span class="label">Brændstof</span>
+          <span class="value">{{ car.fuel }}</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-gears"></i>
+        <div>
+          <span class="label">Gearkasse</span>
+          <span class="value">{{ car.geartype }}</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-bolt"></i>
+        <div>
+          <span class="label">Hestekræfter</span>
+          <span class="value">{{ car.horsepower }} hk</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-gauge-high"></i>
+        <div>
+          <span class="label">Tophastighed</span>
+          <span class="value">{{ car.topSpeed }} km/t</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-palette"></i>
+        <div>
+          <span class="label">Farve</span>
+          <span class="value">{{ car.color }}</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fa-solid fa-receipt"></i>
+        <div>
+          <span class="label">Afgift (Årlige)</span>
+          <span class="value">{{ car.afgift }} Dkk</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="desc-card">
-    <h2 class="section-title">Beskrivelse</h2>
-    <p class="desc-text">{{ car.carDescription }}</p>
-  </div>
-
+ 
   <div class="contact">
 
     <h2 class="section-title">Kontakt <i class="fa-solid fa-phone"></i></h2>

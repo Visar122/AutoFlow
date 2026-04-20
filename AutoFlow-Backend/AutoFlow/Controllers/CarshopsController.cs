@@ -76,13 +76,47 @@ namespace Autoflow.Controllers
         // POST: api/Carshops
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Carshop>> PostCarshop(Carshop carshop)
+        public async Task<ActionResult<Carshop>> PostCar(Carshop carshop)
         {
             _context.Carshop.Add(carshop);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCarshop", new { id = carshop.CarId }, carshop);
         }
+
+        [HttpGet("Filter")]
+        public async Task<ActionResult<IEnumerable<Carshop>>> FilterCars(
+            [FromQuery] string? name,
+            [FromQuery] string? category,
+            [FromQuery] decimal? minPrice,
+            [FromQuery] decimal? maxPrice)
+        {
+            var query = _context.Carshop.AsQueryable();
+
+            if (!string.IsNullOrEmpty(name))
+                query = query.Where(c => c.CarName.ToLower().Contains(name.ToLower()) || c.CarModel.ToLower().Contains(name.ToLower()));
+
+            if (!string.IsNullOrEmpty(category))
+                query = query.Where(c => c.Category.ToLower() == category.ToLower());
+
+            if (minPrice.HasValue)
+                query = query.Where(c => c.Price >= minPrice.Value);
+
+            if (maxPrice.HasValue)
+                query = query.Where(c => c.Price <= maxPrice.Value);
+
+            return Ok(await query.ToListAsync());
+        }
+
+        [HttpGet("GetByName")]
+        public async Task<ActionResult<IEnumerable<Carshop>>> GetCarByName([FromQuery] string name)
+        {
+            var cars = await _context.Carshop
+                .Where(c => c.CarName.ToLower().Contains(name.ToLower())||
+                c.CarModel.ToLower().Contains(name.ToLower())).ToListAsync();
+            return Ok(cars);
+        }
+
 
         // DELETE: api/Carshops/5
         [HttpDelete("{id}")]

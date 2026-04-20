@@ -14,15 +14,19 @@ export class ItemList implements OnInit {
 
   activeTab: 'cars' | 'parts' = 'cars';
 
+  FuelTypes = ['Benzin', 'Diesel', 'Elektrisk', 'Hybrid', 'Plugin-hybrid', 'Brint'];
+  GearTypes = ['Automatik', 'Manuel'];
+
   cars: CarShop[] = [];
   parts: ReserveParts[] = [];
 
   editingCar: CarShop | null = null;
   editingPart: ReserveParts | null = null;
 
-  // holds new base64 images during editing — empty string means keep existing
+
   carImages: string[] = ['', '', ''];
   partImages: string[] = ['', '', ''];
+
 
   constructor(
     private carService: CarshopService,
@@ -55,11 +59,13 @@ export class ItemList implements OnInit {
   editCar(car: CarShop) {
     this.editingCar = { ...car };
     this.carImages = ['', '', ''];
+  
   }
 
   editPart(part: ReserveParts) {
     this.editingPart = { ...part };
     this.partImages = ['', '', ''];
+
   }
 
   onCarImageChange(event: Event, index: number) {

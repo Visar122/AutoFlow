@@ -45,7 +45,8 @@ namespace Autoflow.Controllers
             if (user == null)
                 return NotFound(new { Message = "User not found." });
 
-            if (!VerifyPasswordHash(loginDto.Password, user.PasswordSalt, user.PasswordHash)) ;
+            if (!VerifyPasswordHash(loginDto.Password, user.PasswordSalt, user.PasswordHash))
+                return Unauthorized(new { Message = "Invalid password." });
 
             return Ok(new { user.FirstName, user.LastName, user.Email, user.Status, user.CarPlate, user.CarPlate2 });
 

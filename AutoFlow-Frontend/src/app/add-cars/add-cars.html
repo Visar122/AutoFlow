@@ -1,79 +1,134 @@
-<div class="Carshop-page"> 
-    <div class="Carshop-card">
-       
-        <h2>Tilføj en bil</h2>
-       
+<div class="Carshop-page">
+  <div class="Carshop-card">
 
-        <div class="msg success">{{successMessage}}</div>
-        <div class="msg error">{{errorMessage}}</div>
+    <h2>Tilføj en bil</h2>
 
+    <div class="msg success">{{successMessage}}</div>
+    <div class="msg error">{{errorMessage}}</div>
 
-        <form #carData="ngForm" (ngSubmit)="submit(carData.value)" > 
-            <div class="form-group">
-              <label >Car-Name</label>
-              <input type="text" name="carName" required ngModel>
-            </div>
+    <form #carData="ngForm" (ngSubmit)="submit(carData.value)">
 
-              <div class="form-group">
-              <label > Model</label>
-              <input type="text" name="carModel" required ngModel>
-            </div>
-            
-            <div class="form-group">
-              <label >Model-Year</label>
-              <input type="text" name="year" required ngModel>
-            </div>
-            
-            <div class="form-group">
-              <label >Category</label>
-              <select name="category" required ngModel>
-                <option value="" disabled>Vælg bilens kategori</option>
-                @for (category of CarCategory; track category) {
-                  <option [value]="category">{{ category }}</option>
-                }
-              </select>
-            </div>
+      <!-- Bil info -->
+      <div class="form-group">
+        <label>Car-Name</label>
+        <input type="text" name="carName" required ngModel>
+      </div>
 
-            <div class="form-group">
-              <label>Description</label>
-              <textarea name="carDescription" required ngModel></textarea>
-            </div>
+      <div class="form-group">
+        <label>Model</label>
+        <input type="text" name="carModel" required ngModel>
+      </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label>Image 1</label>
-                <label class="file-upload-btn">
-                  <i class="fa-solid fa-image"></i>
-                  <span>{{ img1.files?.[0]?.name  ||  ' Vælg' }}</span>
-                  <input #img1 type="file" accept="image/*" (change)="onFileChange($event, 0)" hidden>
-                </label>
-              </div>
-              <div class="form-group">
-                <label>Image 2</label>
-                <label class="file-upload-btn">
-                  <i class="fa-solid fa-image"></i>
-                  <span>{{ img2.files?.[0]?.name || 'Vælg' }}</span>
-                  <input #img2 type="file" accept="image/*" (change)="onFileChange($event, 1)" hidden>
-                </label>
-              </div>
-              <div class="form-group">
-                <label>Image 3</label>
-                <label class="file-upload-btn">
-                  <i class="fa-solid fa-image"></i>
-                  <span>{{ img3.files?.[0]?.name || 'Vælg' }}</span>
-                  <input #img3 type="file" accept="image/*" (change)="onFileChange($event, 2)" hidden>
-                </label>
-              </div>
-            </div>
+      <div class="form-group">
+        <label>Model-Year</label>
+        <input type="number" name="year" required ngModel>
+      </div>
 
-        
-              <div class="form-group">
-              <label>Price</label>
-            <input type="number" name="price"  ngModel placeholder="0"  mask="separator.0" thousandSeparator="." [max]="1000000">
-            </div>
+      <!-- Dropdowns -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Category</label>
+          <select name="category" required ngModel>
+            <option value="" disabled>Vælg bilens kategori</option>
+            @for (category of CarCategory; track category) {
+              <option [value]="category">{{ category }}</option>
+            }
+          </select>
+        </div>
 
+        <div class="form-group">
+          <label>Fuel</label>
+          <select name="fuel" required ngModel>
+            <option value="" disabled>Vælg brændstoftype</option>
+            @for (fuelType of FuelType; track fuelType) {
+              <option [value]="fuelType">{{ fuelType }}</option>
+            }
+          </select>
+        </div>
 
-             <button type="submit" class="btn-submit">Add Car</button>
-        </form>
-    </div>
+        <div class="form-group">
+          <label>GearType</label>
+          <select name="geartype" required ngModel>
+            <option value="" disabled>Vælg gear type</option>
+            <option value="Automatik">Automatik</option>
+            <option value="Manuel">Manuel</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Specifikationer -->
+      <div class="form-group">
+        <label>Km</label>
+        <input type="number" name="km" [required]="true" ngModel placeholder="0" mask="separator.0" thousandSeparator="." [max]="1000000">
+      </div>
+
+      <div class="form-group">
+        <label>Horse Power</label>
+             <div class="input-unit">
+        <input type="text" name="horsepower" required ngModel>
+          <span>Hk</span>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label>Top Speed</label>
+         <div class="input-unit">
+        <input type="text" name="topSpeed" required ngModel>
+          <span>Km/t</span>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label> Afgift (Årlig)</label>
+        <div class="input-unit">
+          <input type="text" name="afgift" [required]="true" ngModel placeholder="0" mask="separator.0" thousandSeparator="." maxlength="6">
+          <span>DKK</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Color</label>
+        <input type="text" name="color" required ngModel>
+      </div>
+
+      <!-- Billeder -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Image 1</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img1.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img1 type="file" accept="image/*" (change)="onFileChange($event, 0)" hidden>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>Image 2</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img2.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img2 type="file" accept="image/*" (change)="onFileChange($event, 1)" hidden>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>Image 3</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img3.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img3 type="file" accept="image/*" (change)="onFileChange($event, 2)" hidden>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pris -->
+      <div class="form-group">
+        <label>Price</label>
+        <input type="number" name="price" [required]="true" ngModel placeholder="0" mask="separator.0" thousandSeparator="." [max]="1000000">
+      </div>
+
+      <button type="submit" class="btn-submit">Add Car</button>
+
+    </form>
+  </div>
 </div>

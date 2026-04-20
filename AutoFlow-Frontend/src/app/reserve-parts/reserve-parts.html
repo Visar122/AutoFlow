@@ -1,6 +1,25 @@
 
 <div class="carshop-page">
   <h2 class="page-title">Reserve Parts</h2>
+
+       <div class="tabs"> 
+        <button class="tab-btn" [class.active]="activeTab === 'cars'" (click)="activeTab = 'cars'" routerLink="/carshop">
+          <i class="fa-solid fa-car"></i> Biler
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'parts'" (click)="activeTab = 'parts'" >
+          <i class="fa-solid fa-gears"></i> Reservedele
+        </button>
+
+          <div class="search-bar">
+             <i class="fa-solid fa-magnifying-glass"></i>
+             <input type="text" [(ngModel)]="searchPart" placeholder="Søg reservedele"  (ngModelChange)="SearchPartByName()" (keyup.enter)="SearchPartByName()">
+             @if (searchPart) {
+               <i class="fa-solid fa-xmark clear-icon" (click)="ClearSearch()"></i>
+             }
+             <button class="search-btn" (click)="SearchPartByName()">Søg</button>
+          </div>
+      </div>
+
   <div class="cars-grid">
     @for (part of parts; track part.id) {
       <div class="car-card"[routerLink]="['/reservepartsdetails', part.id]" style="cursor:pointer">

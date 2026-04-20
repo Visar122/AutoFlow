@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Autoflow.Models;
 using Autoflow.Models.Order;
+using AutoFlow.Models;
 
 namespace Autoflow.Controllers
 {
@@ -74,14 +75,42 @@ namespace Autoflow.Controllers
         }
 
         // POST: api/Orders
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> PostOrder([FromBody] CreateOrderDto dto)
         {
+            // Fake payment validation — always approves
+            if (dto.Last4Digits.Length != 4)
+                return BadRequest(new { message = "Invalid card." });
+
+            var order = new Order
+            {
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                ItemId = dto.ItemId,
+                ItemType = dto.ItemType,
+                ItemName = dto.ItemName,
+                Price = dto.Price,
+                CardHolder = dto.CardHolder,
+                Last4Digits = dto.Last4Digits,
+                ExpiryDate = dto.ExpiryDate,
+                Status = "Paid",
+                OrderDate = DateTime.Now
+            };
+
             _context.Order.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+            return Ok(new { message = "Betaling godkendt", orderId = order.Id });
+        }
+
+        [HttpGet("ByEmail")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByEmail([FromQuery] string email)
+        {
+            var orders = await _context.Order
+                .Where(o => o.Email.ToLower() == email.ToLower())
+                .ToListAsync();
+            return Ok(orders);
         }
 
         // DELETE: api/Orders/5

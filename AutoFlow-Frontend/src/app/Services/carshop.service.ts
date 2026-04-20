@@ -27,6 +27,19 @@ export class CarshopService {
   getCarById(id: number) {
     return this.http.get<CarShop>(`${this.url}/${id}`);
   }
+  SearchCarByName(carname:string){
+    return this.http.get<CarShop[]>(`${this.url}/GetByName?name=${carname}`);
+
+  }
+
+  FilterCars(name?: string, category?: string, minPrice?: number, maxPrice?: number) {
+    let params: any = {};
+    if (name) params['name'] = name;
+    if (category) params['category'] = category;
+    if (minPrice != null) params['minPrice'] = minPrice;
+    if (maxPrice != null) params['maxPrice'] = maxPrice;
+    return this.http.get<CarShop[]>(`${this.url}/Filter`, { params });
+  }
 
   deleteCar(id: number) {
     return this.http.delete(`${this.url}/${id}`);

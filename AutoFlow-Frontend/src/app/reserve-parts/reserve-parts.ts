@@ -10,6 +10,9 @@ import { ReservepartsService } from '../Services/reserveparts.service';
   styleUrl: './reserve-parts.css',
 })
 export class ReservePartsComponent implements OnInit {
+  activeTab: 'cars' | 'parts' = 'parts';
+ 
+  searchPart='';
 
   parts: ReserveParts[] = [];
 
@@ -18,6 +21,20 @@ export class ReservePartsComponent implements OnInit {
   ngOnInit() {
     this.reservePartsService.getParts().subscribe((data) => {
       this.parts = data;
+    });
+  }
+  SearchPartByName(){
+    if(!this.searchPart.trim()){
+      this.reservePartsService.getParts().subscribe((data) => { this.parts = data; });
+    } 
+    this.reservePartsService.SearchPartByName(this.searchPart).subscribe((data)=>{
+      this.parts=data;
+    })
+  }
+  ClearSearch(){
+    this.searchPart='';
+    this.reservePartsService.getParts().subscribe((data)=>{
+      this.parts=data;
     });
   }
   

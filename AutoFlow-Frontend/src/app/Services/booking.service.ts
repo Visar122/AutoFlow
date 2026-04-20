@@ -29,6 +29,10 @@ export class BookingService {
   getLastMonthBookings() {
     return this.http.get<any[]>(`${this.url}/LastMonth`);
   }
+  getTakenSlots(date: string) {
+    return this.http.get<string[]>(`${this.url}/TakenSlots`, { params: { date } });
+  }
+
   getBookingByMail(email:string){
     return this.http.get<any[]>(`${this.url}/GetByEmail`, { params: { Mail: email } });
   }

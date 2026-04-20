@@ -29,7 +29,7 @@
         </thead>
         <tbody>
           @for (car of cars; track car.carId) {
-            <tr>
+            <tr [routerLink]="['/carshopdetails', car.carId]" style="cursor:pointer">
               <td>{{ car.carId }}</td>
                 <td>  <img [src]="car.imageUrl1"></td>
               <td>{{ car.carName }}</td>
@@ -37,7 +37,7 @@
               <td>{{ car.year }}</td>
               <td>{{ car.category }}</td>
               <td>{{ car.price | dkPrice }} DKK</td>
-              <td class="actions">
+              <td class="actions" (click)="$event.stopPropagation()">
                 <button class="btn-edit" (click)="editCar(car)"><i class="fa-solid fa-pen"></i></button>
                 <button class="btn-delete" (click)="deleteCar(car.carId)"><i class="fa-solid fa-trash"></i></button>
               </td>
@@ -65,14 +65,14 @@
         </thead>
         <tbody>
           @for (part of parts; track part.id) {
-            <tr>
+            <tr [routerLink]="['/reservepartsdetails',part.id]"  style="cursor:pointer" >
               <td>{{ part.id }}</td>
                   <td>  <img [src]="part.imageUrl1"></td>
               <td>{{ part.name }}</td>
               <td>{{ part.category }}</td>
               <td>{{ part.stock }}</td>
               <td>{{ part.price | dkPrice }} DKK</td>
-              <td class="actions">
+              <td class="actions" (click)="$event.stopPropagation()">
                 <button class="btn-edit" (click)="editPart(part)"><i class="fa-solid fa-pen"></i></button>
                 <button class="btn-delete" (click)="deletePart(part.id)"><i class="fa-solid fa-trash"></i></button>
               </td>
@@ -94,19 +94,38 @@
         <div class="form-group"><label>Model</label><input [(ngModel)]="editingCar.carModel"></div>
         <div class="form-group"><label>År</label><input type="number" [(ngModel)]="editingCar.year"></div>
         <div class="form-group"><label>Kategori</label><input [(ngModel)]="editingCar.category"></div>
-        <div class="form-group"><label>Beskrivelse</label><textarea [(ngModel)]="editingCar.carDescription"></textarea></div>
+        <div class="form-group"><label>Km</label><input type="number" [(ngModel)]="editingCar.km"></div>
+        <div class="form-group">
+          <label>Fuel</label>
+          <select [(ngModel)]="editingCar.fuel">
+            @for (fuel of FuelTypes; track fuel) {
+              <option [value]="fuel">{{ fuel }}</option>
+            }
+          </select>
+        </div>
+        <div class="form-group">
+          <label>GearType</label>
+          <select [(ngModel)]="editingCar.geartype">
+            <option value="Automatik">Automatik</option>
+            <option value="Manuel">Manuel</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Horse Power</label><input [(ngModel)]="editingCar.horsepower"></div>
+        <div class="form-group"><label>Top Speed</label><input [(ngModel)]="editingCar.topSpeed"></div>
+        <div class="form-group"><label>Afgift</label><input [(ngModel)]="editingCar.afgift"></div>
+        <div class="form-group"><label>Color</label><input [(ngModel)]="editingCar.color"></div>
         <div class="form-group"><label>Pris</label><input type="number" [(ngModel)]="editingCar.price"></div>
         <div class="form-group">
           <label>Billede 1</label>
-          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{  'Vælg' }}</span><input #cImg1 type="file" accept="image/*" (change)="onCarImageChange($event, 0)" hidden> </label>
+          <label class="file-upload-btn"><input #cImg1 type="file" accept="image/*" (change)="onCarImageChange($event, 0)" hidden><i class="fa-solid fa-image"></i><span>{{ cImg1.files?.[0]?.name || (editingCar.imageUrl1 ? 'Eksisterende billede' : 'Vælg') }}</span></label>
         </div>
         <div class="form-group">
           <label>Billede 2</label>
-          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{ 'Vælg' }}</span><input #cImg2 type="file" accept="image/*" (change)="onCarImageChange($event, 1)" hidden> </label>
+          <label class="file-upload-btn"><input #cImg2 type="file" accept="image/*" (change)="onCarImageChange($event, 1)" hidden><i class="fa-solid fa-image"></i><span>{{ cImg2.files?.[0]?.name || (editingCar.imageUrl2 ? 'Eksisterende billede' : 'Vælg') }}</span></label>
         </div>
         <div class="form-group">
           <label>Billede 3</label>
-          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{  'Vælg' }}</span><input #cImg3 type="file" accept="image/*" (change)="onCarImageChange($event, 2)" hidden> </label>
+          <label class="file-upload-btn"><input #cImg3 type="file" accept="image/*" (change)="onCarImageChange($event, 2)" hidden><i class="fa-solid fa-image"></i><span>{{ cImg3.files?.[0]?.name || (editingCar.imageUrl3 ? 'Eksisterende billede' : 'Vælg') }}</span></label>
         </div>
       </div>
       <div class="model-actions">
@@ -125,20 +144,22 @@
       <div class="model-scroll">
         <div class="form-group"><label>Navn</label><input [(ngModel)]="editingPart.name"></div>
         <div class="form-group"><label>Kategori</label><input [(ngModel)]="editingPart.category"></div>
+         <div class="form-group"><label>Bil-Navn</label><input [(ngModel)]="editingPart.carName"></div>
+         <div class="form-group"><label>Bil-Model</label><input [(ngModel)]="editingPart.carModel"></div>
         <div class="form-group"><label>Beskrivelse</label><textarea [(ngModel)]="editingPart.description"></textarea></div>
         <div class="form-group"><label>Antal</label><input type="number" [(ngModel)]="editingPart.stock"></div>
         <div class="form-group"><label>Pris</label><input type="number" [(ngModel)]="editingPart.price"></div>
         <div class="form-group">
           <label>Billede 1</label>
-          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{  'Vælg' }}</span><input #pImg1 type="file" accept="image/*" (change)="onPartImageChange($event, 0)" hidden></label>
+          <label class="file-upload-btn"><input #pImg1 type="file" accept="image/*" (change)="onPartImageChange($event, 0)" hidden><i class="fa-solid fa-image"></i><span>{{ pImg1.files?.[0]?.name || (editingPart.imageUrl1 ? 'Eksisterende billede' : 'Vælg') }}</span></label>
         </div>
         <div class="form-group">
           <label>Billede 2</label>
-          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{ 'Vælg' }}</span><input #pImg2 type="file" accept="image/*" (change)="onPartImageChange($event, 1)" hidden></label>
+          <label class="file-upload-btn"><input #pImg2 type="file" accept="image/*" (change)="onPartImageChange($event, 1)" hidden><i class="fa-solid fa-image"></i><span>{{ pImg2.files?.[0]?.name || (editingPart.imageUrl2 ? 'Eksisterende billede' : 'Vælg') }}</span></label>
         </div>
         <div class="form-group">
           <label>Billede 3</label>
-          <label class="file-upload-btn"><i class="fa-solid fa-image"></i><span>{{ 'Vælg' }}</span><input #pImg3 type="file" accept="image/*" (change)="onPartImageChange($event, 2)" hidden></label>
+          <label class="file-upload-btn"><input #pImg3 type="file" accept="image/*" (change)="onPartImageChange($event, 2)" hidden><i class="fa-solid fa-image"></i><span>{{ pImg3.files?.[0]?.name || (editingPart.imageUrl3 ? 'Eksisterende billede' : 'Vælg') }}</span></label>
         </div>
       </div>
       <div class="model-actions">

@@ -52,6 +52,7 @@ table {
 
 thead tr {
   background: #2d2a4a;
+
 }
 
 th {
@@ -157,6 +158,22 @@ td img {
   color: #fff;
   font-size: 0.9rem;
   outline: none;
+}
+
+.form-group select {
+  background: #2d2a4a;
+  border: 1px solid #4c1d95;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-group select:focus {
+  border-color: #a855f7;
 }
 
 .form-group input:focus,

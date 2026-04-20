@@ -16,6 +16,15 @@ export class AddCars {
   successMessage = '';
   errorMessage = '';
 
+  FuelType = [
+    'Benzin',
+    'Diesel',
+    'Elektrisk',
+    'Hybrid',
+    'Plugin-hybrid',
+    'Brint',
+  ]
+
   CarCategory=[
     'Sedan',
     'SUV',
@@ -30,8 +39,10 @@ export class AddCars {
     'Luksusbil',
     'Lastbil',
   ]
+  
   // Holder de 3 images  som base64 strings efter de bliver valgt
   uploadedUrl:string[]=["","",""];
+
 
 
   constructor(private carshopService:CarshopService) {}
@@ -48,6 +59,7 @@ export class AddCars {
 
 
   submit(data: CarShop){
+    if (!this.uploadedUrl[0]) { this.errorMessage = 'Billede 1 er påkrævet'; return; }
     const payload = { ...data, imageUrl1: this.uploadedUrl[0], imageUrl2: this.uploadedUrl[1], imageUrl3: this.uploadedUrl[2] };
     this.carshopService.AddCars(payload).subscribe({
       next: () => { this.successMessage = 'Bilen er tilføjet i systemet'; 
@@ -55,10 +67,10 @@ export class AddCars {
       }
       
       ,
-      error: () => { this.errorMessage = 'Error adding car';
-
-         setTimeout(() => window.location.reload(), 1900)
-       }
+      error: () => {
+        this.errorMessage = 'Fejl ved tilføjelse af bil';
+        setTimeout(() => this.errorMessage = '', 3000);
+      }
     });
   }
 }

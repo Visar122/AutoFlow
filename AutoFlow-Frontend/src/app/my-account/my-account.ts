@@ -54,6 +54,8 @@ export class MyAccount implements OnInit {
     this.loginService.UpdateInfo({ ...this.form, email: this.myInfo.email }).subscribe({
       next: (res: any) => {
         this.myInfo = res;
+        const current = this.loginService.getUser();
+        localStorage.setItem('user', JSON.stringify({ ...current, ...res }));
         this.editMode = false;
         this.successMessage = 'Oplysninger opdateret!';
         setTimeout(() => this.successMessage = '', 3000);

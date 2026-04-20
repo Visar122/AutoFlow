@@ -1,7 +1,6 @@
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { routes } from './../app.routes';
-import { Carshop } from './../carshop/carshop';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SHARED } from '../shared';
 import { CarshopService } from '../Services/carshop.service';
@@ -17,7 +16,9 @@ export class Carshopdetails implements OnInit {
   car:any = null;
   activeImage = '';
 
-  constructor(private CarshopService: CarshopService,private route: ActivatedRoute,private router: Router) {}
+  constructor(private CarshopService: CarshopService,private route: ActivatedRoute,private router: Router, private location: Location) {}
+
+  goBack() { this.location.back(); }
 
   ngOnInit(): void {
   const id=Number(this.route.snapshot.paramMap.get('id'));

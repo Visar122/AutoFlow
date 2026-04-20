@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { ReservepartsService } from './../Services/reserveparts.service';
 import { Component, OnInit } from '@angular/core';
 import { SHARED } from '../shared';
@@ -13,7 +14,8 @@ export class Reservepartsdetails implements OnInit {
   parts:any = null;
   activeImage = '';
 
-  constructor(private route: ActivatedRoute, private  reserveService:ReservepartsService,private router: Router) {}
+  constructor(private route: ActivatedRoute, private  reserveService:ReservepartsService,private router: Router, private location: Location) {}
+  goBack(){this.location.back();}
   
   ngOnInit(): void {
     const id=Number(this.route.snapshot.paramMap.get('id'));

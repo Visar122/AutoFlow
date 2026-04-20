@@ -93,8 +93,21 @@ namespace Autoflow.Controllers
             }
             return Ok(booking);
         }
-      
 
+
+        [HttpGet("TakenSlots")]
+        public async Task<ActionResult<IEnumerable<string>>> GetTakenSlots([FromQuery] string date)
+        {
+            if (!DateTime.TryParse(date, out var parsedDate))
+                return BadRequest("Invalid date format.");
+
+            var slots = await _context.Bookings
+                .Where(b => b.BookingDate == parsedDate.Date)
+                .Select(b => b.BookingTime.ToString(@"hh\:mm"))
+                .ToListAsync();
+
+            return Ok(slots);
+        }
         // GET: api/Bookings/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(int id)
@@ -141,10 +154,16 @@ namespace Autoflow.Controllers
         }
 
         // POST: api/Bookings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
         {
+            var conflict = await _context.Bookings.AnyAsync(b =>
+                b.BookingDate == booking.BookingDate &&
+                b.BookingTime == booking.BookingTime);
+
+            if (conflict)
+                return Conflict(new { message = "This time slot is already booked." });
+
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 

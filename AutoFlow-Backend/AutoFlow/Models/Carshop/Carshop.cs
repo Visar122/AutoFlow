@@ -16,11 +16,25 @@ namespace Autoflow.Models.Carshop
         public  int Year { get; set; }
 
          public string Category { get; set; }
-        public string  CarDescription { get; set; }
-
-        public string ImageUrl1 { get; set; }
+public string ImageUrl1 { get; set; }
         public string ImageUrl2 { get; set; }
         public string ImageUrl3 { get; set; }
+
+        public int Km {  get; set; }
+
+        public string Fuel {  get; set; }
+
+        public string Horsepower { get; set; }
+
+        public string TopSpeed { get; set; }
+
+
+         public string Afgift { get; set; }
+
+
+        public string Geartype { get; set; }
+
+        public string Color { get; set; }
 
 
 

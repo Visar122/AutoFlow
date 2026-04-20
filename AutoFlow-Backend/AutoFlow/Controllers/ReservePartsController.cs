@@ -83,6 +83,14 @@ namespace Autoflow.Controllers
 
             return CreatedAtAction("GetReserveParts", new { id = reserveParts.Id }, reserveParts);
         }
+        [HttpGet("SearchByName")]
+        public async Task<ActionResult<IEnumerable<ReserveParts>>> GetPartByName([FromQuery] string name)
+        {
+            var Parts=await _context.ReserveParts.Where(b => b.Name.ToLower().Contains(name.ToLower())||
+            b.CarModel.ToLower().Contains(name.ToLower())).ToListAsync();
+            return Ok(Parts);
+
+        }
 
         // DELETE: api/ReserveParts/5
         [HttpDelete("{id}")]

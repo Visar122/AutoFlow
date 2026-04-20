@@ -1,6 +1,6 @@
 @if(parts){
     <div class="details-wrapper">
-        <button class="btn-back" routerLink="/reserveParts">
+        <button class="btn-back" (click)="goBack()">
               <i class="fa-solid fa-arrow-left"></i> Tilbage
         </button>
 
@@ -39,12 +39,12 @@
                         <span class="value">{{ parts.category }}</span>
                 </div>
                   </div>
-                @if(parts.carname){
+                @if(parts.carName){
                       <div class="info-item">
                         <i class="fa-solid fa-car"></i>
                     <div>
                         <span class="label">Bilnavn</span>
-                        <span class="value">{{ parts.carname }}</span>
+                        <span class="value">{{ parts.carName }}</span>
                     </div>
                     </div>
                 }

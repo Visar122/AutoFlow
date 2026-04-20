@@ -1,23 +1,90 @@
 <div class="carshop-page">
-    <h2 class="page-title">Vores Biler</h2>
-  <div class="cars-grid">
-     @for (car of Cars; track car.carId) {
-       <div class="car-card" [routerLink]="['/carshopdetails',car.carId]" style="cursor:pointer">
-          <div class="card-header">
-               <div class="car-image">
-                  <img [src]="car.imageUrl1">
-                </div>
-               <span class="category-badge">{{ car.category }}</span>
-            </div>
+  <h2 class="page-title">Vores Biler</h2>
 
-           <div class="card-body">
-               <h3 class="car-name">{{ car.carName }}</h3>
-               <p class="car-model">{{ car.carModel }} · {{ car.year }}</p>
-               <div class="card-footer">
-                   <span class="price">{{ car.price | dkPrice }} DKK</span>
-              </div>
-            </div>
-        </div>
+  <div class="tabs">
+    <button class="tab-btn" [class.active]="activeTab === 'cars'" (click)="activeTab = 'cars'">
+      <i class="fa-solid fa-car"></i> Biler
+    </button>
+    <button class="tab-btn" [class.active]="activeTab === 'parts'" (click)="activeTab = 'parts'" routerLink="/reserveParts">
+      <i class="fa-solid fa-gears"></i> Reservedele
+    </button>
+
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" [(ngModel)]="searchCar" placeholder="Søg bil" (ngModelChange)="SearchCarByName()" (keyup.enter)="SearchCarByName()">
+      @if (searchCar) {
+        <i class="fa-solid fa-xmark clear-icon" (click)="ClearSearch()"></i>
       }
+      <button class="search-btn" (click)="SearchCarByName()">Søg</button>
+    </div>
+
+    <button class="filter-btn" (click)="toggleSidebar()">
+      <i class="fa-solid fa-sliders"></i> Filter
+    </button>
+  </div>
+
+
+  <div class="cars-grid">
+    @for (car of Cars; track car.carId) {
+      <div class="car-card" [routerLink]="['/carshopdetails',car.carId]" style="cursor:pointer">
+        <div class="card-header">
+          <div class="car-image">
+            <img [src]="car.imageUrl1">
+          </div>
+          <span class="category-badge">{{ car.category }}</span>
+        </div>
+        <div class="card-body">
+          <h3 class="car-name">{{ car.carName }} {{ car.carModel }}</h3>
+          <p class="car-model">{{ car.carModel }} · {{ car.year }}</p>
+          <div class="card-footer">
+            <span class="price">{{ car.price | dkPrice }} DKK</span>
+          </div>
+        </div>
+      </div>
+    }
+
+      <!-- Sidebar overlay -->
+  <div class="sidebar-overlay" [class.visible]="sidebarOpen" (click)="toggleSidebar()"></div>
+
+  <!-- Filter sidebar -->
+  <div class="filter-sidebar" [class.open]="sidebarOpen">
+    <div class="sidebar-header">
+      <h3>Filtrer biler</h3>
+      <button class="close-btn" (click)="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="filter-section">
+      <label>Max Pris (DKK)</label>
+      <input type="number" [(ngModel)]="filterMaxPrice" placeholder="F.eks. 500.000">
+    </div>
+
+    <div class="filter-section">
+      <label>Bilmærke</label>
+      <div class="category-chips">
+        @for (name of availableCarNames; track name) {
+          <button class="category-chip" [class.selected]="selectedCarName === name" (click)="selectedCarName = selectedCarName === name ? '' : name">
+            {{ name }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <label>Kategori</label>
+      <div class="category-chips">
+        @for (cat of availableCategories; track cat) {
+          <button class="category-chip" [class.selected]="selectedCategory === cat" (click)="selectedCategory = selectedCategory === cat ? '' : cat">
+            {{ cat }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="sidebar-actions">
+      <button class="apply-btn" (click)="applyFilters()">Anvend</button>
+      <button class="clear-btn" (click)="clearFilters()">Nulstil</button>
+    </div>
+  </div>
+
   </div>
 </div>

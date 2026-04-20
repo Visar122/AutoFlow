@@ -1,7 +1,7 @@
 .details-wrapper{
 max-width: 700px;
-margin:0 auto;
-
+margin: -2% auto;
+padding-bottom: 20px;
 }
 .btn-back{
     background: transparent;
@@ -31,8 +31,9 @@ margin:0 auto;
 }
 .hero-img{
     width: 100%;
-    height: 340px;
-    object-fit: cover;
+     height: 420px;
+  object-fit: cover;
+  object-position: center;
     display: block;
     transition: 0.2s;
 }
@@ -167,6 +168,7 @@ margin:0 auto;
         border: 1px solid rgba(168, 85, 247, 0.2);
         border-radius: 12px;
         padding: 20px 22px;
+        margin-bottom: 30px ;
 }
 .section-title{
     font-size: 1.25rem;

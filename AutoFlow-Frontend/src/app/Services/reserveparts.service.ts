@@ -26,6 +26,10 @@ export class ReservepartsService {
    getpartsbyId(id: number) {
     return this.http.get<ReserveParts>(`${this.url}/${id}`);
   }
+
+  SearchPartByName(name: string) {
+    return this.http.get<ReserveParts[]>(`${this.url}/SearchByName?name=${name}`);
+  }
   updatePart(id: number, data: ReserveParts) {
     return this.http.put(`${this.url}/${id}`, data);
   }
