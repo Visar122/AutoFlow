@@ -49,5 +49,8 @@ export class LoginService {
   UpdateInfo(data: any) {
     return this.http.put(`https://localhost:7069/api/Users/UpdateInfo`, data);
   }
-
+  
+  GetAllUsers(){
+    return this.http.get<any[]>(`https://localhost:7069/api/Users/GetAllUsers`);
+  }
 }

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './home/home';
 import { Login } from './login/login';
-import { loginPageGuard, adminGuard, userGuard } from './guards/auth.guard';
+import { loginPageGuard, adminGuard, userGuard, AdminsGuard } from './guards/auth.guard';
 import { Booking } from './booking/booking';
 import { Carshop } from './carshop/carshop';
 
@@ -15,6 +15,7 @@ import { MyAccount } from './my-account/my-account';
 import { BookingDetails } from './booking-details/booking-details';
 import { Carshopdetails } from './carshopdetails/carshopdetails';
 import { Reservepartsdetails } from './reservepartsdetails/reservepartsdetails';
+import { Users } from './users/users';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -23,14 +24,15 @@ export const routes: Routes = [
   { path:'booking', component: Booking},
   { path:'carshop', component: Carshop},
   { path:'reserveParts', component: ReservePartsComponent},
-  { path:'booking-list', component: BookingList, canActivate: [adminGuard]},
+  { path:'booking-list', component: BookingList, canActivate: [AdminsGuard]},
   { path:'bookings-user', component: BookingsUser, canActivate: [userGuard]},
-  {path:'add-cars',component:AddCars, canActivate: [adminGuard]},
-    {path:'add-reserveparts',component:AddReserveparts, canActivate: [adminGuard]},
-    {path:'item-list',component:ItemList, canActivate: [adminGuard]},
+  {path:'add-cars',component:AddCars, canActivate: [AdminsGuard]},
+    {path:'add-reserveparts',component:AddReserveparts, canActivate: [AdminsGuard]},
+    {path:'item-list',component:ItemList, canActivate: [AdminsGuard]},
     { path:'my-account', component: MyAccount},
-    { path:'booking-details/:id', component: BookingDetails, canActivate: [adminGuard]},
+    { path:'booking-details/:id', component: BookingDetails, canActivate: [AdminsGuard]},
     { path:'carshopdetails/:id', component: Carshopdetails},
         { path:'reservepartsdetails/:id', component: Reservepartsdetails},
+        {path:'AllUsers',component: Users, canActivate: [adminGuard]}
 
 ];

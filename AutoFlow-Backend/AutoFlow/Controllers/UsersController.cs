@@ -94,6 +94,13 @@ namespace Autoflow.Controllers
             return Ok(new { user.FirstName,user.LastName,user.Email,user.CarPlate,user.CarPlate2});
         }
 
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _context.Users.Select(u => new { u.FirstName, u.LastName, u.Email, u.CarPlate, u.CarPlate2,u.Status }).ToListAsync();
+            return Ok(users);
+        }
+
         [HttpPut("UpdateInfo")]
         public async Task<IActionResult> UpdateMyInfo([FromBody] UpdateUserDto dto)
         {
@@ -105,6 +112,7 @@ namespace Autoflow.Controllers
             user.LastName = dto.LastName;
             user.CarPlate = dto.CarPlate;
             user.CarPlate2 = dto.CarPlate2;
+            user.Status=dto.Status;
 
             if (!string.IsNullOrEmpty(dto.Password))
             {

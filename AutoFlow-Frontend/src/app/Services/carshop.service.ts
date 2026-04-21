@@ -36,7 +36,6 @@ export class CarshopService {
     let params: any = {};
     if (name) params['name'] = name;
     if (category) params['category'] = category;
-    if (minPrice != null) params['minPrice'] = minPrice;
     if (maxPrice != null) params['maxPrice'] = maxPrice;
     return this.http.get<CarShop[]>(`${this.url}/Filter`, { params });
   }

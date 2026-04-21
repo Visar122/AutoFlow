@@ -24,6 +24,17 @@ export const adminGuard: CanActivateFn = () => {
   }
   return true;
 };
+export const AdminsGuard: CanActivateFn = () => {
+  const login = inject(LoginService);
+  const router = inject(Router);
+  const user = login.getUser();
+
+  if (!user || (user.status !== 'Admin' && user.status !== 'Admin2')) {
+    router.navigate(['/']);
+    return false;
+  }
+  return true;
+};
 
 export const userGuard: CanActivateFn = () => {
   const login = inject(LoginService);

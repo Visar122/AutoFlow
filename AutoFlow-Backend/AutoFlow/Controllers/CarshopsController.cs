@@ -88,7 +88,6 @@ namespace Autoflow.Controllers
         public async Task<ActionResult<IEnumerable<Carshop>>> FilterCars(
             [FromQuery] string? name,
             [FromQuery] string? category,
-            [FromQuery] decimal? minPrice,
             [FromQuery] decimal? maxPrice)
         {
             var query = _context.Carshop.AsQueryable();
@@ -98,9 +97,6 @@ namespace Autoflow.Controllers
 
             if (!string.IsNullOrEmpty(category))
                 query = query.Where(c => c.Category.ToLower() == category.ToLower());
-
-            if (minPrice.HasValue)
-                query = query.Where(c => c.Price >= minPrice.Value);
 
             if (maxPrice.HasValue)
                 query = query.Where(c => c.Price <= maxPrice.Value);

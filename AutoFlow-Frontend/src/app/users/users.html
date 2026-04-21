@@ -1,0 +1,33 @@
+<div class="item-list">
+    <h2 class="page-title">User List</h2>
+   
+     
+    @if (AllUsers) {
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>CarPlate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (user of AllUsers; track user.id) {
+                        <tr>
+                            <td>{{ user.firstName }}</td>
+                            <td>{{ user.lastName }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.status }}</td>
+                            <td>{{ user.carPlate }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+
+</div>

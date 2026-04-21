@@ -93,6 +93,7 @@ export class ItemList implements OnInit {
       imageUrl1: this.carImages[0] || this.editingCar.imageUrl1,
       imageUrl2: this.carImages[1] || this.editingCar.imageUrl2,
       imageUrl3: this.carImages[2] || this.editingCar.imageUrl3,
+      imageUrl4: this.carImages[3] || this.editingCar.imageUrl4,
     };
     this.carService.updateCar(this.editingCar.carId, payload).subscribe(() => {
       this.editingCar = null;

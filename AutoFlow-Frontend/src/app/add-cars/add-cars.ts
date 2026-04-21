@@ -41,7 +41,7 @@ export class AddCars {
   ]
   
   // Holder de 3 images  som base64 strings efter de bliver valgt
-  uploadedUrl:string[]=["","",""];
+  uploadedUrl:string[]=["","","",""];
 
 
 
@@ -60,7 +60,8 @@ export class AddCars {
 
   submit(data: CarShop){
     if (!this.uploadedUrl[0]) { this.errorMessage = 'Billede 1 er påkrævet'; return; }
-    const payload = { ...data, imageUrl1: this.uploadedUrl[0], imageUrl2: this.uploadedUrl[1], imageUrl3: this.uploadedUrl[2] };
+    const payload = { ...data, imageUrl1: this.uploadedUrl[0], imageUrl2: this.uploadedUrl[1], imageUrl3: this.uploadedUrl[2], imageUrl4: this.uploadedUrl[3] };
+    console.log('payload:', payload);
     this.carshopService.AddCars(payload).subscribe({
       next: () => { this.successMessage = 'Bilen er tilføjet i systemet'; 
         setTimeout(() => window.location.reload(), 1900)

@@ -119,6 +119,15 @@
             <input #img3 type="file" accept="image/*" (change)="onFileChange($event, 2)" hidden>
           </label>
         </div>
+
+            <div class="form-group">
+          <label>Image 4</label>
+          <label class="file-upload-btn">
+            <i class="fa-solid fa-image"></i>
+            <span>{{ img4.files?.[0]?.name || 'Vælg' }}</span>
+            <input #img4 type="file" accept="image/*" (change)="onFileChange($event, 3)" hidden>
+          </label>
+        </div>
       </div>
 
       <!-- Pris -->

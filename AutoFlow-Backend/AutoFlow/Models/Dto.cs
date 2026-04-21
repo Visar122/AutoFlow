@@ -23,6 +23,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string? Password { get; set; }
+        public string Status { get; set; }
         public string CarPlate { get; set; }
         public string? CarPlate2 { get; set; }
 
