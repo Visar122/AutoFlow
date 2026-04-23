@@ -16,6 +16,7 @@ import { BookingDetails } from './booking-details/booking-details';
 import { Carshopdetails } from './carshopdetails/carshopdetails';
 import { Reservepartsdetails } from './reservepartsdetails/reservepartsdetails';
 import { Users } from './users/users';
+import { MyOrders } from './my-orders/my-orders';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -33,6 +34,7 @@ export const routes: Routes = [
     { path:'booking-details/:id', component: BookingDetails, canActivate: [AdminsGuard]},
     { path:'carshopdetails/:id', component: Carshopdetails},
         { path:'reservepartsdetails/:id', component: Reservepartsdetails},
-        {path:'AllUsers',component: Users, canActivate: [adminGuard]}
+        {path:'AllUsers',component: Users, canActivate: [adminGuard]},
+        {path:'my-orders', component: MyOrders}
 
 ];

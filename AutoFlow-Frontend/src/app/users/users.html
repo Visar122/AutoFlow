@@ -1,33 +1,55 @@
 <div class="item-list">
-    <h2 class="page-title">User List</h2>
-   
-     
-    @if (AllUsers) {
-        <div class="table-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>CarPlate</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (user of AllUsers; track user.id) {
-                        <tr>
-                            <td>{{ user.firstName }}</td>
-                            <td>{{ user.lastName }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.status }}</td>
-                            <td>{{ user.carPlate }}</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+  <h2 class="page-title">User List</h2>
+  <div class="search-bar">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Søg på Email eller fulde navn." (ngModelChange)="searchUsers()">
+    @if (searchQuery) {
+      <i class="fa-solid fa-xmark clear-icon" (click)="clearSearch()"></i>
     }
-
-
+  </div>
+  @if (AllUsers) {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Navn</th>
+            <th>Efternavn</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Nummerplader</th>
+            <th>Nummerplader2</th>
+            <th>Ændre </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of AllUsers; track user.email) {
+            <tr>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <span class="status-badge" [class]="user.status?.toLowerCase()">{{ user.status }}</span>
+              </td>
+              <td>{{ user.carPlate }}</td>
+              <td>{{ user.carPlate2 }}</td>
+              <td class="actions">
+                @if (user.status !== 'Admin') {
+                  <select [(ngModel)]="user.status">
+                    <option value="user">User</option>
+                    <option value="Admin2">Admin2</option>
+                  </select>
+                  <button class="action-btn delete" (click)="deleteUser(user.email)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                  <button class="action-btn save" (click)="updateStatus(user.email, user.status)">
+                    <i class="fa-solid fa-check"></i> Gem
+                  </button>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
 </div>

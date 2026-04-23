@@ -9,6 +9,9 @@
     <button class="tab-btn" [class.active]="activeTab === 'parts'" (click)="activeTab = 'parts'">
       <i class="fa-solid fa-gears"></i> Reservedele
     </button>
+    <button class="tab-btn" [class.active]="activeTab === 'orders'" (click)="activeTab = 'orders'">
+      <i class="fa-solid fa-box"></i> Ordrer
+    </button>
   </div>
 
 
@@ -83,6 +86,37 @@
     </div>
   }
 </div>
+
+@if (activeTab === 'orders') {
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Ordre #</th>
+          <th>Kunde</th>
+          <th>Email</th>
+          <th>Del</th>
+          <th>Pris</th>
+          <th>Status</th>
+          <th>Dato</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orders; track order.id) {
+          <tr>
+            <td>#{{ order.id }}</td>
+            <td>{{ order.firstName }} {{ order.lastName }}</td>
+            <td>{{ order.email }}</td>
+            <td>{{ order.itemName }}</td>
+            <td>{{ order.price | dkPrice }} DKK</td>
+            <td><span class="status-badge paid">{{ order.status }}</span></td>
+            <td>{{ order.orderDate | date:'dd/MM/yyyy HH:mm' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
 
 <!-- EDIT CAR model -->
 @if (editingCar) {

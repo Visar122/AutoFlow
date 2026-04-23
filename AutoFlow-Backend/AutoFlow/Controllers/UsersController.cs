@@ -97,8 +97,42 @@ namespace Autoflow.Controllers
         [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
-            var users = await _context.Users.Select(u => new { u.FirstName, u.LastName, u.Email, u.CarPlate, u.CarPlate2,u.Status }).ToListAsync();
+            var users = await _context.Users.Select(u => new { u.FirstName, u.LastName, u.Email, u.CarPlate, u.CarPlate2, u.Status }).ToListAsync();
             return Ok(users);
+        }
+
+        [HttpGet("SearchUsers")]
+        public async Task<IActionResult> SearchUsers([FromQuery] string search)
+        {
+            var users = await _context.Users
+                .Where(u => u.FirstName.ToLower().Contains(search.ToLower()) ||
+                            u.LastName.ToLower().Contains(search.ToLower()) ||
+                            u.Email.ToLower().Contains(search.ToLower()) ||
+                            (u.FirstName.ToLower() + " " + u.LastName.ToLower()).Contains(search.ToLower()))
+                .Select(u => new { u.FirstName, u.LastName, u.Email, u.CarPlate, u.CarPlate2, u.Status })
+                .ToListAsync();
+            return Ok(users);
+        }
+
+
+        [HttpPut("UpdateStatus")]
+        public async Task<IActionResult> UpdateStatus([FromBody] UpdateStatusDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+            if (user == null) return NotFound();
+            user.Status = dto.Status;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteUser([FromQuery] string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null) return NotFound();
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
         [HttpPut("UpdateInfo")]
@@ -112,7 +146,7 @@ namespace Autoflow.Controllers
             user.LastName = dto.LastName;
             user.CarPlate = dto.CarPlate;
             user.CarPlate2 = dto.CarPlate2;
-            user.Status=dto.Status;
+         
 
             if (!string.IsNullOrEmpty(dto.Password))
             {

@@ -9,6 +9,40 @@
     color: #fff;
     margin-bottom: 28px;
 }
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 10px;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  width: 35%;
+}
+.search-bar i { color: #a855f7; }
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e2e2e2;
+  font-size: 0.95rem;
+  width: 100%;
+}
+.search-bar input::placeholder { color: #888; }
+.clear-icon { color: #888; cursor: pointer; }
+.clear-icon:hover { color: #e2e2e2; }
+.search-btn {
+  background: #a855f7;
+  border: none;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.search-btn:hover { background: #9333ea; }
+
 .table-wrapper{
     overflow-x: auto;
     border-radius: 12px;
@@ -40,3 +74,44 @@ td{
 tbody tr:hover {
   background: #2d2a4a;
 }
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+.action-btn {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.action-btn.delete { background: #dc2626; color: #fff; }
+.action-btn.save { background: linear-gradient(135deg, #7c3aed, #a855f7); color: #fff; }
+.action-btn:hover {
+  opacity: 0.9;
+
+  transition: all 0.2s;
+}
+.actions select {
+  background: #2d2a4a;
+  border: 1px solid #4c1d95;
+  border-radius: 6px;
+  color: #e5e7eb;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  outline: none;
+}
+.actions select option { background: #2d2a4a; }
+.status-badge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.status-badge.admin { background: #7c3aed; color: #fff; }
+.status-badge.admin2 { background: #a855f7; color: #fff; }
+.status-badge.user { background: #374151; color: #e5e7eb; }

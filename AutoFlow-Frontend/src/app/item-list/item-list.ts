@@ -3,6 +3,7 @@ import { SHARED } from '../shared';
 import { CarshopService } from '../Services/carshop.service';
 import { ReservepartsService } from '../Services/reserveparts.service';
 import { CarShop, ReserveParts } from '../interfaces';
+import { OrderService } from '../Services/order.service';
 
 @Component({
   selector: 'app-item-list',
@@ -12,13 +13,14 @@ import { CarShop, ReserveParts } from '../interfaces';
 })
 export class ItemList implements OnInit {
 
-  activeTab: 'cars' | 'parts' = 'cars';
+  activeTab: 'cars' | 'parts' | 'orders' = 'cars';
 
   FuelTypes = ['Benzin', 'Diesel', 'Elektrisk', 'Hybrid', 'Plugin-hybrid', 'Brint'];
   GearTypes = ['Automatik', 'Manuel'];
 
   cars: CarShop[] = [];
   parts: ReserveParts[] = [];
+  orders: any[] = [];
 
   editingCar: CarShop | null = null;
   editingPart: ReserveParts | null = null;
@@ -30,12 +32,18 @@ export class ItemList implements OnInit {
 
   constructor(
     private carService: CarshopService,
-    private partsService: ReservepartsService
+    private partsService: ReservepartsService,
+    private orderService: OrderService
   ) {}
 
   ngOnInit() {
     this.loadCars();
     this.loadParts();
+    this.loadOrders();
+  }
+
+  loadOrders() {
+    this.orderService.getAllOrders().subscribe(data => this.orders = data);
   }
 
   loadCars() {

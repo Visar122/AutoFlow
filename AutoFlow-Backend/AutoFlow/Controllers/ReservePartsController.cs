@@ -83,13 +83,51 @@ namespace Autoflow.Controllers
 
             return CreatedAtAction("GetReserveParts", new { id = reserveParts.Id }, reserveParts);
         }
-        [HttpGet("SearchByName")]
-        public async Task<ActionResult<IEnumerable<ReserveParts>>> GetPartByName([FromQuery] string name)
+        [HttpGet("SearchParts")]
+        public async Task<ActionResult<IEnumerable<ReserveParts>>> GetPartByName([FromQuery] string search)
         {
-            var Parts=await _context.ReserveParts.Where(b => b.Name.ToLower().Contains(name.ToLower())||
-            b.CarModel.ToLower().Contains(name.ToLower())).ToListAsync();
+            var Parts=await _context.ReserveParts.Where(p => p.Name.ToLower().Contains(search.ToLower()) ||
+            p.Category.ToLower().Contains(search.ToLower()) ||
+            p.CarModel.ToLower().Contains(search.ToLower())).ToListAsync();
             return Ok(Parts);
 
+        }
+        [HttpGet("Filter")]
+        public async Task<ActionResult<IEnumerable<ReserveParts>>>FilterParts(
+            [FromQuery]string? name,
+            [FromQuery] string? category,
+            [FromQuery]string?carName,
+            [FromQuery]string? carModel,
+            [FromQuery] decimal? maxPrice)
+        {
+            var query =_context.ReserveParts.AsQueryable();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(b => b.Name.ToLower().Contains(name.ToLower()));
+            }
+            
+            if (!string.IsNullOrEmpty(category))
+            {
+                query = query.Where(b => b.Category.ToLower().Contains(category.ToLower()));
+            }
+            if (!string.IsNullOrEmpty(carName))
+            {
+                query = query.Where(b => b.CarName.ToLower().Contains(carName.ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(carModel))
+            {
+                query = query.Where(b => b.CarModel.ToLower().Contains(carModel.ToLower()));
+            }
+
+            if (maxPrice.HasValue)
+            {
+                query = query.Where(b => b.Price <= maxPrice.Value);
+            }
+
+            var result = await query.ToListAsync();
+            return Ok(result);
         }
 
         // DELETE: api/ReserveParts/5

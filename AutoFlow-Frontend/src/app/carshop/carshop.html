@@ -25,7 +25,7 @@
 
 
   <div class="cars-grid">
-    @for (car of Cars; track car.carId) {
+    @for (car of allCars; track car.carId) {
       <div class="car-card" [routerLink]="['/carshopdetails',car.carId]" style="cursor:pointer">
         <div class="card-header">
           <div class="car-image">
@@ -60,13 +60,26 @@
 
     <div class="filter-section">
       <label>Bilmærke</label>
-      <div class="category-chips">
+      <select  [(ngModel)]="selectedCarName" (ngModelChange)="OnCarNameChange()">
+        <option value="">Alle Mærker</option>
         @for (name of availableCarNames; track name) {
-          <button class="category-chip" [class.selected]="selectedCarName === name" (click)="selectedCarName = selectedCarName === name ? '' : name">
-            {{ name }}
-          </button>
+          <option [value]="name">{{ name }}</option>
         }
-      </div>
+      </select>
+    </div>
+
+    <div class="filter-section">
+      <label>Model</label>
+        <select [(ngModel)]="selectedCarModel" (ngModelChange)="applyFilters()" [disabled]="!selectedCarName">
+          <option value="">Alle Modeller</option>
+          @for(model of availableCarModels; track model) {
+            <option [value]="model">{{ model }}</option>
+
+          }
+
+        </select>
+
+
     </div>
 
     <div class="filter-section">

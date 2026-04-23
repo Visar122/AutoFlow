@@ -184,5 +184,110 @@ padding-bottom: 20px;
   color: #ccc;
   line-height: 1.7;
   margin: 0;
+}
 
+/* Stock */
+.stock-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+.stock-info i { color: #a855f7; }
+.in-stock { color: #4ade80; font-weight: 600; }
+.out-of-stock { color: #f87171; font-weight: 600; }
+.button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* model */
+.model-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.model {
+  background: #1e1b3a;
+  border: 1.5px solid #4c1d95;
+  border-radius: 16px;
+  width: 420px;
+  max-width: 95vw;
+  padding: 28px;
+}
+.model-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.model-header h3 { color: #fff; font-size: 1.1rem; margin: 0; }
+.close-btn { background: transparent; border: none; color: #a855f7; font-size: 1.2rem; cursor: pointer; }
+
+.model-summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+.model-summary img { width: 60px; height: 44px; object-fit: cover; border-radius: 6px; }
+.model-part-name { color: #e2e2e2; font-weight: 600; margin: 0 0 4px; }
+.model-price { color: #a855f7; font-weight: 700; margin: 0; }
+
+.model-body { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.model-body label { color: #c084fc; font-size: 0.85rem; font-weight: 600; }
+.model-body input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #e2e2e2;
+  font-size: 0.9rem;
+  outline: none;
+}
+.model-body input:focus { border-color: #a855f7; }
+.stripe-field {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(168,85,247,0.3);
+  border-radius: 8px;
+  padding: 11px 12px;
+}
+.stripe-field.StripeElement--focus { border-color: #a855f7; }
+.stripe-row {
+  display: flex;
+  gap: 12px;
+}
+.stripe-row > div { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.error-msg { color: #f87171; font-size: 0.85rem; margin: 0; }
+
+.model-footer { display: flex; gap: 10px; }
+.btn-cancel {
+  flex: 1; padding: 10px;
+  background: #2d2a4a; border: 1px solid #4c1d95;
+  border-radius: 8px; color: #fff; font-weight: 600; cursor: pointer;
+}
+.btn-pay {
+  flex: 2; padding: 10px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border: none; border-radius: 8px; color: #fff; font-weight: 700; cursor: pointer;
+}
+.btn-pay:hover { opacity: 0.88; }
+
+/* Success state */
+.success-state {
+  text-align: center;
+  padding: 20px 0;
+}
+.success-state i { font-size: 3rem; color: #4ade80; margin-bottom: 16px; }
+.success-state h3 { color: #fff; margin-bottom: 8px; }
+.success-state p { color: #ccc; margin-bottom: 20px; }
+.btn-close-success {
+  padding: 10px 28px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  border: none; border-radius: 8px; color: #fff; font-weight: 700; cursor: pointer;
 }

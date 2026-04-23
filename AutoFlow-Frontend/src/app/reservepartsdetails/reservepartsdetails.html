@@ -4,12 +4,11 @@
               <i class="fa-solid fa-arrow-left"></i> Tilbage
         </button>
 
-
         <div class="parts-hero">
             <img [src]="activeImage" class="hero-img">
             <span class="category-badge">{{ parts.category }}</span>
         </div>
-         
+
          <div class="thumbnails">
             <img [src]="parts.imageUrl1" class="thumb" [class.active]="activeImage === parts.imageUrl1" (click)="activeImage = parts.imageUrl1">
             @if (parts.imageUrl2) {
@@ -24,16 +23,25 @@
             <h1 class="parts-title">{{parts.name}}</h1>
             @if(parts.carName ) {<h1 class="parts-title">{{parts.carName}} Model{{parts.carModel}} :</h1>}
             <span class="parts-price">{{ parts.price | dkPrice }} DKK</span>
-           
          </div>
-                <button class="button">  
-                 Tilføj til kurv <i class="fa-solid fa-bag-shopping"></i>
-               </button>
+
+         <div class="stock-info">
+           <i class="fa-solid fa-box"></i>
+           @if (parts.stock > 0) {
+             <span class="in-stock">{{ parts.stock }} på lager</span>
+           } @else {
+             <span class="out-of-stock">Ikke på lager</span>
+           }
+         </div>
+
+         <button class="button" (click)="openOrdermodel()" [disabled]="parts.stock === 0">
+           Bestil Nu <i class="fa-solid fa-bag-shopping"></i>
+         </button>
+
          <div class="info-card">
             <div class="info-row">
                 <div class="info-item">
                       <i class="fa-solid fa-tag"></i>
-               
                 <div>
                         <span class="label">Kategori</span>
                         <span class="value">{{ parts.category }}</span>
@@ -57,8 +65,6 @@
                     </div>
                     </div>
                 }
-               
-               
             </div>
          </div>
 
@@ -66,7 +72,70 @@
             <h2 class="section-title">Beskrivelse</h2>
             <p class="desc-text">{{ parts.description }}</p>
          </div>
-
-      
     </div>
+}
+
+<!-- Order model -->
+@if (showOrdermodel) {
+  <div class="model-overlay" (click)="closemodel()">
+    <div class="model" (click)="$event.stopPropagation()">
+
+      @if (orderSuccess) {
+        <div class="success-state">
+          <i class="fa-solid fa-circle-check"></i>
+          <h3>Ordre bekræftet!</h3>
+          <p>Din ordre på <strong>{{ parts.name }}</strong> er placeret.</p>
+          <button class="btn-close-success" (click)="closemodel()">Luk</button>
+        </div>
+      } @else {
+        <div class="model-header">
+          <h3>Bestil {{ parts.name }}</h3>
+          <button class="close-btn" (click)="closemodel()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="model-summary">
+          <img [src]="parts.imageUrl1">
+          <div>
+            <p class="model-part-name">{{ parts.name }}</p>
+            <p class="model-price">{{ parts.price | dkPrice }} DKK</p>
+          </div>
+        </div>
+
+        <div class="model-body">
+          <label>Kortholder</label>
+          <input type="text" [(ngModel)]="cardHolder" placeholder="Navn på kort">
+
+          <label>Kortnummer</label>
+          <div id="stripe-card-number" class="stripe-field"></div>
+
+          <div class="stripe-row">
+            <div>
+              <label>Udløbsdato</label>
+              <div id="stripe-card-expiry" class="stripe-field"></div>
+            </div>
+            <div>
+              <label>CVC</label>
+              <div id="stripe-card-cvc" class="stripe-field"></div>
+            </div>
+          </div>
+
+          @if (orderError) {
+            <p class="error-msg">{{ orderError }}</p>
+          }
+        </div>
+
+        <div class="model-footer">
+          <button class="btn-cancel" (click)="closemodel()" [disabled]="isProcessing">Annuller</button>
+          <button class="btn-pay" (click)="placeOrder()" [disabled]="isProcessing">
+            @if (isProcessing) {
+              <i class="fa-solid fa-spinner fa-spin"></i> Behandler...
+            } @else {
+              <i class="fa-solid fa-lock"></i> Betal {{ parts.price | dkPrice }} DKK
+            }
+          </button>
+        </div>
+      }
+
+    </div>
+  </div>
 }

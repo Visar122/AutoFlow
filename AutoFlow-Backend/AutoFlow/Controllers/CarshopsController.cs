@@ -86,14 +86,18 @@ namespace Autoflow.Controllers
 
         [HttpGet("Filter")]
         public async Task<ActionResult<IEnumerable<Carshop>>> FilterCars(
-            [FromQuery] string? name,
+            [FromQuery] string? Carname,
+            [FromQuery] string? Carmodel,
             [FromQuery] string? category,
             [FromQuery] decimal? maxPrice)
         {
             var query = _context.Carshop.AsQueryable();
 
-            if (!string.IsNullOrEmpty(name))
-                query = query.Where(c => c.CarName.ToLower().Contains(name.ToLower()) || c.CarModel.ToLower().Contains(name.ToLower()));
+            if (!string.IsNullOrEmpty(Carname))
+                query = query.Where(c => c.CarName.ToLower().Contains(Carname.ToLower()));
+
+            if (!string.IsNullOrEmpty(Carmodel))
+                query = query.Where(c => c.CarModel.ToLower().Contains(Carmodel.ToLower()));
 
             if (!string.IsNullOrEmpty(category))
                 query = query.Where(c => c.Category.ToLower() == category.ToLower());

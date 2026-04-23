@@ -53,4 +53,16 @@ export class LoginService {
   GetAllUsers(){
     return this.http.get<any[]>(`https://localhost:7069/api/Users/GetAllUsers`);
   }
+
+  SearchUsers(search: string) {
+    return this.http.get<any[]>(`https://localhost:7069/api/Users/SearchUsers?search=${search}`);
+  }
+
+  UpdateUserStatus(email: string, status: string) {
+    return this.http.put(`https://localhost:7069/api/Users/UpdateStatus`, { email, status });
+  }
+
+  DeleteUser(email: string) {
+    return this.http.delete(`https://localhost:7069/api/Users/DeleteUser?email=${email}`);
+  }
 }

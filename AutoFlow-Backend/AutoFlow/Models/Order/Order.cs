@@ -13,14 +13,12 @@ namespace Autoflow.Models.Order
         public int ItemId { get; set; }
         public string ItemType { get; set; }
         public string ItemName { get; set; }
+        public string? ImageUrl { get; set; }
         public decimal Price { get; set; }
         public string Status { get; set; }  
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
         
-        public string CardHolder { get; set; }
-        public string Last4Digits { get; set; }
-        public string ExpiryDate { get; set; }
 
 
 

@@ -1,0 +1,34 @@
+<div class="orders-page">
+  <h2 class="page-title">Mine Ordrer</h2>
+
+  @if (orders.length === 0) {
+    <p class="empty">Du har ingen ordrer endnu.</p>
+  } @else {
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Ordre #</th>
+            <th>Billede</th>
+            <th>Del</th>
+            <th>Pris</th>
+            <th>Status</th>
+            <th>Dato</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of orders; track order.id) {
+            <tr>
+              <td>#{{ order.id }}</td>
+              <td><img [src]="order.imageUrl" class="order-img"></td>
+              <td>{{ order.itemName }}</td>
+              <td>{{ order.price | dkPrice }} DKK</td>
+              <td><span class="status-badge paid">{{ order.status }}</span></td>
+              <td>{{ order.orderDate | date:'dd/MM/yyyy HH:mm' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

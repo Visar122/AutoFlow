@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Autoflow.Models;
 using Autoflow.Models.Order;
 using AutoFlow.Models;
+using Stripe;
 
 namespace Autoflow.Controllers
 {
@@ -20,6 +21,21 @@ namespace Autoflow.Controllers
         public OrdersController(Dbcontext context)
         {
             _context = context;
+        }
+
+        [HttpPost("CreatePaymentIntent")]
+        public async Task<IActionResult> CreatePaymentIntent([FromBody] CreatePaymentIntentDto dto)
+        {
+            StripeConfiguration.ApiKey = "sk_test_51TPQVOJSJ9176wqYrkdMMqyBHiBlevS43KlTb7REFI3HQHGPu5EeeAzGTTyfSu7SzLax6iPVX9VQSlbdQlfaSWms00iReYnE0Z";
+            var options = new PaymentIntentCreateOptions
+            {
+                Amount = (long)(dto.Amount * 100),
+                Currency = dto.Currency,
+                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions { Enabled = true }
+            };
+            var service = new PaymentIntentService();
+            var intent = await service.CreateAsync(options);
+            return Ok(new { clientSecret = intent.ClientSecret });
         }
 
         // GET: api/Orders
@@ -78,11 +94,7 @@ namespace Autoflow.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder([FromBody] CreateOrderDto dto)
         {
-            // Fake payment validation — always approves
-            if (dto.Last4Digits.Length != 4)
-                return BadRequest(new { message = "Invalid card." });
-
-            var order = new Order
+var order = new Order
             {
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
@@ -90,15 +102,19 @@ namespace Autoflow.Controllers
                 ItemId = dto.ItemId,
                 ItemType = dto.ItemType,
                 ItemName = dto.ItemName,
+                ImageUrl = dto.ImageUrl,
                 Price = dto.Price,
-                CardHolder = dto.CardHolder,
-                Last4Digits = dto.Last4Digits,
-                ExpiryDate = dto.ExpiryDate,
                 Status = "Paid",
                 OrderDate = DateTime.Now
             };
 
             _context.Order.Add(order);
+
+            // Decrement stock
+            var part = await _context.ReserveParts.FindAsync(dto.ItemId);
+            if (part != null && part.stock > 0)
+                part.stock -= 1;
+
             await _context.SaveChangesAsync();
 
             return Ok(new { message = "Betaling godkendt", orderId = order.Id });

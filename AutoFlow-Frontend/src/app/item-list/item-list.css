@@ -246,3 +246,6 @@ td img {
   cursor: pointer;
   font-weight: 600;
 }
+
+.status-badge { padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+.status-badge.paid { background: #4ade80; color: #1a1a2e; }

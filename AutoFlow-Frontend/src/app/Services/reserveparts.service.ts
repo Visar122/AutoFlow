@@ -28,7 +28,16 @@ export class ReservepartsService {
   }
 
   SearchPartByName(name: string) {
-    return this.http.get<ReserveParts[]>(`${this.url}/SearchByName?name=${name}`);
+    return this.http.get<ReserveParts[]>(`${this.url}/SearchParts?name=${name}`);
+  }
+
+  FilterParts(carName?: string, carModel?: string, category?: string, maxPrice?: number) {
+    let params: any = {};
+    if (carName) params['carName'] = carName;
+    if (carModel) params['carModel'] = carModel;
+    if (category) params['category'] = category;
+    if (maxPrice != null) params['maxPrice'] = maxPrice;
+    return this.http.get<ReserveParts[]>(`${this.url}/Filter`, { params });
   }
   updatePart(id: number, data: ReserveParts) {
     return this.http.put(`${this.url}/${id}`, data);

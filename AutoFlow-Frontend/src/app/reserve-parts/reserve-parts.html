@@ -18,6 +18,11 @@
              }
              <button class="search-btn" (click)="SearchPartByName()">Søg</button>
           </div>
+
+          <button class="filter-btn" (click)="toggleSidebar()">
+            <i class="fa-solid fa-sliders"></i> Filter
+          </button>
+
       </div>
 
   <div class="cars-grid">
@@ -39,5 +44,55 @@
         </div>
       </div>
     }
+
+        <!-- Sidebar overlay -->
+         <div class="sidebar-overlay" [class.visible]="sidebarOpen" (click)="toggleSidebar()"></div>
+
+           <!-- Filter sidebar -->
+          <div class="filter-sidebar" [class.open]="sidebarOpen">
+            <div class="sidebar-header"> 
+              <h3>Filtrer ReserveDel</h3>
+              <button class="close-btn" (click)="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="filter-section">
+              <label>Bil Mærke</label>
+              <select [(ngModel)]="selectedCarName" (ngModelChange)="onCarNameChange()">
+                <option value="">Alle mærker</option>
+                @for (name of availableCarNames; track name) {
+                  <option [value]="name">{{ name }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="filter-section">
+              <label>Model</label>
+              <select [(ngModel)]="selectedCarModel" (ngModelChange)="applyFilters()" [disabled]="!selectedCarName">
+                <option value="" >Alle modeller</option>
+                @for (model of availableCarModels; track model) {
+                  <option [value]="model">{{ model }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="filter-section">
+              <label>Kategori</label>
+              <select [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
+                <option value="">Alle kategorier</option>
+                @for (cat of availableCategories; track cat) {
+                  <option [value]="cat">{{ cat }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="filter-section">
+              <label>Max Pris (DKK)</label>
+              <input type="number" [(ngModel)]="filterMaxPrice" placeholder="F.eks. 5000">
+            </div>
+
+            <div class="filter-actions">
+              <button class="apply-btn" (click)="applyFilters()">Anvend</button>
+              <button class="clear-btn" (click)="clearFilters()">Ryd</button>
+            </div>
   </div>
 </div>

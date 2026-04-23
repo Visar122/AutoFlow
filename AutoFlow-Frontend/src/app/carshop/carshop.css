@@ -193,8 +193,7 @@
 .sidebar-overlay {
   display: none;
   position: fixed;
- 
-  inset: 0;
+
   background: rgba(0,0,0,0.5);
   z-index: 999;
 }
@@ -250,7 +249,7 @@
   font-weight: 600;
   margin-bottom: 8px;
 }
-.filter-section input {
+.filter-section input,.filter-section select {
   width: 100%;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(168,85,247,0.3);
@@ -261,7 +260,11 @@
   outline: none;
   box-sizing: border-box;
 }
-.filter-section input:focus { border-color: #a855f7; }
+.filter-section input:focus,.filter-section select:focus { border-color: #a855f7; }
+.filter-section select option {
+  background: #1e1b3a !important;
+  color: #e2e2e2 !important;
+}
 
 
 .category-chips {
