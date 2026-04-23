@@ -17,16 +17,18 @@ namespace Autoflow.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly Dbcontext _context;
+        private readonly IConfiguration _config;
 
-        public OrdersController(Dbcontext context)
+        public OrdersController(Dbcontext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         [HttpPost("CreatePaymentIntent")]
         public async Task<IActionResult> CreatePaymentIntent([FromBody] CreatePaymentIntentDto dto)
         {
-            StripeConfiguration.ApiKey = "sk_test_51TPQVOJSJ9176wqYrkdMMqyBHiBlevS43KlTb7REFI3HQHGPu5EeeAzGTTyfSu7SzLax6iPVX9VQSlbdQlfaSWms00iReYnE0Z";
+            StripeConfiguration.ApiKey = _config["Stripe:SecretKey"];
             var options = new PaymentIntentCreateOptions
             {
                 Amount = (long)(dto.Amount * 100),
