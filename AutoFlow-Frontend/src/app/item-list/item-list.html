@@ -88,7 +88,11 @@
 </div>
 
 @if (activeTab === 'orders') {
-  <div class="table-wrapper">
+      <div class="searchBar">
+      <input type="text" placeholder="Søg ordrer efter Mail..." [(ngModel)]="searchCar" (keyup.enter)="OrderByMail()">
+      <button (click)="OrderByMail()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+  <div class="table-wrapper" >
     <table>
       <thead>
         <tr>

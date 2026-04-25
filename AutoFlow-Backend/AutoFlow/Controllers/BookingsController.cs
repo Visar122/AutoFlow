@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Autoflow.Models;
 using Autoflow.Models.Booking;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace Autoflow.Controllers
 {
@@ -15,10 +17,12 @@ namespace Autoflow.Controllers
     public class BookingsController : ControllerBase
     {
         private readonly Dbcontext _context;
+        private readonly IConfiguration _config;
 
-        public BookingsController(Dbcontext context)
+        public BookingsController(Dbcontext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
         }
 
         // GET: api/Bookings
@@ -166,6 +170,26 @@ namespace Autoflow.Controllers
 
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
+
+            // Send confirmation email
+            var client = new SendGridClient(_config["SendGrid:ApiKey"]);
+            var msg = new SendGridMessage
+            {
+                From = new EmailAddress(_config["SendGrid:FromEmail"], _config["SendGrid:FromName"]),
+                Subject = "Booking bekræftelse - AutoFlow",
+                HtmlContent = $@"
+                    <h2>Hej {booking.CustomerName}!</h2>
+                    <p>Din booking er bekræftet.</p>
+                    <ul>
+                        <li><strong>Dato:</strong> {booking.BookingDate:dd/MM/yyyy}</li>
+                        <li><strong>Tidspunkt:</strong> {booking.BookingTime}</li>
+                        <li><strong>Service:</strong> {booking.ServiceType}</li>
+                    </ul>
+                    <p>Vi glæder os til at se dig!</p>
+                    <p>– AutoFlow</p>"
+            };
+            msg.AddTo(new EmailAddress(booking.CustomerEmail, booking.CustomerName));
+            await client.SendEmailAsync(msg);
 
             return CreatedAtAction("GetBooking", new { id = booking.Id }, booking);
         }

@@ -20,7 +20,7 @@ export class AddReserveparts {
 
   PartsCategory = [
     'Motor', 'Bremser','Affjedring','Udstødning','Transmission','Elektrisk','Karosseri',
-    'Køling','Styring','SommerDæk','VinterDæk','HelÅrsDæk','Andet',
+    'Køling','Styring','SommerDæk','VinterDæk','HelÅrsDæk','Fælger','Andet',
   ];
 
   CarName=[ 'BMW', 'Mercedes', 'Porsche','Audi', 'Volkswagen', 'Hyundai','Toyota', 'Honda', 'Kia', 'Mazda', 'Volvo', 'Land Rover',

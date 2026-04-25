@@ -14,7 +14,7 @@ import { OrderService } from '../Services/order.service';
 export class ItemList implements OnInit {
 
   activeTab: 'cars' | 'parts' | 'orders' = 'cars';
-
+searchCar='';
   FuelTypes = ['Benzin', 'Diesel', 'Elektrisk', 'Hybrid', 'Plugin-hybrid', 'Brint'];
   GearTypes = ['Automatik', 'Manuel'];
 
@@ -44,6 +44,11 @@ export class ItemList implements OnInit {
 
   loadOrders() {
     this.orderService.getAllOrders().subscribe(data => this.orders = data);
+  }
+  OrderByMail(){
+      this.orderService.GetOrderByEmail(this.searchCar).subscribe((data)=>{
+      this.orders=data;
+    });
   }
 
   loadCars() {

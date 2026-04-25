@@ -15,7 +15,8 @@ export class OrderService {
     return this.http.post(this.url, data);
   }
 
-  getMyOrders(email: string) {
+
+  GetOrderByEmail(email:string){
     return this.http.get<any[]>(`${this.url}/ByEmail?email=${email}`);
   }
 

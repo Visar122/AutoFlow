@@ -37,11 +37,42 @@
 
 .tab-btn i { margin-right: 8px; }
 
+/* Search Bar */
+.searchBar{
+  display: flex;
+  justify-content: center ;
+  margin-bottom: 12px;
+}
+.searchBar input{
+  width: 350px;
+  padding: 10px 12px;
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #4c1d95;
+  background: #2d2a4a;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+}
+.searchBar button{
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #4c1d95;
+  background: #2d2a4a;
+  color: #fff;
+  font-size: 0.9rem;
+}
+.searchBar button:hover{
+  background: #4c1d95;
+  border-color: #a855f7;
+  cursor: pointer;
+}
 /* tabel */
 .table-wrapper {
   overflow-x: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  margin-right: 4%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
 table {

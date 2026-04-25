@@ -16,6 +16,6 @@ export class MyOrders implements OnInit {
 
   ngOnInit() {
     const user = this.loginService.getUser();
-    this.orderService.getMyOrders(user.email).subscribe(data => { this.orders = data; });
+    this.orderService.GetOrderByEmail(user.email).subscribe(data => { this.orders = data; });
   }
 }
