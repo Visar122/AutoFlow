@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ namespace Autoflow.Controllers
         }
 
         // GET: api/Bookings
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("ThisWeek")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
@@ -37,6 +39,7 @@ namespace Autoflow.Controllers
                 .Where(b => b.BookingDate >= startOfWeek && b.BookingDate < endOfWeek)
                 .ToListAsync();
         }
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("NextWeek")]
         public async Task<ActionResult<IEnumerable<Booking>>> NextWeekBooking()
         {
@@ -50,6 +53,7 @@ namespace Autoflow.Controllers
                 .ToListAsync();
         }
 
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("LastWeek")]
         public async Task<ActionResult<IEnumerable<Booking>>> LastWeekBooking()
         {
@@ -61,6 +65,7 @@ namespace Autoflow.Controllers
                 .Where(b => b.BookingDate >= startOfLastWeek && b.BookingDate < startOfThisWeek)
                 .ToListAsync();
         }
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("ThisMonth")]
         public async Task<ActionResult<IEnumerable<Booking>>> ThisMonthBooking()
         {
@@ -74,6 +79,7 @@ namespace Autoflow.Controllers
                 .ToListAsync();
         }
 
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("LastMonth")]
         public async Task<ActionResult<IEnumerable<Booking>>> LastMonthBooking()
         {
@@ -86,6 +92,7 @@ namespace Autoflow.Controllers
                 .ToListAsync();
         }
 
+        [Authorize]
         [HttpGet ("GetByEmail")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsbyEmail(string Mail)
         {
@@ -99,6 +106,7 @@ namespace Autoflow.Controllers
         }
 
 
+        [Authorize]
         [HttpGet("TakenSlots")]
         public async Task<ActionResult<IEnumerable<string>>> GetTakenSlots([FromQuery] string date)
         {
@@ -113,6 +121,7 @@ namespace Autoflow.Controllers
             return Ok(slots);
         }
         // GET: api/Bookings/5
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(int id)
         {
@@ -127,7 +136,7 @@ namespace Autoflow.Controllers
         }
 
         // PUT: api/Bookings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBooking(int id, Booking booking)
         {
@@ -158,6 +167,7 @@ namespace Autoflow.Controllers
         }
 
         // POST: api/Bookings
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(Booking booking)
         {
@@ -195,6 +205,7 @@ namespace Autoflow.Controllers
         }
 
         // DELETE: api/Bookings/5
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(int id)
         {

@@ -61,7 +61,12 @@ export class Booking implements OnInit, AfterViewInit {
       maxDate: maxDate,
       disable: [(date) => date.getDay() === 0 || date.getDay() === 6],
    
-      onChange: (_, dateStr) => { //når brugere vælger en dato 
+      onChange: (_, dateStr) => { //når brugere vælger en dato
+        if (!this.Login.isLoggedIn()) {
+          this.errorMessage = 'Du skal være logget ind for at booke en tid';
+          setTimeout(() => { this.errorMessage = ''; this.router.navigate(['/login']); }, 2000);
+          return;
+        }
         this.form.bookingDate = dateStr;
         this.form.bookingTime = '';
         this.bookingService.getTakenSlots(dateStr).subscribe({
@@ -72,7 +77,7 @@ export class Booking implements OnInit, AfterViewInit {
     });
   }
 
-  isSlotTaken(slot: string): boolean {
+  isSlotTaken(slot: string){
     return this.takenSlots.includes(slot);
   }
 

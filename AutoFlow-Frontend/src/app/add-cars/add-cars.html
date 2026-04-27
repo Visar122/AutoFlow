@@ -132,10 +132,13 @@
 
       <!-- Pris -->
       <div class="form-group">
-        <label>Price</label>
+           <label>Price</label>
+         <div class="input-unit"> 
+     
         <input type="number" name="price" [required]="true" ngModel placeholder="0" mask="separator.0" thousandSeparator="." [max]="1000000">
+        <span>DKK</span>
       </div>
-
+       </div>
       <button type="submit" class="btn-submit">Add Car</button>
 
     </form>

@@ -15,12 +15,37 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('user');
+    return !!localStorage.getItem('token');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  private decodeToken(): any {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    try {
+      return JSON.parse(atob(token.split('.')[1].replaceAll('-', '+').replaceAll('_', '/')));
+    } catch {
+      return null;
+    }
+  }
+
+  getRoleFromToken(): string | null {
+    return this.decodeToken()?.['role'] ?? null;
   }
 
   getUser() {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    const payload = this.decodeToken();
+    if (!payload) return null;
+    return {
+      email: payload['email'],
+      firstName: payload['firstName'],
+      lastName: payload['lastName'],
+      carPlate: payload['carPlate'],
+      carPlate2: payload['carPlate2']
+    };
   }
 
  
@@ -35,7 +60,7 @@ export class LoginService {
   UserLogin(data: login) {
     this.http.post<any>('https://localhost:7069/api/Users/Logins', data, { observe: 'response' }).subscribe({
       next: (res) => {
-        localStorage.setItem('user', JSON.stringify(res.body));
+        localStorage.setItem('token', res.body.token);
         this.loginError.next(false);
       },
       error: () => this.loginError.next(true),

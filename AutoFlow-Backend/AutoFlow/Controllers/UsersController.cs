@@ -1,13 +1,17 @@
 ﻿using Autoflow.Models;
 using Autoflow.Models.Logins;
 using AutoFlow.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +23,33 @@ namespace Autoflow.Controllers
     public class UsersController : ControllerBase
     {
         private readonly Dbcontext _context;
+        private readonly IConfiguration _config;
 
-        public UsersController(Dbcontext context)
+        public UsersController(Dbcontext context, IConfiguration config)
         {
             _context = context;
+            _config = config;
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            var claims = new[]
+            {
+                new Claim("email", user.Email),
+                new Claim("role", user.Status),
+                new Claim("firstName", user.FirstName),
+                new Claim("lastName", user.LastName),
+                new Claim("carPlate", user.CarPlate ?? ""),
+                new Claim("carPlate2", user.CarPlate2 ?? "")
+            };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.UtcNow.AddDays(7),
+                signingCredentials: creds
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         private static void CreatePassworrdHash(string password, out byte[] passwordSalt, out byte[] passwordHash)
@@ -48,7 +75,8 @@ namespace Autoflow.Controllers
             if (!VerifyPasswordHash(loginDto.Password, user.PasswordSalt, user.PasswordHash))
                 return Unauthorized(new { Message = "Invalid password." });
 
-            return Ok(new { user.FirstName, user.LastName, user.Email, user.Status, user.CarPlate, user.CarPlate2 });
+            var token = GenerateJwtToken(user);
+            return Ok(new { token, user.FirstName, user.LastName, user.Email, user.Status, user.CarPlate, user.CarPlate2 });
 
 
         }
@@ -74,7 +102,7 @@ namespace Autoflow.Controllers
                 Email = signUpDto.Email,
                 PasswordSalt = Passwordsalt,
                 PasswordHash = Passwordhash,
-                Status = signUpDto.Status,
+                Status = "user",
                 CarPlate =signUpDto.CarPlate,
                 CarPlate2=signUpDto.CarPlate2,
                
@@ -85,6 +113,7 @@ namespace Autoflow.Controllers
 
             return Ok(new { Message = "User added!" });
         }
+        [Authorize]
         [HttpGet("GetMyInfo")]
         public async Task<IActionResult> GetMyInfo(string mail)
         {
@@ -94,6 +123,7 @@ namespace Autoflow.Controllers
             return Ok(new { user.FirstName,user.LastName,user.Email,user.CarPlate,user.CarPlate2});
         }
 
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -101,6 +131,7 @@ namespace Autoflow.Controllers
             return Ok(users);
         }
 
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("SearchUsers")]
         public async Task<IActionResult> SearchUsers([FromQuery] string search)
         {
@@ -115,6 +146,7 @@ namespace Autoflow.Controllers
         }
 
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("UpdateStatus")]
         public async Task<IActionResult> UpdateStatus([FromBody] UpdateStatusDto dto)
         {
@@ -125,6 +157,7 @@ namespace Autoflow.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("DeleteUser")]
         public async Task<IActionResult> DeleteUser([FromQuery] string email)
         {
@@ -135,6 +168,7 @@ namespace Autoflow.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPut("UpdateInfo")]
         public async Task<IActionResult> UpdateMyInfo([FromBody] UpdateUserDto dto)
         {

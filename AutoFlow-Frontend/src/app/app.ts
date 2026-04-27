@@ -24,14 +24,14 @@ export class App implements OnInit{
   ngOnInit(): void {
     this.isLoggedIn = this.Loginservice.isLoggedIn();
     this.UserName = this.Loginservice.getUser()?.firstName ?? '';
-    this.TheUserStatus = this.Loginservice.getUser()?.status ?? '';
+    this.TheUserStatus = this.Loginservice.getRoleFromToken() ?? '';
     const logo = this.getLogoElement();
     if(logo)this.setUnderlinePosition(logo);
   }
 
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('token');
     window.location.reload();
   }
 

@@ -82,6 +82,7 @@ export class Reservepartsdetails implements OnInit, OnDestroy {
     this.orderError = '';
 
     const user = this.loginService.getUser();
+    if (!user) return;
 
     this.orderService.createPaymentIntent(this.parts.price).subscribe({
       next: async (res) => {
@@ -99,9 +100,9 @@ export class Reservepartsdetails implements OnInit, OnDestroy {
         }
 
         const dto = {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
+          firstName: user?.firstName,
+          lastName: user?.lastName,
+          email: user?.email,
           itemId: this.parts.id,
           itemType: this.parts.category,
           itemName: this.parts.name,

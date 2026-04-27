@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace Autoflow.Controllers
             _config = config;
         }
 
+        [Authorize]
         [HttpPost("CreatePaymentIntent")]
         public async Task<IActionResult> CreatePaymentIntent([FromBody] CreatePaymentIntentDto dto)
         {
@@ -41,6 +43,7 @@ namespace Autoflow.Controllers
         }
 
         // GET: api/Orders
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrder()
         {
@@ -48,6 +51,7 @@ namespace Autoflow.Controllers
         }
 
         // GET: api/Orders/5
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
@@ -62,7 +66,7 @@ namespace Autoflow.Controllers
         }
 
         // PUT: api/Orders/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, Order order)
         {
@@ -93,6 +97,7 @@ namespace Autoflow.Controllers
         }
 
         // POST: api/Orders
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder([FromBody] CreateOrderDto dto)
         {
@@ -122,6 +127,7 @@ var order = new Order
             return Ok(new { message = "Betaling godkendt", orderId = order.Id });
         }
 
+        [Authorize]
         [HttpGet("ByEmail")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByEmail([FromQuery] string email)
         {
@@ -132,6 +138,7 @@ var order = new Order
         }
 
         // DELETE: api/Orders/5
+        [Authorize(Roles = "Admin,Admin2")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
