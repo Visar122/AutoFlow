@@ -31,7 +31,11 @@
              <div class="card-header">
                    <span class="customer-name">{{ booking.customerName }}</span>
                    <span class="booking-date">  {{ booking.bookingTime | slice:0:5 }} | {{ booking.bookingDate | date: 'EEEE, dd-MM-yyyy' }} </span>
-                     <span class="booking-status">  {{ booking.status}} </span>
+                     <span class="booking-status"
+                      [class.status-pending]="booking.status === 'Pending'"
+                      [class.status-godkendt]="booking.status === 'Godkendt'">
+                      {{ booking.status }}
+                    </span>
                </div>
 
                  <div class="card-sub">

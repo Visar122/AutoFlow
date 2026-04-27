@@ -59,13 +59,14 @@ export const AdminsGuard: CanActivateFn = () => {
   return true;
 };
 
-export const userGuard: CanActivateFn = () => {
+
+
+export const loggedInGuard: CanActivateFn = () => {
   const login = inject(LoginService);
   const router = inject(Router);
-  const role = login.getRoleFromToken();
 
-  if (role !== 'user') {
-    router.navigate(['/']);
+  if (!login.isLoggedIn()) {
+    router.navigate(['/login']);
     return false;
   }
   return true;

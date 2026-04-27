@@ -30,6 +30,9 @@ namespace Autoflow.Models.Booking
 
         public string WorkImg { get; set; } = "";
 
+        public string DefectImg { get; set; } = "";
+
+
 
     }
 }

@@ -26,7 +26,7 @@ export class Home implements OnInit {
       this.featuredCars = data.slice(0, 3);
     });
     this.reservePartsService.getParts().subscribe(data => {
-      this.featuredParts = data.slice(0, 4);
+      this.featuredParts = data.slice(0, 6);
     });
   }
 }

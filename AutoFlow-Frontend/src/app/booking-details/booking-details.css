@@ -1,5 +1,5 @@
 .details-wrapper {
-  max-width: 640px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -21,6 +21,7 @@
   color: #fff;
   margin-bottom: 24px;
 }
+
 
 .details-card {
   background: #fff;
@@ -60,20 +61,36 @@
   color: #a855f7;
   width: 16px;
 }
+
 .info-list textarea {
   width: 100%;
-  border:1px solid #4c1d95;
-  border-radius:8px;
+  border: 1px solid #4c1d95;
+  border-radius: 8px;
   padding: 10px 14px;
-   font-size: 0.95rem;
-     outline: none;
-     transition: border-color 0.2s;
-
-
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+  resize: vertical;
+  min-height: 80px;
 }
+
 .info-list textarea:focus {
   border-color: #a855f7;
 }
+
+.info-list select {
+  border-radius: 10px;
+  outline: none;
+  padding: 3px 14px;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}
+
+.info-list option {
+  background: #ffffff;
+}
+
 .note-text {
   font-size: 0.95rem;
   color: #374151;
@@ -85,18 +102,23 @@
   color: red;
 }
 
-
-.details-card .workImg{
-  width: 50%;
-  background: #fff;
-  border-radius: 12px;
-  padding: 10px 24px;
+.image-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
-.work-img {
+.image-row .details-card {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.img {
   width: 100%;
+  height: 220px;
   border-radius: 8px;
   object-fit: cover;
 }
@@ -111,6 +133,11 @@
   color: #a855f7;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upload-label:hover {
+  background: rgba(168, 85, 247, 0.08);
 }
 
 .btn-save {
@@ -123,6 +150,12 @@
   font-weight: 700;
   cursor: pointer;
   margin-top: 8px;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.btn-save:hover {
+  background: #9333ea;
 }
 
 .success-msg {

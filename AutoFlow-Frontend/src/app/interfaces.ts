@@ -27,6 +27,7 @@ export interface bookings{
     carPlate: string;
     note?: string;
     workImg?: string;
+    defectImg?: string;
 }
 
 export interface CarShop{

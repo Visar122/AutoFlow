@@ -38,15 +38,28 @@
   </div>
   }
 
-  <div class="details-card workImg">
-    <h2 class="section-title">Arbejdsbillede</h2>
-    @if (booking.workImg) {
-      <img [src]="booking.workImg" class="work-img">
-    }
-    <label class="upload-label">
-      <i class="fa-solid fa-image"></i> {{ booking.workImg ? 'Skift billede' : 'Tilføj billede' }}
-      <input type="file" accept="image/*" (change)="onImageChange($event)" hidden>
-    </label>
+  <div class="image-row">
+    <div class="details-card defectImg">
+      <h2 class="section-title">Defektbillede</h2>
+      @if (booking.defectImg) {
+        <img [src]="booking.defectImg" class="img">
+      }
+      <label class="upload-label">
+        <i class="fa-solid fa-image"></i> {{ booking.defectImg ? 'Skift billede' : 'Tilføj billede' }}
+        <input type="file" accept="image/*" (change)="onDefectImageChange($event)" hidden>
+      </label>
+    </div>
+
+    <div class="details-card workImg">
+      <h2 class="section-title">Arbejdsbillede</h2>
+      @if (booking.workImg) {
+        <img [src]="booking.workImg" class="img">
+      }
+      <label class="upload-label">
+        <i class="fa-solid fa-image"></i> {{ booking.workImg ? 'Skift billede' : 'Tilføj billede' }}
+        <input type="file" accept="image/*" (change)="onImageChange($event)" hidden>
+      </label>
+    </div>
   </div>
 
   @if (successMessage) { <p class="success-msg">{{ successMessage }}</p> }

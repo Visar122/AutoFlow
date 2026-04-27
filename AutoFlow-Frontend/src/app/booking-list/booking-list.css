@@ -162,6 +162,27 @@
   margin-left: auto;
   
 }
+.booking-status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #b45309;
+  border: 1px solid #f59e0b;
+}
+
+.status-godkendt {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #10b981;
+}
+
+
 
 
 

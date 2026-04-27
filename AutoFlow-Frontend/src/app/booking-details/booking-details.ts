@@ -29,10 +29,19 @@ export class BookingDetails implements OnInit {
   }
 
   onImageChange(event: Event) {
-const input = event.target as HTMLInputElement;
+    const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();
       reader.onload = () => this.booking.workImg = reader.result as string;
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  onDefectImageChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => this.booking.defectImg = reader.result as string;
       reader.readAsDataURL(input.files[0]);
     }
   }
