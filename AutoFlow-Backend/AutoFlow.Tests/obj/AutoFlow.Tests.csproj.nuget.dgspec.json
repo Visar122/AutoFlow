@@ -46,7 +46,7 @@
         },
         "restoreAuditProperties": {
           "enableAudit": "true",
-          "auditLevel": "low",
+          "auditLevel": "high",
           "auditMode": "all"
         },
         "SdkAnalysisLevel": "10.0.200"

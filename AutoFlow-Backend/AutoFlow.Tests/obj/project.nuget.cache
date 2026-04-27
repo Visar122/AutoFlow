@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M6BcsAMPMZk=",
+  "dgSpecHash": "NduHfSdPsZ0=",
   "success": true,
   "projectFilePath": "C:\\Users\\shaba\\Desktop\\AutoFlow\\AutoFlow-Backend\\AutoFlow.Tests\\AutoFlow.Tests.csproj",
   "expectedPackageFiles": [
@@ -178,30 +178,5 @@
     "C:\\Users\\shaba\\.nuget\\packages\\xunit.extensibility.execution\\2.9.3\\xunit.extensibility.execution.2.9.3.nupkg.sha512",
     "C:\\Users\\shaba\\.nuget\\packages\\xunit.runner.visualstudio\\3.1.4\\xunit.runner.visualstudio.3.1.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "C:\\Users\\shaba\\Desktop\\AutoFlow\\AutoFlow-Backend\\AutoFlow.Tests\\AutoFlow.Tests.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\shaba\\Desktop\\AutoFlow\\AutoFlow-Backend\\AutoFlow.Tests\\AutoFlow.Tests.csproj",
-      "libraryId": "NuGet.Packaging",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    },
-    {
-      "code": "NU1901",
-      "level": "Warning",
-      "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
-      "projectPath": "C:\\Users\\shaba\\Desktop\\AutoFlow\\AutoFlow-Backend\\AutoFlow.Tests\\AutoFlow.Tests.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Users\\shaba\\Desktop\\AutoFlow\\AutoFlow-Backend\\AutoFlow.Tests\\AutoFlow.Tests.csproj",
-      "libraryId": "NuGet.Protocol",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }

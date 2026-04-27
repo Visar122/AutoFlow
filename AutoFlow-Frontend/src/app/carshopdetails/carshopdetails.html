@@ -17,6 +17,9 @@
     @if (car.imageUrl3) {
       <img [src]="car.imageUrl3" class="thumb" [class.active]="activeImage === car.imageUrl3" (click)="activeImage = car.imageUrl3">
     }
+      @if (car.imageUrl4) {
+       <img [src]="car.imageUrl4" class="thumb" [class.active]="activeImage === car.imageUrl4" (click)="activeImage = car.imageUrl4">
+    }
   </div>
 
   <div class="car-header">

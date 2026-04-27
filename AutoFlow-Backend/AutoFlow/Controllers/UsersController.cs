@@ -192,6 +192,44 @@ namespace Autoflow.Controllers
             await _context.SaveChangesAsync();
             return Ok(new { user.FirstName, user.LastName, user.Email, user.CarPlate, user.CarPlate2 });
         }
+
+        [HttpPost("CreateAdmin")]
+        public async Task<IActionResult> CreateAdmin([FromBody] SignUpDto signUpDto)
+        {
+            if (signUpDto == null)
+                return BadRequest();
+
+
+            var existing = await _context.Users.FirstOrDefaultAsync(u => u.Email == signUpDto.Email);
+            if (existing != null)
+                return Conflict(new { Message = "A user with this email already exists." });
+
+
+            CreatePassworrdHash(signUpDto.Password, out byte[] Passwordsalt, out byte[] Passwordhash);
+
+
+            var NewUser = new User
+            {
+                FirstName = signUpDto.FirstName,
+                LastName = signUpDto.LastName,
+                Email = signUpDto.Email,
+                PasswordSalt = Passwordsalt,
+                PasswordHash = Passwordhash,
+                Status = signUpDto.Status ?? "Admin",
+                CarPlate = signUpDto.CarPlate,
+                CarPlate2 = signUpDto.CarPlate2,
+            };
+
+
+            await _context.Users.AddAsync(NewUser);
+            await _context.SaveChangesAsync();
+
+
+            return Ok(new { Message = "Admin created!" });
+        }
+
+
+
     }
 }
 
