@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="Autoflow/Autoflow.csproj" />
+  <Project Path="AutoFlow/Autoflow.csproj" />
+  <Project Path="AutoFlow.Tests/AutoFlow.Tests.csproj" />
 </Solution>
