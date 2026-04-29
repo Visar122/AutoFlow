@@ -37,6 +37,8 @@ export class Booking implements OnInit, AfterViewInit {
     'Bremseservice',
     'Generel inspektion',
     'Klimaservice',
+       'BilPolering',
+       'BilSprøjtning',
     'Andet',
   ];
 

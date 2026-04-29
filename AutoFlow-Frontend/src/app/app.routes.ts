@@ -17,6 +17,7 @@ import { Carshopdetails } from './carshopdetails/carshopdetails';
 import { Reservepartsdetails } from './reservepartsdetails/reservepartsdetails';
 import { Users } from './users/users';
 import { MyOrders } from './my-orders/my-orders';
+import { AutoflowPakker } from './autoflow-pakker/autoflow-pakker';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -35,6 +36,7 @@ export const routes: Routes = [
     { path:'carshopdetails/:id', component: Carshopdetails},
         { path:'reservepartsdetails/:id', component: Reservepartsdetails},
         {path:'AllUsers',component: Users, canActivate: [adminGuard]},
-        {path:'my-orders', component: MyOrders}
+        {path:'my-orders', component: MyOrders},
+        {path:'autoflow-pakker', component: AutoflowPakker}
 
 ];

@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: -20% 20%;
+    padding: -20% 10%;
+    margin-left: 2%;
 
 }
 .icons{
@@ -309,11 +310,12 @@ width: 50%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   left: 0;
-  margin-left: -6%;
+  margin-left: -3%;
 }
 
 .about-col {
   padding: 64px 8%;
+  margin-left: 4%;
   background: #1a1a2e;
   border-right: 1px solid #2d2a4a;
 }
@@ -382,7 +384,7 @@ width: 50%;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 40px;
-   margin-left: -10%;
+   margin-left: -2%;
   border-top: 3px solid #7c3aed;
 }
 
